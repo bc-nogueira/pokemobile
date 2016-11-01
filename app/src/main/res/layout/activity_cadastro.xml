@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cadastro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.breno.pokemobile.CadastroActivity">
+
+    <TextView
+        android:text="Nome:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="320dp"
+        android:id="@+id/nomeCriar"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:width="75dp" />
+
+    <TextView
+        android:text="Usuário:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/usuarioCriar"
+        android:width="75dp" />
+
+    <TextView
+        android:text="Senha:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/senhaCriar"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="420dp"
+        android:width="75dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/nomeCriarEdit"
+        android:layout_alignBaseline="@+id/nomeCriar"
+        android:layout_alignBottom="@+id/nomeCriar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:width="250dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/usuarioCriarEdit"
+        android:width="250dp"
+        android:layout_alignBaseline="@+id/usuarioCriar"
+        android:layout_alignBottom="@+id/usuarioCriar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/senhaCriarEdit"
+        android:layout_alignBaseline="@+id/senhaCriar"
+        android:layout_alignBottom="@+id/senhaCriar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:width="250dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/treinadorCriar"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/nomeCriarEdit"
+        android:layout_marginBottom="35dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/triangle_left_50"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/buttonLeftCriar"
+        android:layout_marginTop="100dp"
+        android:onClick="anterior" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/triangle_right_50"
+        android:layout_alignBottom="@+id/buttonLeftCriar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/buttonRightCriar"
+        android:onClick="proximo" />
+
+    <Button
+        android:text="Criar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/criar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="475dp" />
+
+
+</RelativeLayout>
