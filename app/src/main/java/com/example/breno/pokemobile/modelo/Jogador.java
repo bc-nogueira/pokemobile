@@ -5,18 +5,18 @@ package com.example.breno.pokemobile.modelo;
  */
 
 public class Jogador {
-    private Integer idJogador;
+    private Integer id;
     private String nome;
     private String email;
     private String senha;
-    private Integer gold;
+    private Integer dinheiro;
 
-    public Integer getIdJogador() {
-        return idJogador;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdJogador(Integer idJogador) {
-        this.idJogador = idJogador;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -43,11 +43,11 @@ public class Jogador {
         this.senha = senha;
     }
 
-    public Integer getGold() {
-        return gold;
+    public Integer getDinheiro() {
+        return dinheiro;
     }
 
-    public void setGold(Integer gold) {
-        this.gold = gold;
+    public void setDinheiro(Integer dinheiro) {
+        this.dinheiro = dinheiro;
     }
 }
