@@ -25,7 +25,6 @@ public class MenuPrincipalActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
     }
 
     public void logout(View v) {

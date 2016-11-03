@@ -12,33 +12,6 @@
     tools:context="com.example.breno.pokemobile.MenuPrincipalActivity"
     android:layout_centerHorizontal="true">
 
-    <Button
-        android:text="Mochila"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mochila"
-        android:layout_marginRight="46dp"
-        android:layout_marginEnd="46dp"
-        android:layout_alignBaseline="@+id/info"
-        android:layout_alignBottom="@+id/info"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:width="100dp" />
-
-    <Button
-        android:text="Info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/info"
-        android:layout_marginBottom="229dp"
-        android:width="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/mochila"
-        android:layout_toStartOf="@+id/mochila"
-        android:layout_marginRight="49dp"
-        android:layout_marginEnd="49dp"
-        android:onClick="abrirInfo" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,5 +30,66 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/botaoSair"
         android:onClick="logout" />
+
+    <Button
+        android:text="vs. Treinador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/vsTreinador"
+        android:width="100dp"
+        android:height="50dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="50dp" />
+
+    <Button
+        android:text="vs. Selvagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/vsSelvagem"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="150dp" />
+
+    <Button
+        android:text="Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:height="50dp"
+        android:id="@+id/infoMenu"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="50dp"
+        android:onClick="abrirInfo" />
+
+    <Button
+        android:text="Mochila"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mochilaMenu"
+        android:width="100dp"
+        android:height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="350dp" />
+
+    <Button
+        android:text="Loja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lojaMenu"
+        android:width="100dp"
+        android:height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="350dp" />
 
 </RelativeLayout>
