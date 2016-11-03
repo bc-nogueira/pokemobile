@@ -1,15 +1,20 @@
 package com.example.breno.pokemobile.modelo;
 
+import android.graphics.drawable.Drawable;
+
+import java.io.Serializable;
+
 /**
  * Created by Breno on 02/11/2016.
  */
 
-public class Jogador {
+public class Jogador implements Serializable {
     private Integer id;
     private String nome;
     private String email;
     private String senha;
     private Integer dinheiro;
+    private Integer idAvatar;
 
     public Integer getId() {
         return id;
@@ -49,5 +54,13 @@ public class Jogador {
 
     public void setDinheiro(Integer dinheiro) {
         this.dinheiro = dinheiro;
+    }
+
+    public Integer getIdAvatar() {
+        return idAvatar;
+    }
+
+    public void setIdAvatar(Integer idAvatar) {
+        this.idAvatar = idAvatar;
     }
 }

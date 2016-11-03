@@ -20,17 +20,6 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Dinheiro: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dinheiro"
-        android:textStyle="normal|bold"
-        android:textSize="18sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="Nome: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,4 +42,45 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/valorNome"
+        android:textSize="18sp"
+        android:layout_above="@+id/pokemons"
+        android:layout_toRightOf="@+id/pokemons"
+        android:layout_toEndOf="@+id/pokemons"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/valorPokemons"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/pokemons"
+        android:layout_alignBottom="@+id/pokemons"
+        android:layout_alignLeft="@+id/valorNome"
+        android:layout_alignStart="@+id/valorNome" />
+
+    <TextView
+        android:text="Dinheiro: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dinheiro"
+        android:textStyle="normal|bold"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/valorDinheiro"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/valorPokemons"
+        android:layout_alignStart="@+id/valorPokemons" />
 </RelativeLayout>

@@ -16,14 +16,12 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/usuarioEdit"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:layout_alignBaseline="@+id/usuarioText"
-        android:layout_alignBottom="@+id/usuarioText"
-        android:layout_toRightOf="@+id/usuarioText"
+        android:id="@+id/emailLoginEdit"
+        android:layout_alignBaseline="@+id/emailLogin"
+        android:layout_alignBottom="@+id/emailLogin"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:width="250dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -39,11 +37,11 @@
         android:text="Senha: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/usuarioEdit"
+        android:layout_below="@+id/emailLogin"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="33dp"
-        android:id="@+id/textView2"
+        android:id="@+id/senhaLogin"
         android:textSize="18sp"
         android:textStyle="normal|bold"
         android:width="70dp" />
@@ -53,19 +51,18 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/senhaEdit"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
+        android:id="@+id/senhaLoginEdit"
+        android:layout_alignBaseline="@+id/senhaLogin"
+        android:layout_alignBottom="@+id/senhaLogin"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/usuarioEdit"
-        android:layout_alignStart="@+id/usuarioEdit" />
+        android:width="250dp" />
 
     <TextView
-        android:text="Usuário: "
+        android:text="Email:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/usuarioText"
+        android:id="@+id/emailLogin"
         android:textStyle="normal|bold"
         android:textSize="18sp"
         android:layout_marginTop="300dp"
@@ -77,9 +74,9 @@
         android:text="Entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/senhaEdit"
+        android:layout_below="@+id/senhaLoginEdit"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:id="@+id/entrarLogin"
-        android:onClick="irMenuPrincipal" />
+        android:onClick="login" />
 </RelativeLayout>

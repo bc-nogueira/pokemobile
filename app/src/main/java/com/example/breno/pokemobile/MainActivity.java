@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -18,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toast.makeText(this, "Clique na tela para começar.", Toast.LENGTH_SHORT).show();
+
         RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.activity_main);
         relLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Button novo = (Button) findViewById(R.id.novo);
                 Button carregar = (Button) findViewById(R.id.carregar);
-                TextView textoInicial = (TextView) findViewById(R.id.textView);
-                textoInicial.setVisibility(View.INVISIBLE);
                 novo.setVisibility(View.VISIBLE);
                 carregar.setVisibility(View.VISIBLE);
             }

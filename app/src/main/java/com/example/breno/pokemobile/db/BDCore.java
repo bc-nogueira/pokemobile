@@ -20,6 +20,7 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String EMAIL = "email";
     private static final String SENHA = "senha";
     private static final String DINHEIRO = "dinheiro";
+    private static final String ID_AVATAR = "id_avatar";
 
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
@@ -28,11 +29,12 @@ public class BDCore extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase bd) {
         String sql = "CREATE TABLE " + TABELA_JOGADOR + "("
-                + ID_JOGADOR + "integer primary key autoincrement,"
+                + ID_JOGADOR + " integer primary key autoincrement,"
                 + NOME + " text not null,"
-                + EMAIL + " text not null,"
+                + EMAIL + " text not null unique,"
                 + SENHA + " text not null,"
-                + DINHEIRO + " integer"
+                + DINHEIRO + " integer,"
+                + ID_AVATAR + " integer"
                 + ")";
 
         bd.execSQL(sql);
