@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.breno.pokemobile.db.JogadorDAO;
+import com.example.breno.pokemobile.db.TreinadorDAO;
 import com.example.breno.pokemobile.modelo.Jogador;
+import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class CadastroActivity extends AppCompatActivity {
     private int imagemAtual;
 
     Jogador j = new Jogador();
+    Treinador t = new Treinador();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +69,27 @@ public class CadastroActivity extends AppCompatActivity {
 
         } else {
 
-            j.setNome(nome.getText().toString());
             j.setEmail(email.getText().toString());
             j.setSenha(senha.getText().toString());
-            j.setDinheiro(0);
-            j.setIdAvatar(imagensTreinadores.get(imagemAtual));
+
+            t.setNome(nome.getText().toString());
+            t.setDinheiro(200);
+            t.setIdAvatar(imagensTreinadores.get(imagemAtual));
 
             JogadorDAO jogadorDAO = new JogadorDAO(this);
-            //        jogadorDAO.inserir(j);
 
             try {
-                jogadorDAO.inserir(j);
+                Long idJogador = jogadorDAO.inserir(j);
+                t.setIdJogador(idJogador);
+
+                TreinadorDAO treinadorDAO = new TreinadorDAO(this);
+                treinadorDAO.inserir(t);
 
                 Toast.makeText(this, "Jogador criado com sucesso!", Toast.LENGTH_SHORT).show();
 
                 //Encaminhar para o menu principal
                 Intent intent = new Intent(CadastroActivity.this, MenuPrincipalActivity.class);
-                intent.putExtra("jogador", j);
+                intent.putExtra("treinador", t);
                 startActivity(intent);
 
             } catch (SQLException ex) {

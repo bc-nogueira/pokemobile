@@ -8,7 +8,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.breno.pokemobile.db.JogadorDAO;
+import com.example.breno.pokemobile.db.TreinadorDAO;
 import com.example.breno.pokemobile.modelo.Jogador;
+import com.example.breno.pokemobile.modelo.Treinador;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
                 if(isSenhaCorreta(jogadorAtual, senha.getText().toString())) {
 
                     Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                    TreinadorDAO treinadorDAO = new TreinadorDAO(this);
+                    treinadorDAO.buscarPorIdJogador(jogadorAtual.getIdJogador());
 
                     Intent menuPrincipal = new Intent(LoginActivity.this, MenuPrincipalActivity.class);
                     menuPrincipal.putExtra("jogador", jogadorAtual);

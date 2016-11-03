@@ -1,7 +1,5 @@
 package com.example.breno.pokemobile.modelo;
 
-import android.graphics.drawable.Drawable;
-
 import java.io.Serializable;
 
 /**
@@ -9,27 +7,16 @@ import java.io.Serializable;
  */
 
 public class Jogador implements Serializable {
-    private Integer id;
-    private String nome;
+    private Long idJogador;
     private String email;
     private String senha;
-    private Integer dinheiro;
-    private Integer idAvatar;
 
-    public Integer getId() {
-        return id;
+    public Long getIdJogador() {
+        return idJogador;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdJogador(Long idJogador) {
+        this.idJogador = idJogador;
     }
 
     public String getEmail() {
@@ -48,19 +35,4 @@ public class Jogador implements Serializable {
         this.senha = senha;
     }
 
-    public Integer getDinheiro() {
-        return dinheiro;
-    }
-
-    public void setDinheiro(Integer dinheiro) {
-        this.dinheiro = dinheiro;
-    }
-
-    public Integer getIdAvatar() {
-        return idAvatar;
-    }
-
-    public void setIdAvatar(Integer idAvatar) {
-        this.idAvatar = idAvatar;
-    }
 }

@@ -18,7 +18,8 @@
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CadastroActivity"></activity>
+        <activity android:name=".CadastroActivity" />
+        <activity android:name=".SelecionaTreinadorActivity"></activity>
     </application>
 
 </manifest>

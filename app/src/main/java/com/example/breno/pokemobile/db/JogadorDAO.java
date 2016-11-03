@@ -25,44 +25,37 @@ public class JogadorDAO {
 
     public long inserir(Jogador jogador) throws SQLException {
         ContentValues valores = new ContentValues();
-        valores.put("nome", jogador.getNome());
         valores.put("email", jogador.getEmail());
         valores.put("senha", jogador.getSenha());
-        valores.put("dinheiro", jogador.getDinheiro());
-        valores.put("id_avatar", jogador.getIdAvatar());
 
         return bd.insertOrThrow("jogador", null, valores);
     }
 
     public void atualizar(Jogador jogador) {
         ContentValues valores = new ContentValues();
-        valores.put("nome", jogador.getNome());
+//        valores.put("nome", jogador.getNome());
         valores.put("email", jogador.getEmail());
-        valores.put("dinheiro", jogador.getDinheiro());
+//        valores.put("dinheiro", jogador.getDinheiro());
 
-        bd.update("jogador", valores, "_id = ?", new String[]{"" + jogador.getId()});
+        bd.update("jogador", valores, "_id = ?", new String[]{"" + jogador.getIdJogador()});
     }
 
     public void deletar(Jogador jogador) {
-        bd.delete("jogador", "_id = " + jogador.getId(), null);
+        bd.delete("jogador", "_id = " + jogador.getIdJogador(), null);
     }
 
     public List<Jogador> buscar() {
         List<Jogador> jogadores = new ArrayList<Jogador>();
 
-        String[] colunas = new String[]{"_id", "nome", "email", "dinheiro", "idAvatar"}; //Colunas que vão ser retornadas
-        Cursor cursor = bd.query("jogador", colunas, null, null, null, null, null);
+        Cursor cursor = bd.rawQuery("SELECT * FROM jogador", null);
 
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
 
             do {
                 Jogador j = new Jogador();
-                j.setId(cursor.getInt(0));
-                j.setNome(cursor.getString(1));
-                j.setEmail(cursor.getString(2));
-                j.setDinheiro(cursor.getInt(3));
-                j.setIdAvatar(cursor.getInt(4));
+                j.setIdJogador(cursor.getLong(0));
+                j.setEmail(cursor.getString(1));
 
                 jogadores.add(j);
 
@@ -79,12 +72,9 @@ public class JogadorDAO {
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
 
-            j.setId(cursor.getInt(0));
-            j.setNome(cursor.getString(1));
-            j.setEmail(cursor.getString(2));
-            j.setSenha(cursor.getString(3));
-            j.setDinheiro(cursor.getInt(4));
-            j.setIdAvatar(cursor.getInt(5));
+            j.setIdJogador(cursor.getLong(0));
+            j.setEmail(cursor.getString(1));
+            j.setSenha(cursor.getString(2));
 
             return j;
         } else {

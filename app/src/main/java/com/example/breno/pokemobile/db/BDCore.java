@@ -15,12 +15,16 @@ public class BDCore extends SQLiteOpenHelper {
 
     //Atributos da tabela Jogador
     private static final String TABELA_JOGADOR = "jogador";
-    private static final String ID_JOGADOR = "_id";
-    private static final String NOME = "nome";
     private static final String EMAIL = "email";
     private static final String SENHA = "senha";
+
+    //Atributos da tabela Treinador
+    private static final String TABELA_TREINADOR = "treinador";
+    private static final String ID_TREINADOR = "_id";
+    private static final String NOME = "nome";
     private static final String DINHEIRO = "dinheiro";
     private static final String ID_AVATAR = "id_avatar";
+    private static final String ID_JOGADOR = "id_jogador";
 
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
@@ -28,22 +32,31 @@ public class BDCore extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase bd) {
-        String sql = "CREATE TABLE " + TABELA_JOGADOR + "("
+        String sqlJogador = "CREATE TABLE " + TABELA_JOGADOR + "("
                 + ID_JOGADOR + " integer primary key autoincrement,"
-                + NOME + " text not null,"
                 + EMAIL + " text not null unique,"
-                + SENHA + " text not null,"
-                + DINHEIRO + " integer,"
-                + ID_AVATAR + " integer"
+                + SENHA + " text not null"
                 + ")";
 
-        bd.execSQL(sql);
+        bd.execSQL(sqlJogador);
+
+        String sqlTreinador = "CREATE TABLE " + TABELA_TREINADOR + "("
+                + ID_TREINADOR + " integer primary key autoincrement,"
+                + NOME + " text not null,"
+                + DINHEIRO + " integer,"
+                + ID_AVATAR + " integer,"
+                + ID_JOGADOR + " integer"
+                + ")";
+
+        bd.execSQL(sqlTreinador);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase bd, int i, int i1) {
         String sql = "DROP TABLE " + TABELA_JOGADOR;
         bd.execSQL(sql);
+        String sql2 = "DROP TABLE " + TABELA_TREINADOR;
+        bd.execSQL(sql2);
         onCreate(bd);
     }
 }
