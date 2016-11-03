@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         relLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView aviso = (TextView) findViewById(R.id.avisoTextViewMain);
+                aviso.setVisibility(View.GONE);
                 Button novo = (Button) findViewById(R.id.novo);
                 Button carregar = (Button) findViewById(R.id.carregar);
                 novo.setVisibility(View.VISIBLE);
