@@ -15,6 +15,7 @@ public class BDCore extends SQLiteOpenHelper {
 
     //Atributos da tabela Jogador
     private static final String TABELA_JOGADOR = "jogador";
+    private static final String ID_JOGADOR = "_id";
     private static final String EMAIL = "email";
     private static final String SENHA = "senha";
 
@@ -24,7 +25,7 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String NOME = "nome";
     private static final String DINHEIRO = "dinheiro";
     private static final String ID_AVATAR = "id_avatar";
-    private static final String ID_JOGADOR = "id_jogador";
+    private static final String ID_JOGADOR_FK = "id_jogador";
 
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
@@ -45,7 +46,7 @@ public class BDCore extends SQLiteOpenHelper {
                 + NOME + " text not null,"
                 + DINHEIRO + " integer,"
                 + ID_AVATAR + " integer,"
-                + ID_JOGADOR + " integer"
+                + ID_JOGADOR_FK + " integer"
                 + ")";
 
         bd.execSQL(sqlTreinador);

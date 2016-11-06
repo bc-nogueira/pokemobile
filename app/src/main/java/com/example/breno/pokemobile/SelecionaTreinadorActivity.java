@@ -43,6 +43,10 @@ public class SelecionaTreinadorActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     public void selecionarTreinador(Integer position) {
         Treinador treinador = treinadores.get(position);
 

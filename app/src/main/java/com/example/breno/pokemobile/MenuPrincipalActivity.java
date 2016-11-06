@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.breno.pokemobile.db.JogadorDAO;
 import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
-    Treinador treinador = new Treinador();
+    private Treinador treinador;
+    private Jogador jogador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,5 +40,16 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         Intent intent = new Intent(MenuPrincipalActivity.this, InfoActivity.class);
         intent.putExtra("treinador", treinador);
         startActivity(intent);
+    }
+
+    public void mudarTreinador(View v) {
+        JogadorDAO jogadorDAO = new JogadorDAO(this);
+        jogador = jogadorDAO.buscarPorId(treinador.getIdJogador());
+
+        treinador = null;
+
+        Intent selecionar = new Intent(MenuPrincipalActivity.this, SelecionaTreinadorActivity.class);
+        selecionar.putExtra("jogador", jogador);
+        startActivity(selecionar);
     }
 }

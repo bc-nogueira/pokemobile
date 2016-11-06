@@ -65,6 +65,24 @@ public class JogadorDAO {
         return jogadores;
     }
 
+    public Jogador buscarPorId(Long idJogador) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM jogador WHERE _id = ?", new String[]{idJogador.toString()});
+
+        Jogador j = new Jogador();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            j.setIdJogador(cursor.getLong(0));
+            j.setEmail(cursor.getString(1));
+            j.setSenha(cursor.getString(2));
+
+            return j;
+        } else {
+            return null;
+        }
+
+    }
+
     public Jogador buscarPorEmail(String email) {
         Cursor cursor = bd.rawQuery("SELECT * FROM jogador WHERE email = ?", new String[]{email});
 
