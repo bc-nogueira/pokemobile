@@ -15,6 +15,15 @@ public class Treinador implements Serializable {
     private Integer idAvatar;
     private Long idJogador;
 
+    public Treinador() {}
+
+    public Treinador(String nome, Integer dinheiro, Integer idAvatar, Long idJogador) {
+        this.nome = nome;
+        this.dinheiro = dinheiro;
+        this.idAvatar = idAvatar;
+        this.idJogador = idJogador;
+    }
+
     public Long getIdTreinador() {
         return idTreinador;
     }
@@ -59,7 +68,7 @@ public class Treinador implements Serializable {
         return "Nome: " + nome + " Dinheiro: " + dinheiro;
     }
 
-    public Integer getImagemTreinador(Integer numero) {
+    public static Integer getImagemTreinador(Integer numero) {
         switch (numero) {
             case 0:
                 return (R.drawable.treinador1);
@@ -68,31 +77,23 @@ public class Treinador implements Serializable {
             case 2:
                 return (R.drawable.treinador3);
             case 3:
-                return (R.drawable.treinadora1);
+                return (R.drawable.treinador4);
             case 4:
-                return (R.drawable.treinadora2);
+                return (R.drawable.treinador5);
             case 5:
-                return (R.drawable.treinadora3);
-            default:
-                return (R.drawable.treinador1);
-        }
-
-    }
-
-    public Integer getImagemMenorTreinador(Integer numero) {
-        switch (numero) {
-            case 0:
-                return (R.drawable.treinador1);
-            case 1:
-                return (R.drawable.treinador2);
-            case 2:
-                return (R.drawable.treinador3);
-            case 3:
+                return (R.drawable.treinador6);
+            case 6:
                 return (R.drawable.treinadora1);
-            case 4:
+            case 7:
                 return (R.drawable.treinadora2);
-            case 5:
+            case 8:
                 return (R.drawable.treinadora3);
+            case 9:
+                return (R.drawable.treinadora4);
+            case 10:
+                return (R.drawable.treinadora5);
+            case 11:
+                return (R.drawable.treinadora6);
             default:
                 return (R.drawable.treinador1);
         }

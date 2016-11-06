@@ -55,4 +55,8 @@ public class TreinadorDAO {
         return treinadores;
 
     }
+
+    public void excluir(Long idTreinador) {
+        bd.delete("treinador", "_id = " + idTreinador, null);
+    }
 }

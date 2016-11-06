@@ -9,12 +9,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.breno.pokemobile.db.JogadorDAO;
 import com.example.breno.pokemobile.db.TreinadorDAO;
 import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
-public class CadastroActivity extends AppCompatActivity {
+public class CriaTreinadorActivity extends AppCompatActivity {
     private Jogador jogador;
     private Treinador treinador;
     private Integer imagemAtual = 0;
@@ -22,14 +21,16 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro);
+        setContentView(R.layout.activity_cria_treinador);
 
-        ImageView treinadorIV = (ImageView) findViewById(R.id.treinadorCriar);
+        jogador = (Jogador) getIntent().getSerializableExtra("jogador");
+
+        ImageView treinadorIV = (ImageView) findViewById(R.id.avatarImageViewCriarTreinador);
         treinadorIV.setImageResource(treinador.getImagemTreinador(imagemAtual));
     }
 
     public void anterior(View v) {
-        ImageView treinadorIV = (ImageView) findViewById(R.id.treinadorCriar);
+        ImageView treinadorIV = (ImageView) findViewById(R.id.avatarImageViewCriarTreinador);
         if(imagemAtual == 0) {
             imagemAtual = 12;
         }
@@ -37,40 +38,33 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void proximo(View v) {
-        ImageView treinadorIV = (ImageView) findViewById(R.id.treinadorCriar);
+        ImageView treinadorIV = (ImageView) findViewById(R.id.avatarImageViewCriarTreinador);
         if(imagemAtual == 11) {
             imagemAtual = -1;
         }
         treinadorIV.setImageResource(treinador.getImagemTreinador(++imagemAtual));
     }
 
-    public void cadastrar(View v) {
-        EditText nome = (EditText) findViewById(R.id.nomeCriarEdit);
-        EditText email = (EditText) findViewById(R.id.emailCriarEdit);
-        EditText senha = (EditText) findViewById(R.id.senhaCriarEdit);
+    public void criarTreinador(View v) {
+        EditText nome = (EditText) findViewById(R.id.nomeEditTextCriarTreinador);
 
-        if(nome.getText().toString().equals("") || email.getText().toString().equals("") || senha.getText().toString().equals("")) {
+        if(nome.getText().toString().equals("")) {
 
             Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT).show();
 
         } else {
 
-            jogador = new Jogador(email.getText().toString(), senha.getText().toString());
-            treinador = new Treinador(nome.getText().toString(), 200, imagemAtual, null);
+            treinador = new Treinador(nome.getText().toString(), 200, imagemAtual, jogador.getIdJogador());
 
-            JogadorDAO jogadorDAO = new JogadorDAO(this);
-
+            TreinadorDAO treinadorDAO = new TreinadorDAO(this);
             try {
-                Long idJogador = jogadorDAO.inserir(jogador);
-                treinador.setIdJogador(idJogador);
 
-                TreinadorDAO treinadorDAO = new TreinadorDAO(this);
                 treinadorDAO.inserir(treinador);
 
-                Toast.makeText(this, "Jogador criado com sucesso!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Treinador criado com sucesso!", Toast.LENGTH_SHORT).show();
 
                 //Encaminhar para o menu principal
-                Intent intent = new Intent(CadastroActivity.this, MenuPrincipalActivity.class);
+                Intent intent = new Intent(CriaTreinadorActivity.this, MenuPrincipalActivity.class);
                 intent.putExtra("treinador", treinador);
                 startActivity(intent);
 
@@ -81,5 +75,4 @@ public class CadastroActivity extends AppCompatActivity {
         }
 
     }
-
 }

@@ -10,17 +10,17 @@ import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
-    Treinador t = new Treinador();
+    Treinador treinador = new Treinador();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
-        t = (Treinador) getIntent().getSerializableExtra("treinador");
+        treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
-        if(t != null) {
-            TextView nomeJogador = (TextView) findViewById(R.id.nomeJogador);
-            nomeJogador.setText(t.getNome());
+        if(treinador != null) {
+            TextView nomeJogador = (TextView) findViewById(R.id.nomeTextViewMenuPrincipal);
+            nomeJogador.setText(treinador.getNome());
         } //else -> ver o que fazer - o certo é não chegar aqui sem um valor
     }
 
@@ -29,14 +29,14 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     }
 
     public void logout(View v) {
-        t = null;
+        treinador = null;
         Intent main = new Intent(MenuPrincipalActivity.this, MainActivity.class);
         startActivity(main);
     }
 
     public void abrirInfo(View v) {
         Intent intent = new Intent(MenuPrincipalActivity.this, InfoActivity.class);
-        intent.putExtra("treinador", t);
+        intent.putExtra("treinador", treinador);
         startActivity(intent);
     }
 }

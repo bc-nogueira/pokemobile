@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cria_treinador"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.breno.pokemobile.CriaTreinadorActivity">
+
+    <ImageView
+        android:id="@+id/avatarImageViewCriarTreinador"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/treinador1"
+        android:layout_height="400dp" />
+
+    <ImageView
+        android:id="@+id/leftButtonCriarTreinador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/triangle_left_50"
+        android:onClick="anterior"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="175dp" />
+
+    <ImageView
+        android:id="@+id/rightButtonCriarTreinador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/triangle_right_50"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="proximo"
+        android:layout_marginTop="175dp" />
+
+    <TextView
+        android:id="@+id/nomeTextViewCriarTreinador"
+        android:text="Nome:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:width="75dp"
+        android:layout_below="@+id/avatarImageViewCriarTreinador"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/nomeEditTextCriarTreinador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_alignBaseline="@+id/nomeTextViewCriarTreinador"
+        android:layout_alignBottom="@+id/nomeTextViewCriarTreinador"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:width="250dp" />
+
+    <Button
+        android:text="Criar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/criar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="475dp"
+        android:onClick="criarTreinador" />
+
+</RelativeLayout>

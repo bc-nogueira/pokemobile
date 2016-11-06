@@ -1,14 +1,17 @@
 package com.example.breno.pokemobile.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.breno.pokemobile.R;
+import com.example.breno.pokemobile.SelecionaTreinadorActivity;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
@@ -54,6 +57,9 @@ public class TreinadorAdapter extends BaseAdapter {
         TextView nomeTreinador = (TextView) layout.findViewById(R.id.nomeTreinador);
         nomeTreinador.setText(treinador.getNome());
 
+        ImageView lixeira = (ImageView) layout.findViewById(R.id.deleteImageViewTreinador);
+        lixeira.setTag(new Long(treinador.getIdTreinador()));
+
         TextView dinheiroTreinador = (TextView) layout.findViewById(R.id.dinheiroTreinador);
         dinheiroTreinador.setText(treinador.getDinheiro().toString());
 
@@ -62,4 +68,5 @@ public class TreinadorAdapter extends BaseAdapter {
 
         return layout;
     }
+
 }

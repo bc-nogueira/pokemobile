@@ -11,6 +11,13 @@ public class Jogador implements Serializable {
     private String email;
     private String senha;
 
+    public Jogador() {}
+
+    public Jogador(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
+
     public Long getIdJogador() {
         return idJogador;
     }
