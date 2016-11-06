@@ -1,5 +1,7 @@
 package com.example.breno.pokemobile.modelo;
 
+import com.example.breno.pokemobile.R;
+
 import java.io.Serializable;
 
 /**
@@ -51,6 +53,50 @@ public class Treinador implements Serializable {
 
     public void setIdJogador(Long idJogador) {
         this.idJogador = idJogador;
+    }
+
+    public String toString() {
+        return "Nome: " + nome + " Dinheiro: " + dinheiro;
+    }
+
+    public Integer getImagemTreinador(Integer numero) {
+        switch (numero) {
+            case 0:
+                return (R.drawable.treinador1);
+            case 1:
+                return (R.drawable.treinador2);
+            case 2:
+                return (R.drawable.treinador3);
+            case 3:
+                return (R.drawable.treinadora1);
+            case 4:
+                return (R.drawable.treinadora2);
+            case 5:
+                return (R.drawable.treinadora3);
+            default:
+                return (R.drawable.treinador1);
+        }
+
+    }
+
+    public Integer getImagemMenorTreinador(Integer numero) {
+        switch (numero) {
+            case 0:
+                return (R.drawable.treinador1);
+            case 1:
+                return (R.drawable.treinador2);
+            case 2:
+                return (R.drawable.treinador3);
+            case 3:
+                return (R.drawable.treinadora1);
+            case 4:
+                return (R.drawable.treinadora2);
+            case 5:
+                return (R.drawable.treinadora3);
+            default:
+                return (R.drawable.treinador1);
+        }
+
     }
 
 }

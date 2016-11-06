@@ -90,7 +90,8 @@
         android:id="@+id/treinadorCriar"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/nomeCriarEdit"
-        android:layout_marginBottom="35dp" />
+        android:layout_marginBottom="35dp"
+        android:src="@drawable/treinador1" />
 
     <ImageView
         android:layout_width="wrap_content"

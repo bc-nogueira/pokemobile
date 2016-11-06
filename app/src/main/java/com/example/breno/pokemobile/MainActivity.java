@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(this, "Clique na tela para começar.", Toast.LENGTH_SHORT).show();
-
         RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.activity_main);
         relLayout.setOnClickListener(new OnClickListener() {
             @Override

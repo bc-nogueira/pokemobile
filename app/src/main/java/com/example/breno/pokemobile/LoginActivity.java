@@ -12,6 +12,8 @@ import com.example.breno.pokemobile.db.TreinadorDAO;
 import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -34,12 +36,16 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
-                    TreinadorDAO treinadorDAO = new TreinadorDAO(this);
-                    treinadorDAO.buscarPorIdJogador(jogadorAtual.getIdJogador());
+//                    TreinadorDAO treinadorDAO = new TreinadorDAO(this);
+//                    List<Treinador> treinadores = treinadorDAO.buscarPorIdJogador(jogadorAtual.getIdJogador());
 
-                    Intent menuPrincipal = new Intent(LoginActivity.this, MenuPrincipalActivity.class);
-                    menuPrincipal.putExtra("jogador", jogadorAtual);
-                    startActivity(menuPrincipal);
+                    //Ir para Activity de seleção de Jogador
+//                    Intent menuPrincipal = new Intent(LoginActivity.this, MenuPrincipalActivity.class);
+//                    menuPrincipal.putExtra("jogador", jogadorAtual);
+//                    startActivity(menuPrincipal);
+                    Intent selecionaTreinador = new Intent(LoginActivity.this, SelecionaTreinadorActivity.class);
+                    selecionaTreinador.putExtra("jogador", jogadorAtual);
+                    startActivity(selecionaTreinador);
 
                 } else {
                     Toast.makeText(this, "A senha está incorreta.", Toast.LENGTH_SHORT).show();

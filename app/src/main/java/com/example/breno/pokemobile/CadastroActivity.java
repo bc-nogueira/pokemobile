@@ -21,6 +21,8 @@ public class CadastroActivity extends AppCompatActivity {
     private List<Integer> imagensTreinadores;
     private int imagemAtual;
 
+    private Integer teste = 0;
+
     Jogador j = new Jogador();
     Treinador t = new Treinador();
 
@@ -30,32 +32,40 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
 
         imagensTreinadores = new ArrayList<>();
-        imagensTreinadores.add(R.drawable.treinador1);
-        imagensTreinadores.add(R.drawable.treinador2);
-        imagensTreinadores.add(R.drawable.treinador3);
-        imagensTreinadores.add(R.drawable.treinadora1);
-        imagensTreinadores.add(R.drawable.treinadora2);
-        imagensTreinadores.add(R.drawable.treinadora3);
+//        imagensTreinadores.add(R.drawable.treinador1);
+//        imagensTreinadores.add(R.drawable.treinador2);
+//        imagensTreinadores.add(R.drawable.treinador3);
+//        imagensTreinadores.add(R.drawable.treinadora1);
+//        imagensTreinadores.add(R.drawable.treinadora2);
+//        imagensTreinadores.add(R.drawable.treinadora3);
+        imagensTreinadores.add(0);
+        imagensTreinadores.add(1);
+        imagensTreinadores.add(2);
+        imagensTreinadores.add(3);
+        imagensTreinadores.add(4);
+        imagensTreinadores.add(5);
+
+
 
         ImageView treinador = (ImageView) findViewById(R.id.treinadorCriar);
-        treinador.setImageResource(imagensTreinadores.get(0));
+        treinador.setImageResource(t.getImagemTreinador(teste));
         imagemAtual = 0;
     }
 
     public void proximo(View v) {
         ImageView treinador = (ImageView) findViewById(R.id.treinadorCriar);
-        if(imagemAtual == (imagensTreinadores.size()-1)) {
-            imagemAtual = -1;
+        if(teste == 5) {
+            teste = -1;
         }
-        treinador.setImageResource(imagensTreinadores.get(++imagemAtual));
+        treinador.setImageResource(t.getImagemTreinador(++teste));
     }
 
     public void anterior(View v) {
         ImageView treinador = (ImageView) findViewById(R.id.treinadorCriar);
-        if(imagemAtual == 0) {
-            imagemAtual = imagensTreinadores.size();
+        if(teste == 0) {
+            teste = 6;
         }
-        treinador.setImageResource(imagensTreinadores.get(--imagemAtual));
+        treinador.setImageResource(t.getImagemTreinador(--imagemAtual));
     }
 
     public void cadastrar(View v) {
@@ -74,7 +84,7 @@ public class CadastroActivity extends AppCompatActivity {
 
             t.setNome(nome.getText().toString());
             t.setDinheiro(200);
-            t.setIdAvatar(imagensTreinadores.get(imagemAtual));
+            t.setIdAvatar(teste);
 
             JogadorDAO jogadorDAO = new JogadorDAO(this);
 
