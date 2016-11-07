@@ -30,11 +30,11 @@ public class SelecionaTreinadorActivity extends AppCompatActivity {
         TreinadorDAO treinadorDAO = new TreinadorDAO(this);
         treinadores = treinadorDAO.buscarPorIdJogador(jogador.getIdJogador());
 
-        ListView listaViewTreinadores = (ListView) findViewById(R.id.listView);
+        ListView listViewTreinadores = (ListView) findViewById(R.id.treinadoresListViewSeleciona);
 
-        listaViewTreinadores.setAdapter(new TreinadorAdapter(this, treinadores));
+        listViewTreinadores.setAdapter(new TreinadorAdapter(this, treinadores));
 
-        listaViewTreinadores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewTreinadores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selecionarTreinador(position);

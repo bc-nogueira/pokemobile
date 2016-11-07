@@ -64,7 +64,8 @@ public class TreinadorAdapter extends BaseAdapter {
         dinheiroTreinador.setText(treinador.getDinheiro().toString());
 
         TextView pokemonsTreinador = (TextView) layout.findViewById(R.id.pokemonsTreinador);
-        pokemonsTreinador.setText("0");
+        Integer pokemons = 0;
+        pokemonsTreinador.setText(pokemons.toString());
 
         return layout;
     }

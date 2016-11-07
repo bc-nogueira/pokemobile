@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_loja"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.breno.pokemobile.LojaActivity"
+    android:background="@drawable/poke_entrada"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/topoLoja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#fff"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/coin_50p"/>
+
+        <TextView
+            android:id="@+id/dinheiroTextViewLoja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/itensListViewLoja"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/topoLoja"
+        android:layout_above="@+id/baseLoja"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RelativeLayout
+        android:id="@+id/baseLoja"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/menosLoja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_media_rew"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:visibility="invisible"
+            android:onClick="remover" />
+
+        <TextView
+            android:id="@+id/quantLoja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/menosLoja"
+            android:layout_toEndOf="@+id/menosLoja"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/maisLoja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_media_ff"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/quantLoja"
+            android:layout_toEndOf="@+id/quantLoja"
+            android:visibility="invisible"
+            android:onClick="adicionar"/>
+
+        <TextView
+            android:id="@+id/totalLoja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="22sp"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/confirmLoja"
+            android:layout_width="45dp"
+            android:layout_height="75dp"
+            android:src="@drawable/confirm"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:visibility="invisible"
+            android:onClick="confirmar"/>
+
+        <ImageView
+            android:id="@+id/cancelLoja"
+            android:src="@drawable/cancel"
+            android:layout_height="75dp"
+            android:layout_width="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="70dp"
+            android:visibility="invisible"
+            android:onClick="cancelar"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

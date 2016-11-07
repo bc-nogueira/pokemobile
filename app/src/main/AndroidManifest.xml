@@ -20,7 +20,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".CadastroActivity" />
         <activity android:name=".SelecionaTreinadorActivity" />
-        <activity android:name=".CriaTreinadorActivity"></activity>
+        <activity android:name=".CriaTreinadorActivity" />
+        <activity android:name=".LojaActivity"></activity>
     </application>
 
 </manifest>

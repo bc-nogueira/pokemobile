@@ -33,9 +33,7 @@ public class JogadorDAO {
 
     public void atualizar(Jogador jogador) {
         ContentValues valores = new ContentValues();
-//        valores.put("nome", jogador.getNome());
         valores.put("email", jogador.getEmail());
-//        valores.put("dinheiro", jogador.getDinheiro());
 
         bd.update("jogador", valores, "_id = ?", new String[]{"" + jogador.getIdJogador()});
     }
@@ -44,8 +42,8 @@ public class JogadorDAO {
         bd.delete("jogador", "_id = " + jogador.getIdJogador(), null);
     }
 
-    public List<Jogador> buscar() {
-        List<Jogador> jogadores = new ArrayList<Jogador>();
+    public ArrayList<Jogador> buscar() {
+        ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
 
         Cursor cursor = bd.rawQuery("SELECT * FROM jogador", null);
 

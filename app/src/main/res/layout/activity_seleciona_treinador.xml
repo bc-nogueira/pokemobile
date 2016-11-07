@@ -13,7 +13,7 @@
     android:orientation="vertical">
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/treinadoresListViewSeleciona"
         android:layout_width="match_parent"
         android:layout_height="553dp"
         android:layout_alignParentTop="true"

@@ -3,6 +3,7 @@ package com.example.breno.pokemobile.modelo;
 import com.example.breno.pokemobile.R;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Breno on 03/11/2016.
@@ -14,6 +15,7 @@ public class Treinador implements Serializable {
     private Integer dinheiro;
     private Integer idAvatar;
     private Long idJogador;
+    private ArrayList<Item> itens;
 
     public Treinador() {}
 
@@ -100,4 +102,11 @@ public class Treinador implements Serializable {
 
     }
 
+    public ArrayList<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<Item> itens) {
+        this.itens = itens;
+    }
 }

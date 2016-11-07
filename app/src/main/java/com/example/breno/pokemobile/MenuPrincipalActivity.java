@@ -52,4 +52,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         selecionar.putExtra("jogador", jogador);
         startActivity(selecionar);
     }
+
+    public void abrirLoja(View v) {
+        Intent loja = new Intent(MenuPrincipalActivity.this, LojaActivity.class);
+        loja.putExtra("treinador", treinador);
+        startActivity(loja);
+    }
 }
