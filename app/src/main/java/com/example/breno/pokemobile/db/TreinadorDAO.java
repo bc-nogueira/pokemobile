@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
@@ -59,4 +60,12 @@ public class TreinadorDAO {
     public void excluir(Long idTreinador) {
         bd.delete("treinador", "_id = " + idTreinador, null);
     }
+
+    public void atualizarDinheiro(Treinador treinador) {
+        ContentValues valores = new ContentValues();
+        valores.put("dinheiro", treinador.getDinheiro());
+
+        bd.update("treinador", valores, "_id = ?", new String[]{"" + treinador.getIdTreinador()});
+    }
+
 }

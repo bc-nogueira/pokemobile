@@ -1,5 +1,6 @@
 package com.example.breno.pokemobile;
 
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.breno.pokemobile.adapter.ItemAdapter;
 import com.example.breno.pokemobile.db.ItemDAO;
 import com.example.breno.pokemobile.db.ItemTreinadorDAO;
+import com.example.breno.pokemobile.db.TreinadorDAO;
 import com.example.breno.pokemobile.modelo.Item;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -97,6 +99,13 @@ public class LojaActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent menuPrincipal = new Intent(LojaActivity.this, MenuPrincipalActivity.class);
+        menuPrincipal.putExtra("treinador", treinador);
+        startActivity(menuPrincipal);
+    }
+
     public void remover(View v) {
 
         if(quant > 0) {
@@ -156,26 +165,35 @@ public class LojaActivity extends AppCompatActivity {
 
     public void confirmar(View v) {
 
-        if(valorTotal <= treinador.getDinheiro()) {
+        if(quant > 0) {
 
-            ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(this);
-            itemTreinadorDAO.inserir(itemAtual, treinador, quant);
+            if (valorTotal <= treinador.getDinheiro()) {
 
-            //TODO: Atualizar dinheiro Jogador
+                ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(this);
+                itemTreinadorDAO.inserir(itemAtual, treinador, quant);
 
-            //Depois de tudo feito, resetar os valores
-            itemAtual = null;
-            quant = 0;
-            valorTotal = 0;
+                //TODO: Atualizar dinheiro Jogador
+                treinador.setDinheiro(treinador.getDinheiro() - valorTotal);
+                TreinadorDAO treinadorDAO = new TreinadorDAO(this);
+                treinadorDAO.atualizarDinheiro(treinador);
 
-            ItemAdapter itemAdapter = new ItemAdapter(this, itens);
-            itemAdapter.resetarCorFundo(viewAnterior, posSelecionada);
-            posSelecionada = -1;
-            viewAnterior = null;
+                //Depois de tudo feito, resetar os valores
+                itemAtual = null;
+                quant = 0;
+                valorTotal = 0;
 
-        } else {
+                ItemAdapter itemAdapter = new ItemAdapter(this, itens);
+                itemAdapter.resetarCorFundo(viewAnterior, posSelecionada);
+                posSelecionada = -1;
+                viewAnterior = null;
 
-            Toast.makeText(this, "Você não tem dinheiro suficiente.", Toast.LENGTH_SHORT).show();
+                this.recreate();
+
+            } else {
+
+                Toast.makeText(this, "Você não tem dinheiro suficiente.", Toast.LENGTH_SHORT).show();
+
+            }
 
         }
 

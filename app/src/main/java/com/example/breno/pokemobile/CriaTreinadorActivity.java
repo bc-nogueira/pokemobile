@@ -59,7 +59,9 @@ public class CriaTreinadorActivity extends AppCompatActivity {
             TreinadorDAO treinadorDAO = new TreinadorDAO(this);
             try {
 
-                treinadorDAO.inserir(treinador);
+                Long idTreinador = treinadorDAO.inserir(treinador);
+
+                treinador.setIdTreinador(idTreinador);
 
                 Toast.makeText(this, "Treinador criado com sucesso!", Toast.LENGTH_SHORT).show();
 

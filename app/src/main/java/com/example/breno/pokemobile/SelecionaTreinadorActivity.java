@@ -61,7 +61,7 @@ public class SelecionaTreinadorActivity extends AppCompatActivity {
         TreinadorDAO treinadorDAO = new TreinadorDAO(this);
         treinadorDAO.excluir(idTreinador);
 
-        this.recreate();;
+        this.recreate();
     }
 
     public void criarNovoTreinador(View v) {

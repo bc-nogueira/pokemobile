@@ -65,7 +65,9 @@ public class CadastroActivity extends AppCompatActivity {
                 treinador.setIdJogador(idJogador);
 
                 TreinadorDAO treinadorDAO = new TreinadorDAO(this);
-                treinadorDAO.inserir(treinador);
+                Long idTreinador = treinadorDAO.inserir(treinador);
+
+                treinador.setIdTreinador(idTreinador);
 
                 Toast.makeText(this, "Jogador criado com sucesso!", Toast.LENGTH_SHORT).show();
 
