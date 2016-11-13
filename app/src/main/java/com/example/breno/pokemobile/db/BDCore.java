@@ -46,6 +46,12 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String EFEITO_CURA = "efeito_cura";
     private static final String ICONE = "icone";
 
+    //Atributos da tabela ItemTreinador
+    private static final String TABELA_ITEM_TREINADOR = "itemTreinador";
+    private static final String ID_ITEM_FK = "idItem";
+    private static final String ID_TREINADOR_FK = "idTreinador";
+    private static final String QUANTIDADE = "quantidade";
+
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
     }
@@ -82,8 +88,15 @@ public class BDCore extends SQLiteOpenHelper {
                 + ")";
 
         bd.execSQL(sqlItem);
-
         populaItem(bd);
+
+        String sqlItemTreinador = "CREATE TABLE " + TABELA_ITEM_TREINADOR + "("
+                + ID_ITEM_FK + " integer not null,"
+                + ID_TREINADOR_FK + " integer not null,"
+                + QUANTIDADE + " integer not null"
+                + ")";
+
+        bd.execSQL(sqlItemTreinador);
     }
 
     @Override

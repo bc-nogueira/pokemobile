@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.breno.pokemobile.adapter.ItemAdapter;
 import com.example.breno.pokemobile.db.ItemDAO;
+import com.example.breno.pokemobile.db.ItemTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Item;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -66,8 +67,6 @@ public class LojaActivity extends AppCompatActivity {
 
                     itemAdapter.mudarCorFundo(view, posSelecionada);
                 }
-
-
 
                 itemAtual = itens.get(position);
 
@@ -158,6 +157,11 @@ public class LojaActivity extends AppCompatActivity {
     public void confirmar(View v) {
 
         if(valorTotal <= treinador.getDinheiro()) {
+
+            ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(this);
+            itemTreinadorDAO.inserir(itemAtual, treinador, quant);
+
+            //TODO: Atualizar dinheiro Jogador
 
             //Depois de tudo feito, resetar os valores
             itemAtual = null;
