@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.breno.pokemobile.R;
-import com.example.breno.pokemobile.modelo.Item;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
 
 import java.util.ArrayList;
@@ -51,6 +50,9 @@ public class ItemMochilaAdapter extends BaseAdapter {
 
         ImageView icone = (ImageView) layout.findViewById(R.id.iconeImageViewMochila);
         icone.setImageResource(itemTreinador.getItem().getIcone());
+
+        TextView nome = (TextView) layout.findViewById(R.id.nomeTextViewMochila);
+        nome.setText(itemTreinador.getItem().getNome());
 
         TextView quantidade = (TextView) layout.findViewById(R.id.quantTextViewMochila);
         quantidade.setText(itemTreinador.getQuantidade().toString());

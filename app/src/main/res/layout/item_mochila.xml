@@ -13,14 +13,27 @@
         android:src="@drawable/pokeball"/>
 
     <TextView
+        android:id="@+id/nomeTextViewMochila"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/iconeImageViewMochila"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Pokebola"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/quantTextViewMochila"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/iconeImageViewMochila"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="65dp"
         android:textSize="26sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/deleteImageViewMochila"
@@ -31,5 +44,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="20dp"
         android:onClick="deletarItem"/>
+
+
 
 </RelativeLayout>
