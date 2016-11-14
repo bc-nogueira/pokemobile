@@ -1,10 +1,12 @@
 package com.example.breno.pokemobile.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by Breno on 13/11/2016.
  */
 
-public class ItemTreinador {
+public class ItemTreinador implements Serializable {
     private Long idItemTreinador;
     private Item item;
     private Treinador treinador;

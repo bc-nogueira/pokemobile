@@ -33,7 +33,6 @@ public class MochilaActivity extends AppCompatActivity {
             ListView listViewItensTreinador = (ListView) findViewById(R.id.itensListViewMochila);
 
             final ItemMochilaAdapter itemMochilaAdapter = new ItemMochilaAdapter(this, itensTreinador);
-
             listViewItensTreinador.setAdapter(itemMochilaAdapter);
 
             listViewItensTreinador.setOnItemClickListener(new AdapterView.OnItemClickListener() {

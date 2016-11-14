@@ -12,7 +12,7 @@
         android:src="@drawable/treinador1"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_width="125dp" />
+        android:layout_width="110dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,16 +30,15 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:text="Breno"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
 
             <ImageView
                 android:id="@+id/deleteImageViewTreinador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_delete"
-                android:paddingTop="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -56,18 +55,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/coin_50p"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp" />
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp" />
 
             <TextView
                 android:id="@+id/dinheiroTreinador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="15dp"
+                android:layout_marginTop="15dp"
                 android:textSize="18sp" />
 
             <ImageView
@@ -76,16 +72,15 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/pokebola2_50p"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp" />
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp" />
 
             <TextView
                 android:id="@+id/pokemonsTreinador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="0"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:textSize="18sp" />
 
         </LinearLayout>

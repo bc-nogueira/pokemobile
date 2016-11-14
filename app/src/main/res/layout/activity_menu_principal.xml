@@ -73,7 +73,8 @@
         android:width="100dp"
         android:height="60dp"
         android:layout_marginTop="200dp"
-        android:layout_marginLeft="50dp" />
+        android:layout_marginLeft="50dp"
+        android:onClick="abrirPokedex" />
 
     <Button
         android:id="@+id/pokemonsButtonMenuPrincipal"

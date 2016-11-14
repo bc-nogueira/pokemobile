@@ -22,7 +22,9 @@
         <activity android:name=".SelecionaTreinadorActivity" />
         <activity android:name=".CriaTreinadorActivity" />
         <activity android:name=".LojaActivity" />
-        <activity android:name=".MochilaActivity"></activity>
+        <activity android:name=".MochilaActivity" />
+        <activity android:name=".PokedexActivity" />
+        <activity android:name=".DetalhesPokemonActivity"></activity>
     </application>
 
 </manifest>

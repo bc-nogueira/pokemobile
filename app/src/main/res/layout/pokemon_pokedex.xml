@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    android:background="#fff">
+
+    <ImageView
+        android:id="@+id/iconeImageViewPokedex"
+        android:layout_width="100dp"
+        android:layout_height="125dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/bulbasaur"/>
+
+    <TextView
+        android:id="@+id/numeroTextViewPokedex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iconeImageViewPokedex"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="001"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/nomeTextViewPokedex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iconeImageViewPokedex"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:text="Bulbasaur"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/capturadoImageViewPokedex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/pokebola2_50p"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

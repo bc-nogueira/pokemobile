@@ -59,12 +59,14 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String NUMERO = "numero";
     private static final String NOME_POKEMON = "nome";
     private static final String TIPO_POKEMON = "tipo";
+    private static final String ESTAGIO_EVOLUCAO = "estagio_evolucao";
     private static final String HP_MINIMO = "hp_minimo";
     private static final String HP_MAXIMO = "hp_maximo";
     private static final String ALTURA = "altura";
     private static final String PESO = "peso";
     private static final String DESCRICAO_POKEMON = "descricao";
     private static final String ICONE_POKEMON = "icone";
+    private static final String ICONE_TIPO = "icone_tipo";
 
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
@@ -117,15 +119,18 @@ public class BDCore extends SQLiteOpenHelper {
                 + NUMERO + " text primary key,"
                 + NOME_POKEMON + " text not null,"
                 + TIPO_POKEMON + " text not null,"
+                + ESTAGIO_EVOLUCAO + " integer not null,"
                 + HP_MINIMO + " integer not null,"
                 + HP_MAXIMO + " integer not null,"
                 + ALTURA + " text not null,"
                 + PESO + " text not null,"
                 + DESCRICAO_POKEMON + " text not null,"
-                + ICONE_POKEMON + " integer not null"
+                + ICONE_POKEMON + " integer not null,"
+                + ICONE_TIPO + " integer not null"
                 + ")";
 
         bd.execSQL(sqlPokemon);
+        populaPokemon(bd);
 
     }
 
@@ -207,36 +212,37 @@ public class BDCore extends SQLiteOpenHelper {
     }
 
     public void populaPokemon(SQLiteDatabase bd) {
-        Pokemon pokemon = new Pokemon("001", "Bulbasaur", TipoPokemon.GRAMA, 20, 25, "0,7m", "6,9kg",
+        Pokemon pokemon = new Pokemon("001", "Bulbasaur", TipoPokemon.GRAMA, 1, 20, 25, "0,7m", "6,9kg",
                 "For some time after its birth, it grows by gaining nourishment from the seed on its back.",
-                R.drawable.bulbasaur);
+                R.drawable.bulbasaur, R.drawable.grama);
         ContentValues valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
         } catch (SQLException ex) {
+            System.out.println();
         }
 
-        pokemon = new Pokemon("004", "Charmander", TipoPokemon.FOGO, 15, 20, "0,6m", "8,5kg",
+        pokemon = new Pokemon("004", "Charmander", TipoPokemon.FOGO, 1, 15, 20, "0,6m", "8,5kg",
                 "The fire on the tip of its tail is a measure of its life. If healthy, its tail burns intensely.",
-                R.drawable.charmander);
+                R.drawable.charmander, R.drawable.fogo);
         valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
         } catch (SQLException ex) {
         }
 
-        pokemon = new Pokemon("007", "Squirtle", TipoPokemon.AGUA, 20, 25, "0,5m", "9,0kg",
+        pokemon = new Pokemon("007", "Squirtle", TipoPokemon.AGUA, 1, 20, 25, "0,5m", "9,0kg",
                 "It shelters itself in its shell then strikes back with spouts of water at every opportunity.",
-                R.drawable.squirtle);
+                R.drawable.squirtle, R.drawable.agua);
         valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
         } catch (SQLException ex) {
         }
 
-        pokemon = new Pokemon("025", "Pikachu", TipoPokemon.ELETRICO, 10, 15, "0,4m", "6,0kg",
+        pokemon = new Pokemon("025", "Pikachu", TipoPokemon.ELETRICO, 1, 10, 15, "0,4m", "6,0kg",
                 "It occasionally uses an electric shock to recharge a fellow Pikachu that is in a weakened state.",
-                R.drawable.pikachu);
+                R.drawable.pikachu, R.drawable.eletrico);
         valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
@@ -250,12 +256,14 @@ public class BDCore extends SQLiteOpenHelper {
         valores.put("numero", pokemon.getNumero());
         valores.put("nome", pokemon.getNome());
         valores.put("tipo", pokemon.getTipo().toString());
+        valores.put("estagio_evolucao", pokemon.getEstagioEvolucao());
         valores.put("hp_minimo", pokemon.getHpMinimo());
         valores.put("hp_maximo", pokemon.getHpMaximo());
         valores.put("altura", pokemon.getAltura());
         valores.put("peso", pokemon.getPeso());
         valores.put("descricao", pokemon.getDescricao());
         valores.put("icone", pokemon.getIcone());
+        valores.put("icone_tipo", pokemon.getIconeTipo());
 
         return valores;
     }
