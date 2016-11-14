@@ -36,6 +36,18 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         startActivity(main);
     }
 
+    public void abrirMochila(View v) {
+        Intent mochila = new Intent(MenuPrincipalActivity.this, MochilaActivity.class);
+        mochila.putExtra("treinador", treinador);
+        startActivity(mochila);
+    }
+
+    public void abrirLoja(View v) {
+        Intent loja = new Intent(MenuPrincipalActivity.this, LojaActivity.class);
+        loja.putExtra("treinador", treinador);
+        startActivity(loja);
+    }
+
     public void abrirInfo(View v) {
         Intent intent = new Intent(MenuPrincipalActivity.this, InfoActivity.class);
         intent.putExtra("treinador", treinador);
@@ -53,9 +65,4 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         startActivity(selecionar);
     }
 
-    public void abrirLoja(View v) {
-        Intent loja = new Intent(MenuPrincipalActivity.this, LojaActivity.class);
-        loja.putExtra("treinador", treinador);
-        startActivity(loja);
-    }
 }

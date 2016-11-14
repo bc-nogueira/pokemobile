@@ -38,64 +38,68 @@ public class LojaActivity extends AppCompatActivity {
 
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
-        TextView dinheiro = (TextView) findViewById(R.id.dinheiroTextViewLoja);
-        dinheiro.setText(treinador.getDinheiro().toString() + "G");
+        if(treinador != null) {
 
-        ItemDAO itemDAO = new ItemDAO(this);
-        itens = itemDAO.buscar();
+            TextView dinheiro = (TextView) findViewById(R.id.dinheiroTextViewLoja);
+            dinheiro.setText(treinador.getDinheiro().toString() + "G");
 
-        ListView listViewItens = (ListView) findViewById(R.id.itensListViewLoja);
+            ItemDAO itemDAO = new ItemDAO(this);
+            itens = itemDAO.buscar();
 
-        final ItemAdapter itemAdapter = new ItemAdapter(this, itens);
+            ListView listViewItens = (ListView) findViewById(R.id.itensListViewLoja);
 
-        listViewItens.setAdapter(itemAdapter);
+            final ItemAdapter itemAdapter = new ItemAdapter(this, itens);
 
-        listViewItens.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            listViewItens.setAdapter(itemAdapter);
 
-                if(posSelecionada == -1) {
-                    posSelecionada = position;
+            listViewItens.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    itemAdapter.mudarCorFundo(view, posSelecionada);
+                    if (posSelecionada == -1) {
+                        posSelecionada = position;
 
-                    viewAnterior = view;
+                        itemAdapter.mudarCorFundo(view, posSelecionada);
 
-                } else {
-                    itemAdapter.resetarCorFundo(viewAnterior, posSelecionada);
+                        viewAnterior = view;
 
-                    posSelecionada = position;
-                    viewAnterior = view;
+                    } else {
+                        itemAdapter.resetarCorFundo(viewAnterior, posSelecionada);
 
-                    itemAdapter.mudarCorFundo(view, posSelecionada);
+                        posSelecionada = position;
+                        viewAnterior = view;
+
+                        itemAdapter.mudarCorFundo(view, posSelecionada);
+                    }
+
+                    itemAtual = itens.get(position);
+
+                    ImageView retirar = (ImageView) findViewById(R.id.menosLoja);
+                    retirar.setVisibility(View.VISIBLE);
+
+                    TextView quantidade = (TextView) findViewById(R.id.quantLoja);
+                    quant = 0;
+                    quantidade.setText(quant.toString());
+                    quantidade.setVisibility(View.VISIBLE);
+
+                    ImageView adicionar = (ImageView) findViewById(R.id.maisLoja);
+                    adicionar.setVisibility(View.VISIBLE);
+
+                    TextView total = (TextView) findViewById(R.id.totalLoja);
+                    valorTotal = itemAtual.getPreco() * quant;
+                    total.setText(valorTotal.toString() + "G");
+                    total.setVisibility(View.VISIBLE);
+
+                    ImageView cancelar = (ImageView) findViewById(R.id.cancelLoja);
+                    cancelar.setVisibility(View.VISIBLE);
+
+                    ImageView confirmar = (ImageView) findViewById(R.id.confirmLoja);
+                    confirmar.setVisibility(View.VISIBLE);
+
                 }
+            });
 
-                itemAtual = itens.get(position);
-
-                ImageView retirar = (ImageView) findViewById(R.id.menosLoja);
-                retirar.setVisibility(View.VISIBLE);
-
-                TextView quantidade = (TextView) findViewById(R.id.quantLoja);
-                quant = 0;
-                quantidade.setText(quant.toString());
-                quantidade.setVisibility(View.VISIBLE);
-
-                ImageView adicionar = (ImageView) findViewById(R.id.maisLoja);
-                adicionar.setVisibility(View.VISIBLE);
-
-                TextView total = (TextView) findViewById(R.id.totalLoja);
-                valorTotal = itemAtual.getPreco() * quant;
-                total.setText(valorTotal.toString() + "G");
-                total.setVisibility(View.VISIBLE);
-
-                ImageView cancelar = (ImageView) findViewById(R.id.cancelLoja);
-                cancelar.setVisibility(View.VISIBLE);
-
-                ImageView confirmar = (ImageView) findViewById(R.id.confirmLoja);
-                confirmar.setVisibility(View.VISIBLE);
-
-            }
-        });
+        }
 
     }
 

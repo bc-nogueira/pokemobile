@@ -2,11 +2,15 @@ package com.example.breno.pokemobile.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.breno.pokemobile.modelo.Item;
+import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
+
+import java.util.ArrayList;
 
 /**
  * Created by Breno on 13/11/2016.
@@ -28,4 +32,34 @@ public class ItemTreinadorDAO {
 
         return bd.insertOrThrow("itemTreinador", null, valores);
     }
+
+    public ArrayList<ItemTreinador> listaIdsItensPorIdTreinador(Treinador treinador, Context ctx) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM itemTreinador WHERE idTreinador = ?",
+                new String[]{treinador.getIdTreinador().toString()});
+
+        ItemDAO itemDAO = new ItemDAO(ctx);
+
+        ArrayList<ItemTreinador> itensJogador = new ArrayList<>();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            do {
+                ItemTreinador it = new ItemTreinador();
+                it.setIdItemTreinador(cursor.getLong(0));
+                it.setItem(itemDAO.buscarPorId(cursor.getLong(1)));
+                it.setTreinador(treinador);
+                it.setQuantidade(cursor.getInt(3));
+
+                itensJogador.add(it);
+
+            } while(cursor.moveToNext());
+        }
+
+        return itensJogador;
+    }
+
+    public void deletar(Long idItemTreinador) {
+        bd.delete("itemTreinador", "_id = " + idItemTreinador, null);
+    }
+
 }

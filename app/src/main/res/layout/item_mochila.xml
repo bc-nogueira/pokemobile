@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    android:background="#fff">
+
+    <ImageView
+        android:id="@+id/iconeImageViewMochila"
+        android:layout_width="100dp"
+        android:layout_height="125dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/pokeball"/>
+
+    <TextView
+        android:id="@+id/quantTextViewMochila"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <ImageView
+        android:id="@+id/deleteImageViewMochila"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_delete"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:onClick="deletarItem"/>
+
+</RelativeLayout>

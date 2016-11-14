@@ -21,7 +21,8 @@
         <activity android:name=".CadastroActivity" />
         <activity android:name=".SelecionaTreinadorActivity" />
         <activity android:name=".CriaTreinadorActivity" />
-        <activity android:name=".LojaActivity"></activity>
+        <activity android:name=".LojaActivity" />
+        <activity android:name=".MochilaActivity"></activity>
     </application>
 
 </manifest>
