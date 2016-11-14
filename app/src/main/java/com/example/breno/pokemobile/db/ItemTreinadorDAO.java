@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.breno.pokemobile.modelo.Item;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
+import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
@@ -56,6 +57,35 @@ public class ItemTreinadorDAO {
         }
 
         return itensJogador;
+    }
+
+    public ItemTreinador buscaPorIdItemIdTreinador(Item item, Treinador treinador) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM itemTreinador WHERE idItem = ? AND idTreinador = ?",
+                new String[]{item.getIdItem().toString(), treinador.getIdTreinador().toString()});
+
+        ItemTreinador it = new ItemTreinador();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            it.setIdItemTreinador(cursor.getLong(0));
+            it.setItem(item);
+            it.setTreinador(treinador);
+            it.setQuantidade(cursor.getInt(3));
+
+            return it;
+
+        } else {
+            return null;
+        }
+
+    }
+
+    public void atualizarQuantidade(ItemTreinador itemTreinador) {
+        ContentValues valores = new ContentValues();
+        valores.put("quantidade", itemTreinador.getQuantidade());
+
+        bd.update("itemTreinador", valores, "_id = ?", new String[]{"" + itemTreinador.getIdItemTreinador()});
+
     }
 
     public void deletar(Long idItemTreinador) {

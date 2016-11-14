@@ -16,6 +16,7 @@ import com.example.breno.pokemobile.db.ItemDAO;
 import com.example.breno.pokemobile.db.ItemTreinadorDAO;
 import com.example.breno.pokemobile.db.TreinadorDAO;
 import com.example.breno.pokemobile.modelo.Item;
+import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
@@ -174,7 +175,20 @@ public class LojaActivity extends AppCompatActivity {
             if (valorTotal <= treinador.getDinheiro()) {
 
                 ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(this);
-                itemTreinadorDAO.inserir(itemAtual, treinador, quant);
+
+                //Verifica se esse itemTreinador já existe
+                ItemTreinador it = itemTreinadorDAO.buscaPorIdItemIdTreinador(itemAtual, treinador);
+
+                if(it == null) {
+
+                    itemTreinadorDAO.inserir(itemAtual, treinador, quant);
+
+                } else {
+
+                    it.setQuantidade(it.getQuantidade() + quant);
+                    itemTreinadorDAO.atualizarQuantidade(it);
+
+                }
 
                 //TODO: Atualizar dinheiro Jogador
                 treinador.setDinheiro(treinador.getDinheiro() - valorTotal);
