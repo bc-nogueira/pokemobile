@@ -7,11 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.breno.pokemobile.adapter.ItemAdapter;
 import com.example.breno.pokemobile.adapter.ItemMochilaAdapter;
-import com.example.breno.pokemobile.db.ItemDAO;
 import com.example.breno.pokemobile.db.ItemTreinadorDAO;
-import com.example.breno.pokemobile.modelo.Item;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.TipoItem;
 import com.example.breno.pokemobile.modelo.Treinador;
@@ -71,5 +68,6 @@ public class MochilaActivity extends AppCompatActivity {
         itemTreinadorDAO.deletar(idItemTreinador);
 
         this.recreate();
+
     }
 }
