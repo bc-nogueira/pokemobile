@@ -51,7 +51,7 @@ public class ItemDAO {
                 i.setTipoComString(cursor.getString(3));
                 i.setPreco(cursor.getInt(4));
                 i.setEfeitoCaptura(cursor.getDouble(5));
-                i.setEfeitoCura(cursor.getDouble(6));
+                i.setEfeitoCura(cursor.getInt(6));
                 i.setIcone(cursor.getInt(7));
 
                 itens.add(i);
@@ -75,7 +75,7 @@ public class ItemDAO {
             i.setTipoComString(cursor.getString(3));
             i.setPreco(cursor.getInt(4));
             i.setEfeitoCaptura(cursor.getDouble(5));
-            i.setEfeitoCura(cursor.getDouble(6));
+            i.setEfeitoCura(cursor.getInt(6));
             i.setIcone(cursor.getInt(7));
 
             return i;

@@ -109,7 +109,7 @@ public class BDCore extends SQLiteOpenHelper {
                 + TIPO + " text not null,"
                 + PRECO + " integer not null,"
                 + EFEITO_CAPTURA + " real,"
-                + EFEITO_CURA + " real,"
+                + EFEITO_CURA + " integer,"
                 + ICONE_ITEM + " integer not null"
                 + ")";
 
@@ -172,28 +172,28 @@ public class BDCore extends SQLiteOpenHelper {
     }
 
     private void populaItem(SQLiteDatabase bd) {
-        Item item = new Item("Poção Pequena", "Recupera 20 de HP.", TipoItem.CURA, 50, null, 0.2, R.drawable.pocao_pequena);
+        Item item = new Item("Potion", "Recupera 20 de HP.", TipoItem.CURA, 50, null, 20, R.drawable.pocao_pequena);
         ContentValues valores = preencheValoresItem(item);
         try {
             bd.insertOrThrow("item", null, valores);
         } catch (SQLException ex) {
         }
 
-        item = new Item("Poção Grande", "Recupera 50 de HP.", TipoItem.CURA, 100, null, 0.5, R.drawable.pocao_grande);
+        item = new Item("Super Potion", "Recupera 50 de HP.", TipoItem.CURA, 100, null, 50, R.drawable.pocao_grande);
         valores = preencheValoresItem(item);
         try {
             bd.insertOrThrow("item", null, valores);
         } catch (SQLException ex) {
         }
 
-        item = new Item("Revive", "Revive o Pokemon e recupera um pouco de HP.", TipoItem.REVIVE, 100, null, 0.1, R.drawable.revive);
+        item = new Item("Revive", "Revive o Pokemon e recupera um pouco de HP.", TipoItem.REVIVE, 100, null, 10, R.drawable.revive);
         valores = preencheValoresItem(item);
         try {
             bd.insertOrThrow("item", null, valores);
         } catch (SQLException ex) {
         }
 
-        item = new Item("Super Revive", "Revive o Pokemon e recupera HP.", TipoItem.REVIVE, 200, null, 0.4, R.drawable.super_revive);
+        item = new Item("Super Revive", "Revive o Pokemon e recupera HP.", TipoItem.REVIVE, 200, null, 25, R.drawable.super_revive);
         valores = preencheValoresItem(item);
         try {
             bd.insertOrThrow("item", null, valores);

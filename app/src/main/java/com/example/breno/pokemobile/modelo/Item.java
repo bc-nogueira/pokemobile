@@ -13,12 +13,12 @@ public class Item implements Serializable {
     private TipoItem tipo;
     private Integer preco;
     private Double efeitoCaptura;
-    private Double efeitoCura;
+    private Integer efeitoCura;
     private Integer icone;
 
     public Item() {}
 
-    public Item(String nome, String descricao, TipoItem tipo, Integer preco, Double efeitoCaptura, Double efeitoCura, Integer icone) {
+    public Item(String nome, String descricao, TipoItem tipo, Integer preco, Double efeitoCaptura, Integer efeitoCura, Integer icone) {
         this.nome = nome;
         this.descricao = descricao;
         this.tipo = tipo;
@@ -82,11 +82,11 @@ public class Item implements Serializable {
         this.efeitoCaptura = efeitoCaptura;
     }
 
-    public Double getEfeitoCura() {
+    public Integer getEfeitoCura() {
         return efeitoCura;
     }
 
-    public void setEfeitoCura(Double efeitoCura) {
+    public void setEfeitoCura(Integer efeitoCura) {
         this.efeitoCura = efeitoCura;
     }
 
