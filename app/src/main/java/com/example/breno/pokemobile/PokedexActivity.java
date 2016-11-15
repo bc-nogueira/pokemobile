@@ -29,7 +29,7 @@ public class PokedexActivity extends AppCompatActivity {
 
         ListView listViewPokemons = (ListView) findViewById(R.id.pokemonsListViewPokedex);
 
-        PokedexAdapter pokedexAdapter = new PokedexAdapter(this, pokemons);
+        PokedexAdapter pokedexAdapter = new PokedexAdapter(this, pokemons, treinador);
         listViewPokemons.setAdapter(pokedexAdapter);
 
         listViewPokemons.setOnItemClickListener(new AdapterView.OnItemClickListener() {

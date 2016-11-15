@@ -9,8 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.breno.pokemobile.R;
+import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.Pokemon;
+import com.example.breno.pokemobile.modelo.PokemonTreinador;
+import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
 
@@ -21,10 +24,12 @@ import java.util.ArrayList;
 public class PokedexAdapter extends BaseAdapter {
     private Context ctx;
     private ArrayList<Pokemon> lista;
+    private Treinador treinador;
 
-    public PokedexAdapter(Context ctx, ArrayList<Pokemon> lista) {
+    public PokedexAdapter(Context ctx, ArrayList<Pokemon> lista, Treinador treinador) {
         this.ctx = ctx;
         this.lista = lista;
+        this.treinador = treinador;
     }
 
     @Override
@@ -59,7 +64,13 @@ public class PokedexAdapter extends BaseAdapter {
         nome.setText(pokemon.getNome());
 
         ImageView capturado = (ImageView) layout.findViewById(R.id.capturadoImageViewPokedex);
-//        capturado.setVisibility(View.VISIBLE);
+        PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(layout.getContext());
+        ArrayList<PokemonTreinador> pokemonsTreinador = pokemonTreinadorDAO.buscarPorIdTreinador(treinador, layout.getContext());
+        for(PokemonTreinador pt : pokemonsTreinador) {
+            if(pokemon.getNumero().equals(pt.getPokemon().getNumero())) {
+                capturado.setVisibility(View.VISIBLE);
+            }
+        }
 
         return layout;
     }
