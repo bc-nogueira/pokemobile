@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.breno.pokemobile.db.PokemonDAO;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
@@ -81,6 +82,8 @@ public class SelecionaPokemonActivity extends AppCompatActivity {
 
         PokemonTreinadorDAO ptDAO = new PokemonTreinadorDAO(this);
         ptDAO.inserir(pt);
+
+        Toast.makeText(this, "Pokemon selecionado.", Toast.LENGTH_SHORT).show();
 
         //Encaminhar para o menu principal
         Intent menuPrincipal = new Intent(SelecionaPokemonActivity.this, MenuPrincipalActivity.class);
