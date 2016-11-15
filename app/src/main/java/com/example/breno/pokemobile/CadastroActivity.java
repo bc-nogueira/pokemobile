@@ -72,9 +72,13 @@ public class CadastroActivity extends AppCompatActivity {
                 Toast.makeText(this, "Jogador criado com sucesso!", Toast.LENGTH_SHORT).show();
 
                 //Encaminhar para o menu principal
-                Intent intent = new Intent(CadastroActivity.this, MenuPrincipalActivity.class);
-                intent.putExtra("treinador", treinador);
-                startActivity(intent);
+//                Intent intent = new Intent(CadastroActivity.this, MenuPrincipalActivity.class);
+//                intent.putExtra("treinador", treinador);
+//                startActivity(intent);
+
+                Intent selecionaPokemon = new Intent(CadastroActivity.this, SelecionaPokemonActivity.class);
+                selecionaPokemon.putExtra("treinador", treinador);
+                startActivity(selecionaPokemon);
 
             } catch (SQLException ex) {
                 Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();

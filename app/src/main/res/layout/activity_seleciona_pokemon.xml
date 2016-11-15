@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_seleciona_pokemon"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.breno.pokemobile.SelecionaPokemonActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:src="@drawable/pokemon" />
+
+    <ImageView
+        android:id="@+id/iconeImageViewSelecionaPokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/bulbasaur"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/triangle_left_50"
+        android:onClick="anterior"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/triangle_right_50"
+        android:onClick="proximo"/>
+
+    <TextView
+        android:id="@+id/apelidoTextViewSelecionaPokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Apelido"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/iconeImageViewSelecionaPokemon"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"/>
+
+    <EditText
+        android:id="@+id/apeloEditTextSelecionaPokemon"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:inputType="text"
+        android:layout_alignBaseline="@+id/apelidoTextViewSelecionaPokemon"
+        android:layout_alignBottom="@+id/apelidoTextViewSelecionaPokemon"
+        android:layout_toRightOf="@+id/apelidoTextViewSelecionaPokemon"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:text="Selecionar"
+        android:onClick="selecionar" />
+
+
+
+</RelativeLayout>

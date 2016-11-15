@@ -4,7 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Pokemon;
+import com.example.breno.pokemobile.modelo.TipoPokemon;
 
 import java.util.ArrayList;
 
@@ -49,5 +51,30 @@ public class PokemonDAO {
 
         return pokemons;
 
+    }
+
+    public Pokemon buscarPorNumero(String numero) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemon WHERE numero = ?", new String[]{numero});
+
+        Pokemon p = new Pokemon();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            p.setNumero(cursor.getString(0));
+            p.setNome(cursor.getString(1));
+            p.setTipoComString(cursor.getString(2));
+            p.setEstagioEvolucao(cursor.getInt(3));
+            p.setHpMinimo(cursor.getInt(4));
+            p.setHpMaximo(cursor.getInt(5));
+            p.setAltura(cursor.getString(6));
+            p.setPeso(cursor.getString(7));
+            p.setDescricao(cursor.getString(8));
+            p.setIcone(cursor.getInt(9));
+            p.setIconeTipo(cursor.getInt(10));
+
+            return p;
+        } else {
+            return null;
+        }
     }
 }

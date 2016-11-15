@@ -25,11 +25,11 @@ public class ItemTreinadorDAO {
         bd = auxBD.getWritableDatabase();
     }
 
-    public long inserir(Item item, Treinador treinador, Integer quantidade) throws SQLException {
+    public long inserir(ItemTreinador it) throws SQLException {
         ContentValues valores = new ContentValues();
-        valores.put("idItem", item.getIdItem());
-        valores.put("idTreinador", treinador.getIdTreinador());
-        valores.put("quantidade", quantidade);
+        valores.put("idItem", it.getItem().getIdItem());
+        valores.put("idTreinador", it.getTreinador().getIdTreinador());
+        valores.put("quantidade", it.getQuantidade());
 
         return bd.insertOrThrow("itemTreinador", null, valores);
     }

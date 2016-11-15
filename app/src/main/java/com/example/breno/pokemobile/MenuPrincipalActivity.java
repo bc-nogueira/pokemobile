@@ -42,6 +42,12 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         startActivity(pokedex);
     }
 
+    public void abrirPokemons(View v) {
+        Intent pokemons = new Intent(MenuPrincipalActivity.this, PokemonsActivity.class);
+        pokemons.putExtra("treinador", treinador);
+        startActivity(pokemons);
+    }
+
     public void abrirMochila(View v) {
         Intent mochila = new Intent(MenuPrincipalActivity.this, MochilaActivity.class);
         mochila.putExtra("treinador", treinador);

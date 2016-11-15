@@ -24,7 +24,9 @@
         <activity android:name=".LojaActivity" />
         <activity android:name=".MochilaActivity" />
         <activity android:name=".PokedexActivity" />
-        <activity android:name=".DetalhesPokemonActivity"></activity>
+        <activity android:name=".DetalhesPokemonActivity" />
+        <activity android:name=".SelecionaPokemonActivity" />
+        <activity android:name=".PokemonsActivity"></activity>
     </application>
 
 </manifest>

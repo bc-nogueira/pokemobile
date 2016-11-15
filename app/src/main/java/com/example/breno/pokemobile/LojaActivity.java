@@ -180,8 +180,11 @@ public class LojaActivity extends AppCompatActivity {
                 ItemTreinador it = itemTreinadorDAO.buscaPorIdItemIdTreinador(itemAtual, treinador);
 
                 if(it == null) {
-
-                    itemTreinadorDAO.inserir(itemAtual, treinador, quant);
+                    it = new ItemTreinador();
+                    it.setItem(itemAtual);
+                    it.setTreinador(treinador);
+                    it.setQuantidade(quant);
+                    itemTreinadorDAO.inserir(it);
 
                 } else {
 

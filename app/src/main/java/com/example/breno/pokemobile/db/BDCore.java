@@ -68,6 +68,16 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String ICONE_POKEMON = "icone";
     private static final String ICONE_TIPO = "icone_tipo";
 
+    //Atributos da tabela PokemonTreinador
+    private static final String TABELA_POKEMON_TREINADOR = "pokemonTreinador";
+    private static final String ID_POKEMON_FK = "idPokemon";
+    private static final String ID_TREINADOR_FK2 = "idTreinador";
+    private static final String APELIDO = "apelido";
+    private static final String HP_ATUAL = "hp_atual";
+    private static final String HP_TOTAL = "hp_total";
+    private static final String NIVEL = "nivel";
+    private static final String EXPERIENCIA = "experiencia";
+
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
     }
@@ -131,6 +141,17 @@ public class BDCore extends SQLiteOpenHelper {
 
         bd.execSQL(sqlPokemon);
         populaPokemon(bd);
+
+        String sqlPokemonTreinador = "CREATE TABLE " + TABELA_POKEMON_TREINADOR + "("
+                + ID_POKEMON_FK + " text,"
+                + ID_TREINADOR_FK2 + " integer not null,"
+                + APELIDO + " text,"
+                + HP_ATUAL + " real not null,"
+                + HP_TOTAL + " real not null,"
+                + NIVEL + " integer not null,"
+                + EXPERIENCIA + " real not null"
+                + ")";
+        bd.execSQL(sqlPokemonTreinador);
 
     }
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="#fff">
+
+    <ImageView
+        android:id="@+id/iconeImageViewPokemons"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/bulbasaur"/>
+
+    <TextView
+        android:id="@+id/nomeTextViewPokemons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iconeImageViewPokemons"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Bulbasaur"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
+
+    <ProgressBar
+        android:id="@+id/hpProgressBarPokemons"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iconeImageViewPokemons"
+        android:layout_below="@+id/nomeTextViewPokemons"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:progress="100"/>
+
+    <TextView
+        android:id="@+id/hpTextViewPokemons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iconeImageViewPokemons"
+        android:layout_below="@+id/hpProgressBarPokemons"
+        android:layout_marginLeft="20dp"
+        android:text="20/20"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+</RelativeLayout>
