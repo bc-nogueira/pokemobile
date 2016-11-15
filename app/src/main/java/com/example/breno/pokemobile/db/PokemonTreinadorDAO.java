@@ -63,4 +63,12 @@ public class PokemonTreinadorDAO {
         return pokemonsTreinador;
     }
 
+    public void atualizarHpAtual(PokemonTreinador pokemonTreinador) {
+        ContentValues valores = new ContentValues();
+        valores.put("hp_atual", pokemonTreinador.getHpAtual());
+
+        bd.update("pokemonTreinador", valores, "idPokemon = ? and idTreinador = ?",
+                new String[]{pokemonTreinador.getPokemon().getNumero(), pokemonTreinador.getTreinador().getIdTreinador().toString()});
+    }
+
 }

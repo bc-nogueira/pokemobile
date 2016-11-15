@@ -1,5 +1,6 @@
 package com.example.breno.pokemobile;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,8 +44,10 @@ public class MochilaActivity extends AppCompatActivity {
 
                     if(!itemTreinador.getItem().getTipo().equals(TipoItem.CAPTURA)) {
 
-                        Toast.makeText(getApplicationContext(),
-                                "Colocar poção e revive para funcionar.", Toast.LENGTH_SHORT).show();
+                        Intent pokemons = new Intent(MochilaActivity.this, PokemonsActivity.class);
+                        pokemons.putExtra("treinador", treinador);
+                        pokemons.putExtra("itemTreinador", itemTreinador);
+                        startActivity(pokemons);
 
                     } else {
 
@@ -58,6 +61,13 @@ public class MochilaActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent menuPrincipal = new Intent(MochilaActivity.this, MenuPrincipalActivity.class);
+        menuPrincipal.putExtra("treinador", treinador);
+        startActivity(menuPrincipal);
     }
 
     public void deletarItem(View v) {
