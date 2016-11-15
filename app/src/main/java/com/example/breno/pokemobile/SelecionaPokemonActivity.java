@@ -43,6 +43,10 @@ public class SelecionaPokemonActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     public void anterior(View v) {
         if(--posicaoAtual < 0) {
             posicaoAtual = pokemons.size() - 1;
