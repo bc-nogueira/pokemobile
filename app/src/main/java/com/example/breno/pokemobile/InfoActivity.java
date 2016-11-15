@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -24,7 +25,8 @@ public class InfoActivity extends AppCompatActivity {
         nome.setText(treinador.getNome());
 
         TextView pokemons = (TextView) findViewById(R.id.pokemonsTextViewInfo);
-        Integer quantPokemons = 0;
+        PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(this);
+        Integer quantPokemons = pokemonTreinadorDAO.buscarPorIdTreinador(treinador, this).size();
         pokemons.setText(quantPokemons.toString());
 
         TextView dinheiro = (TextView) findViewById(R.id.dinheiroTextViewInfo);

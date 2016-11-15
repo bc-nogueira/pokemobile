@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.breno.pokemobile.R;
 import com.example.breno.pokemobile.SelecionaTreinadorActivity;
+import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
@@ -64,7 +65,8 @@ public class TreinadorAdapter extends BaseAdapter {
         dinheiroTreinador.setText(treinador.getDinheiro().toString());
 
         TextView pokemonsTreinador = (TextView) layout.findViewById(R.id.pokemonsTreinador);
-        Integer pokemons = 0;
+        PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(layout.getContext());
+        Integer pokemons = pokemonTreinadorDAO.buscarPorIdTreinador(treinador, layout.getContext()).size();
         pokemonsTreinador.setText(pokemons.toString());
 
         return layout;
