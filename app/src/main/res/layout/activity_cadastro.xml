@@ -14,7 +14,7 @@
         android:id="@+id/treinadorCriar"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/treinador1"
+        android:src="@drawable/treinador6"
         android:layout_height="300dp" />
 
     <ImageView

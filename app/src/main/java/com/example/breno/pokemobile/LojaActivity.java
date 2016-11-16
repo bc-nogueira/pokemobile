@@ -1,7 +1,6 @@
 package com.example.breno.pokemobile;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -148,23 +147,7 @@ public class LojaActivity extends AppCompatActivity {
         posSelecionada = -1;
         viewAnterior = null;
 
-        ImageView retirar = (ImageView) findViewById(R.id.menosLoja);
-        retirar.setVisibility(View.INVISIBLE);
-
-        TextView quantidade = (TextView) findViewById(R.id.quantLoja);
-        quantidade.setVisibility(View.INVISIBLE);
-
-        ImageView adicionar = (ImageView) findViewById(R.id.maisLoja);
-        adicionar.setVisibility(View.INVISIBLE);
-
-        TextView total = (TextView) findViewById(R.id.totalLoja);
-        total.setVisibility(View.INVISIBLE);
-
-        ImageView cancelar = (ImageView) findViewById(R.id.cancelLoja);
-        cancelar.setVisibility(View.INVISIBLE);
-
-        ImageView confirmar = (ImageView) findViewById(R.id.confirmLoja);
-        confirmar.setVisibility(View.INVISIBLE);
+        limpaBarraInferior();
 
     }
 
@@ -198,6 +181,9 @@ public class LojaActivity extends AppCompatActivity {
                 TreinadorDAO treinadorDAO = new TreinadorDAO(this);
                 treinadorDAO.atualizarDinheiro(treinador);
 
+                TextView dinheiro = (TextView) findViewById(R.id.dinheiroTextViewLoja);
+                dinheiro.setText(treinador.getDinheiro().toString() + "G");
+
                 //Depois de tudo feito, resetar os valores
                 itemAtual = null;
                 quant = 0;
@@ -208,7 +194,7 @@ public class LojaActivity extends AppCompatActivity {
                 posSelecionada = -1;
                 viewAnterior = null;
 
-                this.recreate();
+                limpaBarraInferior();
 
             } else {
 
@@ -218,6 +204,26 @@ public class LojaActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    private void limpaBarraInferior() {
+        ImageView retirar = (ImageView) findViewById(R.id.menosLoja);
+        retirar.setVisibility(View.INVISIBLE);
+
+        TextView quantidade = (TextView) findViewById(R.id.quantLoja);
+        quantidade.setVisibility(View.INVISIBLE);
+
+        ImageView adicionar = (ImageView) findViewById(R.id.maisLoja);
+        adicionar.setVisibility(View.INVISIBLE);
+
+        TextView total = (TextView) findViewById(R.id.totalLoja);
+        total.setVisibility(View.INVISIBLE);
+
+        ImageView cancelar = (ImageView) findViewById(R.id.cancelLoja);
+        cancelar.setVisibility(View.INVISIBLE);
+
+        ImageView confirmar = (ImageView) findViewById(R.id.confirmLoja);
+        confirmar.setVisibility(View.INVISIBLE);
     }
 
 }

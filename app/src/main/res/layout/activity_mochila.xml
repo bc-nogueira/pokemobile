@@ -7,10 +7,21 @@
     tools:context="com.example.breno.pokemobile.MochilaActivity"
     android:background="@drawable/poke_entrada">
 
+    <TextView
+        android:id="@+id/teste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Mochila"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="#fff"/>
+
     <ListView
         android:id="@+id/itensListViewMochila"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/teste"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:dividerHeight="10dp"/>

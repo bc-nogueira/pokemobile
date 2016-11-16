@@ -97,7 +97,7 @@ public class Treinador implements Serializable {
             case 11:
                 return (R.drawable.treinadora6);
             default:
-                return (R.drawable.treinador1);
+                return (R.drawable.treinador6);
         }
 
     }

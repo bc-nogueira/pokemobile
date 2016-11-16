@@ -25,7 +25,7 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
 
         ImageView treinadorIV = (ImageView) findViewById(R.id.treinadorCriar);
-        treinadorIV.setImageResource(treinador.getImagemTreinador(imagemAtual));
+        treinadorIV.setImageResource(Treinador.getImagemTreinador(imagemAtual));
     }
 
     public void anterior(View v) {
@@ -33,7 +33,7 @@ public class CadastroActivity extends AppCompatActivity {
         if(imagemAtual == 0) {
             imagemAtual = 12;
         }
-        treinadorIV.setImageResource(treinador.getImagemTreinador(--imagemAtual));
+        treinadorIV.setImageResource(Treinador.getImagemTreinador(--imagemAtual));
     }
 
     public void proximo(View v) {
@@ -41,7 +41,7 @@ public class CadastroActivity extends AppCompatActivity {
         if(imagemAtual == 11) {
             imagemAtual = -1;
         }
-        treinadorIV.setImageResource(treinador.getImagemTreinador(++imagemAtual));
+        treinadorIV.setImageResource(Treinador.getImagemTreinador(++imagemAtual));
     }
 
     public void cadastrar(View v) {

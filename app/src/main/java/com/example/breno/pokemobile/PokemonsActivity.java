@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.breno.pokemobile.adapter.PokemonsAdapter;
@@ -68,6 +70,18 @@ public class PokemonsActivity extends AppCompatActivity {
                         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
                         pokemonTreinadorDAO.atualizarHpAtual(pts.get(position));
 
+                        ProgressBar hpBar = (ProgressBar) findViewById(R.id.hpProgressBarPokemons);
+                        Double porcentagemFinal = (pts.get(position).getHpAtual()/pts.get(position).getHpTotal()) * 100;
+                        Integer porcentagemAtual = hpBar.getProgress();
+                        ProgressBarAnimation anim = new ProgressBarAnimation
+                                (hpBar, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
+                        anim.setDuration(1000);
+                        hpBar.startAnimation(anim);
+
+                        TextView hpText = (TextView) findViewById(R.id.hpTextViewPokemons);
+                        hpText.setText
+                                ("HP: " + pts.get(position).getHpAtual().intValue() + " / " + pts.get(position).getHpTotal().intValue());
+
                         //Diminui o item ou remove
                         itemTreinador.setQuantidade(itemTreinador.getQuantidade() - 1);
                         ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(getApplicationContext());
@@ -79,8 +93,6 @@ public class PokemonsActivity extends AppCompatActivity {
                             itemTreinadorDAO.deletar(itemTreinador.getIdItemTreinador());
 
                         }
-
-                        recreate();
 
                     }
 
