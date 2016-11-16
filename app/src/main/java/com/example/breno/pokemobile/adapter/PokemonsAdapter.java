@@ -64,7 +64,7 @@ public class PokemonsAdapter extends BaseAdapter {
         hpBar.setProgress(porcentagemHP.intValue());
 
         TextView hpText = (TextView) layout.findViewById(R.id.hpTextViewPokemons);
-        hpText.setText(pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
+        hpText.setText("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
 
         return layout;
     }
