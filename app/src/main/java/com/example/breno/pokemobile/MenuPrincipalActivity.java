@@ -36,6 +36,12 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         startActivity(main);
     }
 
+    public void batalhaSelvagem(View v) {
+        Intent selvagem = new Intent(MenuPrincipalActivity.this, BatalhaSelvagemActivity.class);
+        selvagem.putExtra("treinador", treinador);
+        startActivity(selvagem);
+    }
+
     public void abrirPokedex(View v) {
         Intent pokedex = new Intent(MenuPrincipalActivity.this, PokedexActivity.class);
         pokedex.putExtra("treinador", treinador);

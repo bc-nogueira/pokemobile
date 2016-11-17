@@ -18,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@id/pokemonFrenteImageViewBatalhaSelvagem"
+            android:layout_alignParentLeft="true"
             android:layout_marginTop="120dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="40dp"
             android:padding="10dp"
             android:background="@drawable/my_border">
 
@@ -47,7 +47,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/pokemonFrenteImageViewBatalhaSelvagem"
+            android:id="@+id/pokemonFrenteBatalhaSelvagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/pikachu_frente_battle"
@@ -57,7 +57,7 @@
             android:layout_marginRight="30dp"/>
 
         <ImageView
-            android:id="@+id/pokemonCostasImageViewBatalhaSelvagem"
+            android:id="@+id/pokemonCostasBatalhaSelvagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/pikachu_costas_battle"
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/pokemonCostasImageViewBatalhaSelvagem"
+            android:layout_toRightOf="@id/pokemonCostasBatalhaSelvagem"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="40dp"
             android:padding="10dp"
