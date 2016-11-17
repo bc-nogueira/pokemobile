@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_batalha_selvagem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.breno.pokemobile.BatalhaSelvagemActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="80"
+        android:background="@drawable/fundo_floresta">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/pokemonFrenteImageViewBatalhaSelvagem"
+            android:layout_marginTop="120dp"
+            android:layout_marginRight="20dp"
+            android:padding="10dp"
+            android:background="@drawable/my_border">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pikachu"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <ProgressBar
+                android:layout_width="120dp"
+                android:layout_height="15dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progress="100"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HP: 22/22"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/pokemonFrenteImageViewBatalhaSelvagem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pikachu_frente_battle"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="30dp"/>
+
+        <ImageView
+            android:id="@+id/pokemonCostasImageViewBatalhaSelvagem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pikachu_costas_battle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/pokemonCostasImageViewBatalhaSelvagem"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="40dp"
+            android:padding="10dp"
+            android:background="@drawable/my_border">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pikachu"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <ProgressBar
+                android:layout_width="120dp"
+                android:layout_height="15dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progress="100"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HP: 22/22"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="20"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:text="O que você vai fazer?"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="100dp"
+                android:text="Ataque1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:text="Ataque2"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="100dp"
+                android:text="Item"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="5dp"
+                android:text="Fugir"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

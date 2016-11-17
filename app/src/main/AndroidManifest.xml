@@ -26,7 +26,8 @@
         <activity android:name=".PokedexActivity" />
         <activity android:name=".DetalhesPokemonActivity" />
         <activity android:name=".SelecionaPokemonActivity" />
-        <activity android:name=".PokemonsActivity"></activity>
+        <activity android:name=".PokemonsActivity" />
+        <activity android:name=".BatalhaSelvagemActivity"></activity>
     </application>
 
 </manifest>
