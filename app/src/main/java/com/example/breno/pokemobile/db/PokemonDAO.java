@@ -4,9 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Pokemon;
-import com.example.breno.pokemobile.modelo.TipoPokemon;
 
 import java.util.ArrayList;
 

@@ -7,10 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.breno.pokemobile.R;
+import com.example.breno.pokemobile.modelo.Ataque;
 import com.example.breno.pokemobile.modelo.Item;
 import com.example.breno.pokemobile.modelo.Pokemon;
+import com.example.breno.pokemobile.modelo.PokemonAtaque;
 import com.example.breno.pokemobile.modelo.TipoItem;
-import com.example.breno.pokemobile.modelo.TipoPokemon;
+import com.example.breno.pokemobile.modelo.Elemento;
 
 /**
  * Created by Breno on 02/11/2016.
@@ -72,6 +74,7 @@ public class BDCore extends SQLiteOpenHelper {
 
     //Atributos da tabela PokemonTreinador
     private static final String TABELA_POKEMON_TREINADOR = "pokemonTreinador";
+    private static final String ID_POKEMON_TREINADOR = "idPokemonTreinador";
     private static final String ID_POKEMON_FK = "idPokemon";
     private static final String ID_TREINADOR_FK2 = "idTreinador";
     private static final String APELIDO = "apelido";
@@ -80,6 +83,26 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String NIVEL = "nivel";
     private static final String EXPERIENCIA = "experiencia";
     private static final String POS_FILA = "pos_fila";
+
+    //Atributos da tabela Ataque
+    private static final String TABELA_ATAQUE = "ataque";
+    private static final String ID_ATAQUE = "_id";
+    private static final String NOME_ATAQUE = "nome";
+    private static final String ELEMENTO = "elemento";
+    private static final String DANO_BASE = "dano_base";
+
+
+    //Atributos da tabela PokemonAtaque
+    private static final String TABELA_POKEMON_ATAQUE = "pokemonAtaque";
+    private static final String ID_POKEMON_FK2 = "idPokemon";
+    private static final String ID_ATAQUE_FK = "idAtaque";
+    private static final String LVL_APRENDIDO = "lvl_aprendido";
+
+
+    //Atributos da tabela PokemonTreinadorAtaque
+    private static final String TABELA_POKEMON_TREINADOR_ATAQUE = "pokemonTreinadorAtaque";
+    private static final String ID_POKEMON_TREINADOR_FK = "idPokemonTreinador";
+    private static final String ID_ATAQUE_FK2 = "idAtaque";
 
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
@@ -148,6 +171,7 @@ public class BDCore extends SQLiteOpenHelper {
         populaPokemon(bd);
 
         String sqlPokemonTreinador = "CREATE TABLE " + TABELA_POKEMON_TREINADOR + "("
+                + ID_POKEMON_TREINADOR + " integer primary key autoincrement,"
                 + ID_POKEMON_FK + " text,"
                 + ID_TREINADOR_FK2 + " integer not null,"
                 + APELIDO + " text,"
@@ -158,6 +182,29 @@ public class BDCore extends SQLiteOpenHelper {
                 + POS_FILA + " integer"
                 + ")";
         bd.execSQL(sqlPokemonTreinador);
+
+        String sqlAtaque = "CREATE TABLE " + TABELA_ATAQUE + "("
+                + ID_ATAQUE + " integer primary key autoincrement,"
+                + NOME_ATAQUE + " text not null,"
+                + ELEMENTO + " text not null,"
+                + DANO_BASE + " integer not null"
+                + ")";
+        bd.execSQL(sqlAtaque);
+        populaAtaque(bd);
+
+        String sqlPokemonAtaque = "CREATE TABLE " + TABELA_POKEMON_ATAQUE + "("
+                + ID_POKEMON_FK2 + " text not null,"
+                + ID_ATAQUE_FK + " integer not null,"
+                + LVL_APRENDIDO + " integer not null"
+                + ")";
+        bd.execSQL(sqlPokemonAtaque);
+        populaPokemonAtaque(bd);
+
+        String sqlPokemonTreinadorAtaque = "CREATE TABLE " + TABELA_POKEMON_TREINADOR_ATAQUE + "("
+                + ID_POKEMON_TREINADOR_FK + " integer not null,"
+                + ID_ATAQUE_FK2 + " integer not null"
+                + ")";
+        bd.execSQL(sqlPokemonTreinadorAtaque);
 
     }
 
@@ -173,6 +220,14 @@ public class BDCore extends SQLiteOpenHelper {
         bd.execSQL(sqlDropItemTreinador);
         String sqlDropPokemon = "DROP TABLE " + TABELA_POKEMON;
         bd.execSQL(sqlDropPokemon);
+        String sqlDropPokemonTreinador = "DROP TABLE " + TABELA_POKEMON_TREINADOR;
+        bd.execSQL(sqlDropPokemonTreinador);
+        String sqlDropAtaque = "DROP TABLE " + TABELA_ATAQUE;
+        bd.execSQL(sqlDropAtaque);
+        String sqlDropPokemonAtaque = "DROP TABLE " + TABELA_POKEMON_ATAQUE;
+        bd.execSQL(sqlDropPokemonAtaque);
+        String sqlDropPokemonTreinadorAtaque = "DROP TABLE " + TABELA_POKEMON_TREINADOR_ATAQUE;
+        bd.execSQL(sqlDropPokemonTreinadorAtaque);
 
         onCreate(bd);
     }
@@ -239,7 +294,7 @@ public class BDCore extends SQLiteOpenHelper {
     }
 
     public void populaPokemon(SQLiteDatabase bd) {
-        Pokemon pokemon = new Pokemon("001", "Bulbasaur", TipoPokemon.GRAMA, 1, 20, 25, "0,7m", "6,9kg",
+        Pokemon pokemon = new Pokemon("001", "Bulbasaur", Elemento.GRAMA, 1, 20, 25, "0,7m", "6,9kg",
                 "For some time after its birth, it grows by gaining nourishment from the seed on its back.",
                 R.drawable.bulbasaur, R.drawable.grama, R.drawable.bulbasaur_frente, R.drawable.bulbasaur_costas);
         ContentValues valores = preencheValoresPokemon(pokemon);
@@ -249,7 +304,7 @@ public class BDCore extends SQLiteOpenHelper {
             System.out.println();
         }
 
-        pokemon = new Pokemon("004", "Charmander", TipoPokemon.FOGO, 1, 15, 20, "0,6m", "8,5kg",
+        pokemon = new Pokemon("004", "Charmander", Elemento.FOGO, 1, 15, 20, "0,6m", "8,5kg",
                 "The fire on the tip of its tail is a measure of its life. If healthy, its tail burns intensely.",
                 R.drawable.charmander, R.drawable.fogo, R.drawable.charmander_frente, R.drawable.charmander_costas);
         valores = preencheValoresPokemon(pokemon);
@@ -258,7 +313,7 @@ public class BDCore extends SQLiteOpenHelper {
         } catch (SQLException ex) {
         }
 
-        pokemon = new Pokemon("007", "Squirtle", TipoPokemon.AGUA, 1, 20, 25, "0,5m", "9,0kg",
+        pokemon = new Pokemon("007", "Squirtle", Elemento.AGUA, 1, 20, 25, "0,5m", "9,0kg",
                 "It shelters itself in its shell then strikes back with spouts of water at every opportunity.",
                 R.drawable.squirtle, R.drawable.agua, R.drawable.squirtle_frente, R.drawable.squirtle_costas);
         valores = preencheValoresPokemon(pokemon);
@@ -267,7 +322,7 @@ public class BDCore extends SQLiteOpenHelper {
         } catch (SQLException ex) {
         }
 
-        pokemon = new Pokemon("025", "Pikachu", TipoPokemon.ELETRICO, 1, 10, 15, "0,4m", "6,0kg",
+        pokemon = new Pokemon("025", "Pikachu", Elemento.ELETRICO, 1, 10, 15, "0,4m", "6,0kg",
                 "It occasionally uses an electric shock to recharge a fellow Pikachu that is in a weakened state.",
                 R.drawable.pikachu, R.drawable.eletrico, R.drawable.pikachu_frente_battle, R.drawable.pikachu_costas_battle);
         valores = preencheValoresPokemon(pokemon);
@@ -296,4 +351,41 @@ public class BDCore extends SQLiteOpenHelper {
 
         return valores;
     }
+
+    private void populaAtaque(SQLiteDatabase bd) {
+        Ataque ataque = new Ataque("Tackle", Elemento.NORMAL, 5);
+        ContentValues valores = preencheValoresAtaque(ataque);
+        try {
+            bd.insertOrThrow("ataque", null, valores);
+        } catch (SQLException ex) {
+        }
+    }
+
+    public  ContentValues preencheValoresAtaque(Ataque ataque) {
+        ContentValues valores = new ContentValues();
+        valores.put("nome", ataque.getNomeAtaque());
+        valores.put("elemento", ataque.getElemento().toString());
+        valores.put("dnao_base", ataque.getDanoBase());
+
+        return valores;
+    }
+
+    private void populaPokemonAtaque(SQLiteDatabase bd) {
+        PokemonAtaque pokemonAtaque = new PokemonAtaque("001", 1, 1);
+        ContentValues valores = preencheValoresPokemonAtaque(pokemonAtaque);
+        try {
+            bd.insertOrThrow("pokemonAtaque", null, valores);
+        } catch (SQLException ex) {
+        }
+    }
+
+    public  ContentValues preencheValoresPokemonAtaque(PokemonAtaque pokemonAtaque) {
+        ContentValues valores = new ContentValues();
+        valores.put("idPokemon", pokemonAtaque.getIdPokemon());
+        valores.put("idAtaque", pokemonAtaque.getIdAtaque());
+        valores.put("lvl_aprendido", pokemonAtaque.getLvlAprendido());
+
+        return valores;
+    }
+
 }

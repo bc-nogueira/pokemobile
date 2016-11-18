@@ -5,14 +5,23 @@ package com.example.breno.pokemobile.modelo;
  */
 
 public class PokemonTreinador {
+    private Integer idPokemonTreinador;
     private Pokemon pokemon;
     private Treinador treinador;
     private String apelido;
     private Double hpTotal;
     private Double hpAtual;
-    private Integer nivel;
+    private Integer level;
     private Double experiencia;
     private Integer posFila;
+
+    public Integer getIdPokemonTreinador() {
+        return idPokemonTreinador;
+    }
+
+    public void setIdPokemonTreinador(Integer idPokemonTreinador) {
+        this.idPokemonTreinador = idPokemonTreinador;
+    }
 
     public Pokemon getPokemon() {
         return pokemon;
@@ -54,12 +63,12 @@ public class PokemonTreinador {
         this.hpAtual = hpAtual;
     }
 
-    public Integer getNivel() {
-        return nivel;
+    public Integer getLevel() {
+        return level;
     }
 
-    public void setNivel(Integer nivel) {
-        this.nivel = nivel;
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public Double getExperiencia() {

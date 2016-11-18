@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.breno.pokemobile.modelo.Item;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.Jogador;
+import com.example.breno.pokemobile.modelo.TipoItem;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class ItemTreinadorDAO {
         return bd.insertOrThrow("itemTreinador", null, valores);
     }
 
-    public ArrayList<ItemTreinador> listaIdsItensPorIdTreinador(Treinador treinador, Context ctx) {
+    public ArrayList<ItemTreinador> buscarItensTreinadorPorIdTreinador(Treinador treinador, Context ctx) {
         Cursor cursor = bd.rawQuery("SELECT * FROM itemTreinador WHERE idTreinador = ?",
                 new String[]{treinador.getIdTreinador().toString()});
 
@@ -57,6 +58,42 @@ public class ItemTreinadorDAO {
         }
 
         return itensJogador;
+    }
+
+    public ArrayList<ItemTreinador> buscarItensTreinadorCuraRevivePorIdTreinador(Treinador treinador,
+                Context ctx, boolean isSelvagem) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM itemTreinador WHERE idTreinador = ?",
+                new String[]{treinador.getIdTreinador().toString()});
+
+        ItemDAO itemDAO = new ItemDAO(ctx);
+
+        ArrayList<ItemTreinador> itensTreinador = new ArrayList<>();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            do {
+                ItemTreinador it = new ItemTreinador();
+                it.setIdItemTreinador(cursor.getLong(0));
+                it.setItem(itemDAO.buscarPorId(cursor.getLong(1)));
+                it.setTreinador(treinador);
+                it.setQuantidade(cursor.getInt(3));
+
+                itensTreinador.add(it);
+
+            } while(cursor.moveToNext());
+        }
+
+        if(!isSelvagem) {
+            for (ItemTreinador itemTreinador : itensTreinador) {
+
+                if (itemTreinador.getItem().getTipo().equals(TipoItem.CAPTURA)) {
+                    itensTreinador.remove(this);
+                }
+
+            }
+        }
+
+        return itensTreinador;
     }
 
     public ItemTreinador buscaPorIdItemIdTreinador(Item item, Treinador treinador) {

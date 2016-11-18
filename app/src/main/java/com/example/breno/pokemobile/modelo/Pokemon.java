@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Pokemon implements Serializable {
     private String numero;
     private String nome;
-    private TipoPokemon tipo;
+    private Elemento tipo;
     private Integer estagioEvolucao;
     private Integer hpMinimo;
     private Integer hpMaximo;
@@ -23,7 +23,7 @@ public class Pokemon implements Serializable {
 
     public Pokemon() {}
 
-    public Pokemon(String numero, String nome, TipoPokemon tipo, Integer estagioEvolucao, Integer hpMinimo,
+    public Pokemon(String numero, String nome, Elemento tipo, Integer estagioEvolucao, Integer hpMinimo,
                    Integer hpMaximo, String altura, String peso, String descricao, Integer icone, Integer iconeTipo,
                    Integer iconeFrente, Integer iconeCostas) {
         this.numero = numero;
@@ -57,7 +57,7 @@ public class Pokemon implements Serializable {
         this.nome = nome;
     }
 
-    public TipoPokemon getTipo() {
+    public Elemento getTipo() {
         return tipo;
     }
 
@@ -71,28 +71,33 @@ public class Pokemon implements Serializable {
                 return "Fogo";
             case GRAMA:
                 return "Grama";
+            case NORMAL:
+                return "Normal";
             default:
                 return "";
         }
     }
 
-    public void setTipo(TipoPokemon tipo) {
+    public void setTipo(Elemento tipo) {
         this.tipo = tipo;
     }
 
     public void setTipoComString(String tipo) {
         switch (tipo) {
             case "AGUA":
-                this.tipo = TipoPokemon.AGUA;
+                this.tipo = Elemento.AGUA;
                 break;
             case "ELETRICO":
-                this.tipo = TipoPokemon.ELETRICO;
+                this.tipo = Elemento.ELETRICO;
                 break;
             case "FOGO":
-                this.tipo = TipoPokemon.FOGO;
+                this.tipo = Elemento.FOGO;
                 break;
             case "GRAMA":
-                this.tipo = TipoPokemon.GRAMA;
+                this.tipo = Elemento.GRAMA;
+                break;
+            case "NORMAL":
+                this.tipo = Elemento.NORMAL;
                 break;
         }
     }

@@ -8,10 +8,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.breno.pokemobile.db.AtaqueDAO;
+import com.example.breno.pokemobile.db.PokemonAtaqueDAO;
 import com.example.breno.pokemobile.db.PokemonDAO;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Pokemon;
+import com.example.breno.pokemobile.modelo.PokemonAtaque;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
+import com.example.breno.pokemobile.modelo.PokemonTreinadorAtaque;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
@@ -81,13 +85,22 @@ public class SelecionaPokemonActivity extends AppCompatActivity {
         pt.setHpTotal(new Double(hp));
         pt.setHpAtual(new Double(hp));
 
-        pt.setNivel(1);
+        pt.setLevel(1);
         pt.setExperiencia(0.);
 
         pt.setPosFila(1);
 
         PokemonTreinadorDAO ptDAO = new PokemonTreinadorDAO(this);
         ptDAO.inserir(pt);
+
+        //Colocar ataque do pokemon
+        PokemonAtaqueDAO paDAO = new PokemonAtaqueDAO(this);
+        ArrayList<PokemonAtaque> ataques = paDAO.buscarAtaquesPorPokemonLevel(pt);
+
+        AtaqueDAO ataqueDAO = new AtaqueDAO(this);
+        PokemonTreinadorAtaque pta = new PokemonTreinadorAtaque();
+        pta.setAtaque(ataqueDAO.buscarPorId(ataques.get(0).getIdAtaque()));
+        pta.setPokemonTreinador(pt);
 
         Toast.makeText(this, "Pokemon selecionado.", Toast.LENGTH_SHORT).show();
 

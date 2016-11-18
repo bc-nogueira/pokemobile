@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -30,7 +29,7 @@ public class PokemonTreinadorDAO {
         valores.put("apelido", pt.getApelido());
         valores.put("hp_atual", pt.getHpAtual());
         valores.put("hp_total", pt.getHpTotal());
-        valores.put("nivel", pt.getNivel());
+        valores.put("nivel", pt.getLevel());
         valores.put("experiencia", pt.getExperiencia());
         valores.put("pos_fila", pt.getPosFila());
 
@@ -49,14 +48,15 @@ public class PokemonTreinadorDAO {
 
             do {
                 PokemonTreinador pt = new PokemonTreinador();
-                pt.setPokemon(pokemonDAO.buscarPorNumero(cursor.getString(0)));
+                pt.setIdPokemonTreinador(cursor.getInt(0));
+                pt.setPokemon(pokemonDAO.buscarPorNumero(cursor.getString(1)));
                 pt.setTreinador(treinador);
-                pt.setApelido(cursor.getString(2));
-                pt.setHpAtual(cursor.getDouble(3));
-                pt.setHpTotal(cursor.getDouble(4));
-                pt.setNivel(cursor.getInt(5));
-                pt.setExperiencia(cursor.getDouble(6));
-                pt.setPosFila(cursor.getInt(7));
+                pt.setApelido(cursor.getString(3));
+                pt.setHpAtual(cursor.getDouble(4));
+                pt.setHpTotal(cursor.getDouble(5));
+                pt.setLevel(cursor.getInt(6));
+                pt.setExperiencia(cursor.getDouble(7));
+                pt.setPosFila(cursor.getInt(8));
 
                 pokemonsTreinador.add(pt);
 
@@ -87,14 +87,15 @@ public class PokemonTreinadorDAO {
             cursor.moveToFirst();
 
             do {
-                pt.setPokemon(pokemonDAO.buscarPorNumero(cursor.getString(0)));
+                pt.setIdPokemonTreinador(cursor.getInt(0));
+                pt.setPokemon(pokemonDAO.buscarPorNumero(cursor.getString(1)));
                 pt.setTreinador(treinador);
-                pt.setApelido(cursor.getString(2));
-                pt.setHpAtual(cursor.getDouble(3));
-                pt.setHpTotal(cursor.getDouble(4));
-                pt.setNivel(cursor.getInt(5));
-                pt.setExperiencia(cursor.getDouble(6));
-                pt.setPosFila(cursor.getInt(7));
+                pt.setApelido(cursor.getString(3));
+                pt.setHpAtual(cursor.getDouble(4));
+                pt.setHpTotal(cursor.getDouble(5));
+                pt.setLevel(cursor.getInt(6));
+                pt.setExperiencia(cursor.getDouble(7));
+                pt.setPosFila(cursor.getInt(8));
 
                 if(pt.getHpAtual() != 0) {
                     return pt;
@@ -110,8 +111,8 @@ public class PokemonTreinadorDAO {
         ContentValues valores = new ContentValues();
         valores.put("hp_atual", pokemonTreinador.getHpAtual());
 
-        bd.update("pokemonTreinador", valores, "idPokemon = ? and idTreinador = ?",
-                new String[]{pokemonTreinador.getPokemon().getNumero(), pokemonTreinador.getTreinador().getIdTreinador().toString()});
+        bd.update("pokemonTreinador", valores, "idPokemonTreinador = ?",
+                new String[]{pokemonTreinador.getIdPokemonTreinador().toString()});
     }
 
 }

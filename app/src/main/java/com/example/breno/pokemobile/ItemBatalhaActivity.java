@@ -16,22 +16,25 @@ import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
 
-public class MochilaActivity extends AppCompatActivity {
+public class ItemBatalhaActivity extends AppCompatActivity {
     private Treinador treinador;
+    private boolean isSelvagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mochila);
+        setContentView(R.layout.activity_item_batalha);
 
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
+        isSelvagem = (boolean) getIntent().getSerializableExtra("isSelvagem");
 
         if (treinador != null) {
 
             ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(this);
-            final ArrayList<ItemTreinador> itensTreinador = itemTreinadorDAO.buscarItensTreinadorPorIdTreinador(treinador, this);
+            final ArrayList<ItemTreinador> itensTreinador =
+                    itemTreinadorDAO.buscarItensTreinadorCuraRevivePorIdTreinador(treinador, this, isSelvagem);
 
-            ListView listViewItensTreinador = (ListView) findViewById(R.id.itensListViewMochila);
+            ListView listViewItensTreinador = (ListView) findViewById(R.id.itensListViewItemBatalha);
 
             final ItemMochilaAdapter itemMochilaAdapter = new ItemMochilaAdapter(this, itensTreinador);
             listViewItensTreinador.setAdapter(itemMochilaAdapter);
@@ -42,41 +45,20 @@ public class MochilaActivity extends AppCompatActivity {
 
                     ItemTreinador itemTreinador = itensTreinador.get(position);
 
-                    if(!itemTreinador.getItem().getTipo().equals(TipoItem.CAPTURA)) {
-
-                        Intent pokemons = new Intent(MochilaActivity.this, PokemonsActivity.class);
-                        pokemons.putExtra("treinador", treinador);
-                        pokemons.putExtra("itemTreinador", itemTreinador);
-                        startActivity(pokemons);
-
+                    Intent batalha;
+                    if(isSelvagem) {
+                        batalha = new Intent(ItemBatalhaActivity.this, BatalhaSelvagemActivity.class);
                     } else {
-
-                        Toast.makeText(getApplicationContext(),
-                                "Item de captura não pode ser usado aqui.", Toast.LENGTH_SHORT).show();
-
+                        batalha = new Intent(ItemBatalhaActivity.this, PokemonsActivity.class);
                     }
+
+                    batalha.putExtra("treinador", treinador);
+                    batalha.putExtra("itemTreinador", itemTreinador);
+                    startActivity(batalha);
 
                 }
             });
 
         }
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent menuPrincipal = new Intent(MochilaActivity.this, MenuPrincipalActivity.class);
-        menuPrincipal.putExtra("treinador", treinador);
-        startActivity(menuPrincipal);
-    }
-
-    public void deletarItem(View v) {
-        Long idItemTreinador = (Long) v.getTag();
-
-        ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(this);
-        itemTreinadorDAO.deletar(idItemTreinador);
-
-        this.recreate();
-
     }
 }

@@ -55,7 +55,7 @@ public class PokemonTreinadorService {
         pokemonTreinador.setHpAtual(new Double(hp));
         pokemonTreinador.setHpTotal(new Double(hp));
 
-        pokemonTreinador.setNivel(1);
+        pokemonTreinador.setLevel(1);
 
 
         return pokemonTreinador;
