@@ -1,20 +1,24 @@
 package com.example.breno.pokemobile;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.breno.pokemobile.Service.PokemonTreinadorService;
+import com.example.breno.pokemobile.Service.UtilidadesService;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
-import com.example.breno.pokemobile.modelo.Pokemon;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 public class BatalhaSelvagemActivity extends AppCompatActivity {
     private Treinador treinador;
     private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
+    private UtilidadesService utilidadesService = new UtilidadesService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,6 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         TextView hpTextInimigo = (TextView) findViewById(R.id.hpInimigoTextViewBatalhaSelvagem);
         hpTextInimigo.setText("HP: " + pokemonTreinadorInimigo.getHpAtual().intValue() + " / " + pokemonTreinadorInimigo.getHpTotal().intValue());
 
-
-
         //Coloca pokemon jogador
         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(this);
         PokemonTreinador pokemonTreinador = pokemonTreinadorDAO.buscarPrimeiroNaFilaPorId(treinador, this);
@@ -63,5 +65,25 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
+
+    public void fugir(View v) {
+
+        if(utilidadesService.gerarNumeroAleatorio(10) < 6) {
+
+            Toast.makeText(this, "Você fugiu!", Toast.LENGTH_SHORT).show();
+
+            Intent menuPrincipal = new Intent(BatalhaSelvagemActivity.this, MenuPrincipalActivity.class);
+            menuPrincipal.putExtra("treinador", treinador);
+            startActivity(menuPrincipal);
+
+        } else {
+
+            TextView mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
+            mensagem.setText("Não foi possível fugir.");
+
+        }
+
+    }
+
 
 }
