@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.breno.pokemobile.Service.PokemonTreinadorService;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
+import com.example.breno.pokemobile.modelo.Pokemon;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -23,6 +24,21 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
         //Coloca pokemon inimigo
+        PokemonTreinador pokemonTreinadorInimigo = pokemonTreinadorService.criaPokemonBatalhaSelvagem(this);
+
+        ImageView pokemonInimigo = (ImageView) findViewById(R.id.pokemonFrenteBatalhaSelvagem);
+        pokemonInimigo.setImageResource(pokemonTreinadorInimigo.getPokemon().getIconeFrente());
+
+        TextView nomePokemonInimigo = (TextView) findViewById(R.id.nomeInimigoTextViewBatalhaSelvagem);
+        nomePokemonInimigo.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinadorInimigo));
+
+        ProgressBar hpBarInimigo = (ProgressBar) findViewById(R.id.hpInimigoProgressBarBatalhaSelvagem);
+        Double porcentagemHPInimigo = (pokemonTreinadorInimigo.getHpAtual()/pokemonTreinadorInimigo.getHpTotal()) * 100;
+        hpBarInimigo.setProgress(porcentagemHPInimigo.intValue());
+
+        TextView hpTextInimigo = (TextView) findViewById(R.id.hpInimigoTextViewBatalhaSelvagem);
+        hpTextInimigo.setText("HP: " + pokemonTreinadorInimigo.getHpAtual().intValue() + " / " + pokemonTreinadorInimigo.getHpTotal().intValue());
+
 
 
         //Coloca pokemon jogador
@@ -42,11 +58,10 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         TextView hpText = (TextView) findViewById(R.id.hpTextViewBatalhaSelvagem);
         hpText.setText("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
 
-        System.out.println();
-
     }
 
     @Override
     public void onBackPressed() {
     }
+
 }
