@@ -10,8 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="80"
-        android:background="@drawable/fundo_floresta">
+        android:layout_weight="80">
 
         <LinearLayout
             android:orientation="vertical"
@@ -25,6 +24,7 @@
             android:background="@drawable/my_border">
 
             <TextView
+                android:id="@+id/nomeInimigoTextViewBatalhaSelvagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pikachu"
@@ -32,12 +32,14 @@
                 android:textStyle="bold"/>
 
             <ProgressBar
+                android:id="@+id/hpInimigoProgressBarBatalhaSelvagem"
                 android:layout_width="120dp"
                 android:layout_height="15dp"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:progress="100"/>
 
             <TextView
+                android:id="@+id/hpInimigoTextViewBatalhaSelvagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HP: 22/22"
@@ -77,6 +79,7 @@
             android:background="@drawable/my_border">
 
             <TextView
+                android:id="@+id/nomeTextViewBatalhaSelvagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pikachu"
@@ -84,12 +87,14 @@
                 android:textStyle="bold"/>
 
             <ProgressBar
+                android:id="@+id/hpProgressBarBatalhaSelvagem"
                 android:layout_width="120dp"
                 android:layout_height="15dp"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:progress="100"/>
 
             <TextView
+                android:id="@+id/hpTextViewBatalhaSelvagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HP: 22/22"

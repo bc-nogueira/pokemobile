@@ -67,6 +67,8 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String DESCRICAO_POKEMON = "descricao";
     private static final String ICONE_POKEMON = "icone";
     private static final String ICONE_TIPO = "icone_tipo";
+    private static final String ICONE_FRENTE = "icone_frente";
+    private static final String ICONE_COSTAS = "icone_costas";
 
     //Atributos da tabela PokemonTreinador
     private static final String TABELA_POKEMON_TREINADOR = "pokemonTreinador";
@@ -77,6 +79,7 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String HP_TOTAL = "hp_total";
     private static final String NIVEL = "nivel";
     private static final String EXPERIENCIA = "experiencia";
+    private static final String POS_FILA = "pos_fila";
 
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
@@ -136,7 +139,9 @@ public class BDCore extends SQLiteOpenHelper {
                 + PESO + " text not null,"
                 + DESCRICAO_POKEMON + " text not null,"
                 + ICONE_POKEMON + " integer not null,"
-                + ICONE_TIPO + " integer not null"
+                + ICONE_TIPO + " integer not null,"
+                + ICONE_FRENTE + " integer not null,"
+                + ICONE_COSTAS + " integer not null"
                 + ")";
 
         bd.execSQL(sqlPokemon);
@@ -149,7 +154,8 @@ public class BDCore extends SQLiteOpenHelper {
                 + HP_ATUAL + " real not null,"
                 + HP_TOTAL + " real not null,"
                 + NIVEL + " integer not null,"
-                + EXPERIENCIA + " real not null"
+                + EXPERIENCIA + " real not null,"
+                + POS_FILA + " integer"
                 + ")";
         bd.execSQL(sqlPokemonTreinador);
 
@@ -235,7 +241,7 @@ public class BDCore extends SQLiteOpenHelper {
     public void populaPokemon(SQLiteDatabase bd) {
         Pokemon pokemon = new Pokemon("001", "Bulbasaur", TipoPokemon.GRAMA, 1, 20, 25, "0,7m", "6,9kg",
                 "For some time after its birth, it grows by gaining nourishment from the seed on its back.",
-                R.drawable.bulbasaur, R.drawable.grama);
+                R.drawable.bulbasaur, R.drawable.grama, R.drawable.bulbasaur_frente, R.drawable.bulbasaur_costas);
         ContentValues valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
@@ -245,7 +251,7 @@ public class BDCore extends SQLiteOpenHelper {
 
         pokemon = new Pokemon("004", "Charmander", TipoPokemon.FOGO, 1, 15, 20, "0,6m", "8,5kg",
                 "The fire on the tip of its tail is a measure of its life. If healthy, its tail burns intensely.",
-                R.drawable.charmander, R.drawable.fogo);
+                R.drawable.charmander, R.drawable.fogo, R.drawable.charmander_frente, R.drawable.charmander_costas);
         valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
@@ -254,7 +260,7 @@ public class BDCore extends SQLiteOpenHelper {
 
         pokemon = new Pokemon("007", "Squirtle", TipoPokemon.AGUA, 1, 20, 25, "0,5m", "9,0kg",
                 "It shelters itself in its shell then strikes back with spouts of water at every opportunity.",
-                R.drawable.squirtle, R.drawable.agua);
+                R.drawable.squirtle, R.drawable.agua, R.drawable.squirtle_frente, R.drawable.squirtle_costas);
         valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
@@ -263,7 +269,7 @@ public class BDCore extends SQLiteOpenHelper {
 
         pokemon = new Pokemon("025", "Pikachu", TipoPokemon.ELETRICO, 1, 10, 15, "0,4m", "6,0kg",
                 "It occasionally uses an electric shock to recharge a fellow Pikachu that is in a weakened state.",
-                R.drawable.pikachu, R.drawable.eletrico);
+                R.drawable.pikachu, R.drawable.eletrico, R.drawable.pikachu_frente_battle, R.drawable.pikachu_costas_battle);
         valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
@@ -285,6 +291,8 @@ public class BDCore extends SQLiteOpenHelper {
         valores.put("descricao", pokemon.getDescricao());
         valores.put("icone", pokemon.getIcone());
         valores.put("icone_tipo", pokemon.getIconeTipo());
+        valores.put("icone_frente", pokemon.getIconeFrente());
+        valores.put("icone_costas", pokemon.getIconeCostas());
 
         return valores;
     }

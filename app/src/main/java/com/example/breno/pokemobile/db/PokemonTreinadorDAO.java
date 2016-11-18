@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -31,6 +32,7 @@ public class PokemonTreinadorDAO {
         valores.put("hp_total", pt.getHpTotal());
         valores.put("nivel", pt.getNivel());
         valores.put("experiencia", pt.getExperiencia());
+        valores.put("pos_fila", pt.getPosFila());
 
         bd.insertOrThrow("pokemonTreinador", null, valores);
     }
@@ -54,6 +56,7 @@ public class PokemonTreinadorDAO {
                 pt.setHpTotal(cursor.getDouble(4));
                 pt.setNivel(cursor.getInt(5));
                 pt.setExperiencia(cursor.getDouble(6));
+                pt.setPosFila(cursor.getInt(7));
 
                 pokemonsTreinador.add(pt);
 
@@ -61,6 +64,46 @@ public class PokemonTreinadorDAO {
         }
 
         return pokemonsTreinador;
+    }
+
+    public boolean verificarSeTodosEstaoMortos(Treinador treinador) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null and hp_atual > 0",
+                new String[]{treinador.getIdTreinador().toString()});
+
+        if(cursor.getCount() > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public PokemonTreinador buscarPrimeiroNaFilaPorId(Treinador treinador, Context ctx) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null",
+                new String[]{treinador.getIdTreinador().toString()});
+
+        PokemonDAO pokemonDAO = new PokemonDAO(ctx);
+        PokemonTreinador pt = new PokemonTreinador();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            do {
+                pt.setPokemon(pokemonDAO.buscarPorNumero(cursor.getString(0)));
+                pt.setTreinador(treinador);
+                pt.setApelido(cursor.getString(2));
+                pt.setHpAtual(cursor.getDouble(3));
+                pt.setHpTotal(cursor.getDouble(4));
+                pt.setNivel(cursor.getInt(5));
+                pt.setExperiencia(cursor.getDouble(6));
+                pt.setPosFila(cursor.getInt(7));
+
+                if(pt.getHpAtual() != 0) {
+                    return pt;
+                }
+
+            } while(cursor.moveToNext());
+        }
+        return null;
+
     }
 
     public void atualizarHpAtual(PokemonTreinador pokemonTreinador) {

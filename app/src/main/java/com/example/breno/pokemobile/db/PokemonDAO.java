@@ -43,6 +43,8 @@ public class PokemonDAO {
                 p.setDescricao(cursor.getString(8));
                 p.setIcone(cursor.getInt(9));
                 p.setIconeTipo(cursor.getInt(10));
+                p.setIconeFrente(cursor.getInt(11));
+                p.setIconeCostas(cursor.getInt(12));
 
                 pokemons.add(p);
 
@@ -71,6 +73,8 @@ public class PokemonDAO {
             p.setDescricao(cursor.getString(8));
             p.setIcone(cursor.getInt(9));
             p.setIconeTipo(cursor.getInt(10));
+            p.setIconeFrente(cursor.getInt(11));
+            p.setIconeCostas(cursor.getInt(12));
 
             return p;
         } else {

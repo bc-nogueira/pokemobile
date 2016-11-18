@@ -85,6 +85,8 @@ public class SelecionaPokemonActivity extends AppCompatActivity {
         pt.setNivel(1);
         pt.setExperiencia(0.);
 
+        pt.setPosFila(1);
+
         PokemonTreinadorDAO ptDAO = new PokemonTreinadorDAO(this);
         ptDAO.inserir(pt);
 

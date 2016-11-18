@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.breno.pokemobile.Service.PokemonTreinadorService;
 import com.example.breno.pokemobile.db.JogadorDAO;
 import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
@@ -13,6 +15,7 @@ import com.example.breno.pokemobile.modelo.Treinador;
 public class MenuPrincipalActivity extends AppCompatActivity {
     private Treinador treinador;
     private Jogador jogador;
+    private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +40,17 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     }
 
     public void batalhaSelvagem(View v) {
-        Intent selvagem = new Intent(MenuPrincipalActivity.this, BatalhaSelvagemActivity.class);
-        selvagem.putExtra("treinador", treinador);
-        startActivity(selvagem);
+
+        if(pokemonTreinadorService.verificaSeTodosEstaoMortos(treinador, this)) {
+
+            Toast.makeText(this, "Todos os seus pokemons estão mortos.", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Intent selvagem = new Intent(MenuPrincipalActivity.this, BatalhaSelvagemActivity.class);
+            selvagem.putExtra("treinador", treinador);
+            startActivity(selvagem);
+        }
+
     }
 
     public void abrirPokedex(View v) {

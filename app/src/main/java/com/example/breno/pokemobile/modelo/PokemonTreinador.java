@@ -12,6 +12,7 @@ public class PokemonTreinador {
     private Double hpAtual;
     private Integer nivel;
     private Double experiencia;
+    private Integer posFila;
 
     public Pokemon getPokemon() {
         return pokemon;
@@ -67,6 +68,14 @@ public class PokemonTreinador {
 
     public void setExperiencia(Double experiencia) {
         this.experiencia = experiencia;
+    }
+
+    public Integer getPosFila() {
+        return posFila;
+    }
+
+    public void setPosFila(Integer posFila) {
+        this.posFila = posFila;
     }
 
 }

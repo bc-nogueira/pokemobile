@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.breno.pokemobile.R;
+import com.example.breno.pokemobile.Service.PokemonTreinadorService;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 public class PokemonsAdapter extends BaseAdapter {
     private Context ctx;
     private ArrayList<PokemonTreinador> lista;
+    private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
 
     public PokemonsAdapter(Context ctx, ArrayList<PokemonTreinador> lista) {
         this.ctx = ctx;
@@ -53,11 +55,7 @@ public class PokemonsAdapter extends BaseAdapter {
         icone.setImageResource(pokemonTreinador.getPokemon().getIcone());
 
         TextView nome = (TextView) layout.findViewById(R.id.nomeTextViewPokemons);
-        if(pokemonTreinador.getApelido() != null) {
-            nome.setText(pokemonTreinador.getApelido());
-        } else {
-            nome.setText(pokemonTreinador.getPokemon().getNome());
-        }
+        nome.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinador));
 
         ProgressBar hpBar = (ProgressBar) layout.findViewById(R.id.hpProgressBarPokemons);
         Double porcentagemHP = (pokemonTreinador.getHpAtual()/pokemonTreinador.getHpTotal()) * 100;
