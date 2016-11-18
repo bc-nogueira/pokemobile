@@ -8,26 +8,26 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuPrincipalActivity" />
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".CadastroActivity" />
-        <activity android:name=".SelecionaTreinadorActivity" />
-        <activity android:name=".CriaTreinadorActivity" />
-        <activity android:name=".LojaActivity" />
-        <activity android:name=".MochilaActivity" />
-        <activity android:name=".PokedexActivity" />
-        <activity android:name=".DetalhesPokemonActivity" />
-        <activity android:name=".SelecionaPokemonActivity" />
-        <activity android:name=".PokemonsActivity" />
-        <activity android:name=".BatalhaSelvagemActivity"></activity>
+        <activity android:name=".MenuPrincipalActivity" android:screenOrientation="portrait" />
+        <activity android:name=".InfoActivity" android:screenOrientation="portrait" />
+        <activity android:name=".LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name=".CadastroActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SelecionaTreinadorActivity" android:screenOrientation="portrait" />
+        <activity android:name=".CriaTreinadorActivity" android:screenOrientation="portrait" />
+        <activity android:name=".LojaActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MochilaActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PokedexActivity" android:screenOrientation="portrait" />
+        <activity android:name=".DetalhesPokemonActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SelecionaPokemonActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PokemonsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".BatalhaSelvagemActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
