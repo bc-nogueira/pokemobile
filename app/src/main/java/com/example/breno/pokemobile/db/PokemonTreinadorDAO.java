@@ -73,22 +73,13 @@ public class PokemonTreinadorDAO {
         return pokemonsTreinador;
     }
 
-    public boolean verificarSeTodosEstaoMortos(Treinador treinador) {
-        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null and hp_atual > 0",
-                new String[]{treinador.getIdTreinador().toString()});
-
-        if(cursor.getCount() > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public PokemonTreinador buscarPrimeiroNaFilaPorId(Treinador treinador, Context ctx) {
+        public PokemonTreinador buscarPrimeiroNaFilaPorId(Treinador treinador, Context ctx) {
         Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null",
                 new String[]{treinador.getIdTreinador().toString()});
 
         PokemonDAO pokemonDAO = new PokemonDAO(ctx);
+        AtaqueDAO ataqueDAO = new AtaqueDAO(ctx);
+            
         PokemonTreinador pt = new PokemonTreinador();
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -103,6 +94,8 @@ public class PokemonTreinadorDAO {
                 pt.setLevel(cursor.getInt(6));
                 pt.setExperiencia(cursor.getDouble(7));
                 pt.setPosFila(cursor.getInt(8));
+                pt.setAtaque1(ataqueDAO.buscarPorId(cursor.getInt(9)));
+                pt.setAtaque2(ataqueDAO.buscarPorId(cursor.getInt(10)));
 
                 if(pt.getHpAtual() != 0) {
                     return pt;
@@ -120,6 +113,17 @@ public class PokemonTreinadorDAO {
 
         bd.update("pokemonTreinador", valores, "idPokemonTreinador = ?",
                 new String[]{pokemonTreinador.getIdPokemonTreinador().toString()});
+    }
+
+    public boolean verificarSeTodosEstaoMortos(Treinador treinador) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null and hp_atual > 0",
+                new String[]{treinador.getIdTreinador().toString()});
+
+        if(cursor.getCount() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

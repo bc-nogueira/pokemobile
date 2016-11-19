@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -59,6 +60,20 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
         TextView hpText = (TextView) findViewById(R.id.hpTextViewBatalhaSelvagem);
         hpText.setText("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
+
+        Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaSelvagem);
+        ataque1.setText(pokemonTreinador.getAtaque1().getNomeAtaque());
+
+        Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaSelvagem);
+        if(pokemonTreinador.getAtaque2() != null) {
+
+            ataque2.setText(pokemonTreinador.getAtaque2().getNomeAtaque());
+
+        } else {
+
+            ataque2.setVisibility(View.INVISIBLE);
+
+        }
 
     }
 
