@@ -176,7 +176,6 @@ public class LojaActivity extends AppCompatActivity {
 
                 }
 
-                //TODO: Atualizar dinheiro Jogador
                 treinador.setDinheiro(treinador.getDinheiro() - valorTotal);
                 TreinadorDAO treinadorDAO = new TreinadorDAO(this);
                 treinadorDAO.atualizarDinheiro(treinador);

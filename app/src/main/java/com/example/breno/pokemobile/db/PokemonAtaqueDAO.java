@@ -34,26 +34,27 @@ public class PokemonAtaqueDAO {
         return bd.insertOrThrow("pokemonAtaque", null, valores);
     }
 
-    public ArrayList<PokemonAtaque> buscarAtaquesPorPokemonLevel(PokemonTreinador pokemonTreinador) {
-        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonAtaque WHERE idPokemon = ? and lvl_aprendido <= ?",
+    public PokemonAtaque buscarAtaquesPorPokemonLevel(PokemonTreinador pokemonTreinador) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonAtaque WHERE idPokemon = ? and lvl_aprendido = ?",
                 new String[]{pokemonTreinador.getPokemon().getNumero(), pokemonTreinador.getLevel().toString()});
 
-        ArrayList<PokemonAtaque> ataques = new ArrayList<>();
+//        ArrayList<PokemonAtaque> ataques = new ArrayList<>();
+        PokemonAtaque pa = new PokemonAtaque();
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
 
-            do {
-                PokemonAtaque pa = new PokemonAtaque();
+//            do {
+//                PokemonAtaque pa = new PokemonAtaque();
                 pa.setIdPokemon(cursor.getString(0));
                 pa.setIdAtaque(cursor.getInt(1));
                 pa.setLvlAprendido(cursor.getInt(2));
 
-                ataques.add(pa);
+//                ataques.add(pa);
 
-            } while(cursor.moveToNext());
+//            } while(cursor.moveToNext());
         }
 
-        return ataques;
+        return pa;
 
     }
 

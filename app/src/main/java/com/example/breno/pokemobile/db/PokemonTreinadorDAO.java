@@ -32,6 +32,10 @@ public class PokemonTreinadorDAO {
         valores.put("nivel", pt.getLevel());
         valores.put("experiencia", pt.getExperiencia());
         valores.put("pos_fila", pt.getPosFila());
+        valores.put("idAtaque1", pt.getAtaque1().getIdAtaque());
+        if(pt.getAtaque2() != null) {
+            valores.put("idAtaque2", pt.getAtaque2().getIdAtaque());
+        }
 
         bd.insertOrThrow("pokemonTreinador", null, valores);
     }
@@ -41,6 +45,7 @@ public class PokemonTreinadorDAO {
                 new String[]{treinador.getIdTreinador().toString()});
 
         PokemonDAO pokemonDAO = new PokemonDAO(ctx);
+        AtaqueDAO ataqueDAO = new AtaqueDAO(ctx);
 
         ArrayList<PokemonTreinador> pokemonsTreinador = new ArrayList<>();
         if(cursor.getCount() > 0) {
@@ -57,6 +62,8 @@ public class PokemonTreinadorDAO {
                 pt.setLevel(cursor.getInt(6));
                 pt.setExperiencia(cursor.getDouble(7));
                 pt.setPosFila(cursor.getInt(8));
+                pt.setAtaque1(ataqueDAO.buscarPorId(cursor.getInt(9)));
+                pt.setAtaque2(ataqueDAO.buscarPorId(cursor.getInt(10)));
 
                 pokemonsTreinador.add(pt);
 

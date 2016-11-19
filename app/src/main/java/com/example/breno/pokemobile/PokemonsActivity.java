@@ -14,6 +14,7 @@ import com.example.breno.pokemobile.adapter.PokemonsAdapter;
 import com.example.breno.pokemobile.db.ItemTreinadorDAO;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
+import com.example.breno.pokemobile.modelo.Pokemon;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.TipoItem;
 import com.example.breno.pokemobile.modelo.Treinador;
@@ -37,7 +38,7 @@ public class PokemonsActivity extends AppCompatActivity {
         PokemonTreinadorDAO ptDAO = new PokemonTreinadorDAO(this);
         final ArrayList<PokemonTreinador> pts = ptDAO.buscarPorIdTreinador(treinador, this);
 
-        ListView listPokemons = (ListView) findViewById(R.id.pokemonsListViewPokemons);
+        final ListView listPokemons = (ListView) findViewById(R.id.pokemonsListViewPokemons);
 
         PokemonsAdapter pokemonsAdapter = new PokemonsAdapter(this, pts);
         listPokemons.setAdapter(pokemonsAdapter);
@@ -95,6 +96,20 @@ public class PokemonsActivity extends AppCompatActivity {
                         }
 
                     }
+
+                }
+            });
+
+        } else {
+            listPokemons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Intent info = new Intent(PokemonsActivity.this, InfoPokemonActivity.class);
+                    info.putExtra("treinador", treinador);
+                    info.putExtra("pokemonTreinador", pts.get(position));
+                    startActivity(info);
+
 
                 }
             });

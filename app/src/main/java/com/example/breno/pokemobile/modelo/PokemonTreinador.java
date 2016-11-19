@@ -1,10 +1,12 @@
 package com.example.breno.pokemobile.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by Breno on 14/11/2016.
  */
 
-public class PokemonTreinador {
+public class PokemonTreinador implements Serializable {
     private Integer idPokemonTreinador;
     private Pokemon pokemon;
     private Treinador treinador;
@@ -14,6 +16,8 @@ public class PokemonTreinador {
     private Integer level;
     private Double experiencia;
     private Integer posFila;
+    private Ataque ataque1;
+    private Ataque ataque2;
 
     public Integer getIdPokemonTreinador() {
         return idPokemonTreinador;
@@ -85,6 +89,22 @@ public class PokemonTreinador {
 
     public void setPosFila(Integer posFila) {
         this.posFila = posFila;
+    }
+
+    public Ataque getAtaque1() {
+        return ataque1;
+    }
+
+    public void setAtaque1(Ataque ataque1) {
+        this.ataque1 = ataque1;
+    }
+
+    public Ataque getAtaque2() {
+        return ataque2;
+    }
+
+    public void setAtaque2(Ataque ataque2) {
+        this.ataque2 = ataque2;
     }
 
 }

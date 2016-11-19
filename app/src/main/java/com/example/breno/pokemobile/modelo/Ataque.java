@@ -1,21 +1,25 @@
 package com.example.breno.pokemobile.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by Breno on 18/11/2016.
  */
 
-public class Ataque {
+public class Ataque implements Serializable {
     private Integer idAtaque;
     private String nomeAtaque;
     private Elemento elemento;
+    private Integer iconeElemento;
     private Integer danoBase;
 
     public Ataque() {
     }
 
-    public Ataque(String nomeAtaque, Elemento elemento, Integer danoBase) {
+    public Ataque(String nomeAtaque, Elemento elemento, Integer iconeElemento, Integer danoBase) {
         this.nomeAtaque = nomeAtaque;
         this.elemento = elemento;
+        this.iconeElemento = iconeElemento;
         this.danoBase = danoBase;
     }
 
@@ -41,6 +45,14 @@ public class Ataque {
 
     public void setElemento(Elemento elemento) {
         this.elemento = elemento;
+    }
+
+    public Integer getIconeElemento() {
+        return iconeElemento;
+    }
+
+    public void setIconeElemento(Integer iconeElemento) {
+        this.iconeElemento = iconeElemento;
     }
 
     public void setElemento(String elemento) {

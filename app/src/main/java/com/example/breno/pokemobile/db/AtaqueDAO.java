@@ -28,7 +28,8 @@ public class AtaqueDAO {
             a.setIdAtaque(cursor.getInt(0));
             a.setNomeAtaque(cursor.getString(1));
             a.setElemento(cursor.getString(2));
-            a.setDanoBase(cursor.getInt(3));
+            a.setIconeElemento(cursor.getInt(3));
+            a.setDanoBase(cursor.getInt(4));
 
             return a;
         } else {
