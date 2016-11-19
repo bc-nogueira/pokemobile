@@ -2,9 +2,13 @@ package com.example.breno.pokemobile.Service;
 
 import android.content.Context;
 
+import com.example.breno.pokemobile.db.AtaqueDAO;
+import com.example.breno.pokemobile.db.PokemonAtaqueDAO;
 import com.example.breno.pokemobile.db.PokemonDAO;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
+import com.example.breno.pokemobile.modelo.Ataque;
 import com.example.breno.pokemobile.modelo.Pokemon;
+import com.example.breno.pokemobile.modelo.PokemonAtaque;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -57,6 +61,12 @@ public class PokemonTreinadorService {
 
         pokemonTreinador.setLevel(1);
 
+        PokemonAtaqueDAO pokemonAtaqueDAO = new PokemonAtaqueDAO(ctx);
+        AtaqueDAO ataqueDAO = new AtaqueDAO(ctx);
+
+        PokemonAtaque pokemonAtaque = pokemonAtaqueDAO.buscarAtaquesPorPokemonLevel(pokemonTreinador);
+        Ataque ataque = ataqueDAO.buscarPorId(pokemonAtaque.getIdAtaque());
+        pokemonTreinador.setAtaque1(ataque);
 
         return pokemonTreinador;
     }

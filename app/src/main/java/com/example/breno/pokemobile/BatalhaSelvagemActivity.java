@@ -21,6 +21,17 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
     private UtilidadesService utilidadesService = new UtilidadesService();
 
+    private PokemonTreinador pokemonTreinadorInimigo;
+    private PokemonTreinador pokemonTreinador;
+
+//    private Integer vez = 0; //0-> jogador - 1-> inimigo
+
+    private Integer rodada;
+    /*
+    0 -> Começo, preparando views e mensagem inicial informa qual pokemon apareceu. Botões desabilitados.
+    1 ->
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +40,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
         //Coloca pokemon inimigo
-        PokemonTreinador pokemonTreinadorInimigo = pokemonTreinadorService.criaPokemonBatalhaSelvagem(this);
+        pokemonTreinadorInimigo = pokemonTreinadorService.criaPokemonBatalhaSelvagem(this);
 
         ImageView pokemonInimigo = (ImageView) findViewById(R.id.pokemonFrenteBatalhaSelvagem);
         pokemonInimigo.setImageResource(pokemonTreinadorInimigo.getPokemon().getIconeFrente());
@@ -46,7 +57,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
         //Coloca pokemon jogador
         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(this);
-        PokemonTreinador pokemonTreinador = pokemonTreinadorDAO.buscarPrimeiroNaFilaPorId(treinador, this);
+        pokemonTreinador = pokemonTreinadorDAO.buscarPrimeiroNaFilaPorId(treinador, this);
 
         ImageView pokemon = (ImageView) findViewById(R.id.pokemonCostasBatalhaSelvagem);
         pokemon.setImageResource(pokemonTreinador.getPokemon().getIconeCostas());
@@ -66,14 +77,21 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
         Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaSelvagem);
         if(pokemonTreinador.getAtaque2() != null) {
-
             ataque2.setText(pokemonTreinador.getAtaque2().getNomeAtaque());
-
         } else {
-
             ataque2.setVisibility(View.INVISIBLE);
-
         }
+
+        desabilitarButtons();
+
+        TextView mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
+        mensagem.setText("Um " + pokemonTreinadorInimigo.getPokemon().getNome() + " apareceu.");
+
+        rodada = 0;
+
+        //TODO: Controlar rodadas. Iniciar com numero random.
+        //TODO: Proibir e liberar uso de botoes de acordo com rodada.
+        //TODO: Mostrar mensagem de acordo com rodada.
 
     }
 
@@ -81,9 +99,45 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
+    public void proximaRodada(View v) {
+        TextView mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
+        ImageView prox = (ImageView) findViewById(R.id.proxMensagemBatalhaSelvagem);
+
+        switch (rodada) {
+            case 0:
+                //Verifica de quem é a vez
+                if(utilidadesService.gerarNumeroAleatorio(10) < 7) {
+                    mensagem.setText("Sua vez. O que deseja fazer?");
+                    habilitarButtons();
+                    prox.setVisibility(View.INVISIBLE);
+                    rodada = 1;
+                } else {
+                    mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\ntoma a \niniciativa.");
+                    rodada = 2;
+                }
+                break;
+            case 1:
+                mensagem.setText("Seria vez jogador.");
+                break;
+            case 2:
+                //TODO: Sortear qual ataque usar
+                mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + " \nusa" +
+                        "\n" + pokemonTreinador.getAtaque1().getNomeAtaque());
+                rodada = 3;
+                break;
+            case 3:
+                mensagem.setText("Sua vez. O que deseja fazer?");
+                habilitarButtons();
+                prox.setVisibility(View.INVISIBLE);
+                break;
+        }
+
+
+    }
+
     public void fugir(View v) {
 
-        if(utilidadesService.gerarNumeroAleatorio(10) < 6) {
+        if(utilidadesService.gerarNumeroAleatorio(10) < 7) {
 
             Toast.makeText(this, "Você fugiu!", Toast.LENGTH_SHORT).show();
 
@@ -98,6 +152,34 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void habilitarButtons() {
+        Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaSelvagem);
+        ataque1.setEnabled(true);
+
+        Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaSelvagem);
+        ataque2.setEnabled(true);
+
+        Button item = (Button) findViewById(R.id.itemButtonBatalhaSelvagem);
+        item.setEnabled(true);
+
+        Button fugir = (Button) findViewById(R.id.fugirButtonBatalhaSelvagem);
+        fugir.setEnabled(true);
+    }
+
+    public void desabilitarButtons() {
+        Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaSelvagem);
+        ataque1.setEnabled(false);
+
+        Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaSelvagem);
+        ataque2.setEnabled(false);
+
+        Button item = (Button) findViewById(R.id.itemButtonBatalhaSelvagem);
+        item.setEnabled(false);
+
+        Button fugir = (Button) findViewById(R.id.fugirButtonBatalhaSelvagem);
+        fugir.setEnabled(false);
     }
 
 

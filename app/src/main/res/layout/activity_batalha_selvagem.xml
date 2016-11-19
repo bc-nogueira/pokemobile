@@ -119,12 +119,22 @@
                 android:id="@+id/mensagemTextViewBatalhaSelvagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:text="O que você vai fazer?"
                 android:textSize="22sp"
                 android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/proxMensagemBatalhaSelvagem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="30dp"
+                android:src="@android:drawable/ic_media_ff"
+                android:onClick="proximaRodada"/>
 
         </RelativeLayout>
 
@@ -132,8 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentRight="true">
 
             <Button
                 android:id="@+id/ataque1ButtonBatalhaSelvagem"
@@ -156,6 +165,7 @@
                 android:text="Ataque2"/>
 
             <Button
+                android:id="@+id/itemButtonBatalhaSelvagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -165,6 +175,7 @@
                 android:text="Item"/>
 
             <Button
+                android:id="@+id/fugirButtonBatalhaSelvagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
