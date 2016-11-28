@@ -344,7 +344,7 @@ public class BDCore extends SQLiteOpenHelper {
     }
 
     private void populaAtaque(SQLiteDatabase bd) {
-        Ataque ataque = new Ataque("Tackle", Elemento.NORMAL, R.drawable.neutro, 5);
+        Ataque ataque = new Ataque("Tackle", Elemento.NORMAL, R.drawable.neutro, 1);
         ContentValues valores = preencheValoresAtaque(ataque);
         try {
             bd.insertOrThrow("ataque", null, valores);

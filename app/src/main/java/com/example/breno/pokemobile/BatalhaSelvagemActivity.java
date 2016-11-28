@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.breno.pokemobile.Service.PokemonTreinadorService;
 import com.example.breno.pokemobile.Service.UtilidadesService;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
+import com.example.breno.pokemobile.modelo.Ataque;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -22,15 +23,17 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     private UtilidadesService utilidadesService = new UtilidadesService();
 
     private PokemonTreinador pokemonTreinadorInimigo;
+    private ProgressBar hpBarInimigo;
+    private TextView hpTextInimigo;
+
     private PokemonTreinador pokemonTreinador;
+    private ProgressBar hpBarJogador;
+    private TextView hpTextJogador;
 
-//    private Integer vez = 0; //0-> jogador - 1-> inimigo
+    private Integer etapa;
 
-    private Integer rodada;
-    /*
-    0 -> Começo, preparando views e mensagem inicial informa qual pokemon apareceu. Botões desabilitados.
-    1 ->
-     */
+    private Ataque ataqueJogador;
+    private Ataque ataqueInimigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +51,11 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         TextView nomePokemonInimigo = (TextView) findViewById(R.id.nomeInimigoTextViewBatalhaSelvagem);
         nomePokemonInimigo.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinadorInimigo));
 
-        ProgressBar hpBarInimigo = (ProgressBar) findViewById(R.id.hpInimigoProgressBarBatalhaSelvagem);
+        hpBarInimigo = (ProgressBar) findViewById(R.id.hpInimigoProgressBarBatalhaSelvagem);
         Double porcentagemHPInimigo = (pokemonTreinadorInimigo.getHpAtual()/pokemonTreinadorInimigo.getHpTotal()) * 100;
         hpBarInimigo.setProgress(porcentagemHPInimigo.intValue());
 
-        TextView hpTextInimigo = (TextView) findViewById(R.id.hpInimigoTextViewBatalhaSelvagem);
+        hpTextInimigo = (TextView) findViewById(R.id.hpInimigoTextViewBatalhaSelvagem);
         hpTextInimigo.setText("HP: " + pokemonTreinadorInimigo.getHpAtual().intValue() + " / " + pokemonTreinadorInimigo.getHpTotal().intValue());
 
         //Coloca pokemon jogador
@@ -65,12 +68,12 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         TextView nomePokemon = (TextView) findViewById(R.id.nomeTextViewBatalhaSelvagem);
         nomePokemon.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinador));
 
-        ProgressBar hpBar = (ProgressBar) findViewById(R.id.hpProgressBarBatalhaSelvagem);
+        hpBarJogador = (ProgressBar) findViewById(R.id.hpProgressBarBatalhaSelvagem);
         Double porcentagemHP = (pokemonTreinador.getHpAtual()/pokemonTreinador.getHpTotal()) * 100;
-        hpBar.setProgress(porcentagemHP.intValue());
+        hpBarJogador.setProgress(porcentagemHP.intValue());
 
-        TextView hpText = (TextView) findViewById(R.id.hpTextViewBatalhaSelvagem);
-        hpText.setText("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
+        hpTextJogador = (TextView) findViewById(R.id.hpTextViewBatalhaSelvagem);
+        hpTextJogador.setText("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
 
         Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaSelvagem);
         ataque1.setText(pokemonTreinador.getAtaque1().getNomeAtaque());
@@ -87,7 +90,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         TextView mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
         mensagem.setText("Um " + pokemonTreinadorInimigo.getPokemon().getNome() + " apareceu.");
 
-        rodada = 0;
+        etapa = 0;
 
         //TODO: Controlar rodadas. Iniciar com numero random.
         //TODO: Proibir e liberar uso de botoes de acordo com rodada.
@@ -99,33 +102,64 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
-    public void proximaRodada(View v) {
+    public void proximaEtapa(View v) {
         TextView mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
         ImageView prox = (ImageView) findViewById(R.id.proxMensagemBatalhaSelvagem);
 
-        switch (rodada) {
+        switch (etapa) {
             case 0:
                 //Verifica de quem é a vez
-                if(utilidadesService.gerarNumeroAleatorio(10) < 7) {
+                if(10 > 7) {
+//                if(utilidadesService.gerarNumeroAleatorio(10) > 7) {
+                    mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\ntoma a \niniciativa.");
+                    etapa = 1;
+
+                } else {
                     mensagem.setText("Sua vez. O que deseja fazer?");
                     habilitarButtons();
                     prox.setVisibility(View.INVISIBLE);
-                    rodada = 1;
-                } else {
-                    mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\ntoma a \niniciativa.");
-                    rodada = 2;
+                    etapa = 4;
                 }
                 break;
             case 1:
-                mensagem.setText("Seria vez jogador.");
+                //TODO: Ver qual ataque usar
+                if(pokemonTreinadorInimigo.getAtaque2() == null) {
+                    ataqueInimigo = pokemonTreinadorInimigo.getAtaque1();
+                } else {
+                    //TODO: Sortear entre ataque1 ou ataque2
+                }
+                mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + " usou " + ataqueInimigo.getNomeAtaque() + ".");
+                //TODO: calcular dano
+                Integer dano = utilidadesService.gerarNumeroAleatorio(10) * ataqueInimigo.getDanoBase();
+                //TODO: retirar HP do pokemon do jogador
+                pokemonTreinador.setHpAtual(pokemonTreinador.getHpTotal() - dano);
+                //TODO: Passar isso para um método
+                Double porcentagemFinal = (pokemonTreinador.getHpAtual()/pokemonTreinador.getHpTotal()) * 100;
+                Integer porcentagemAtual = hpBarJogador.getProgress();
+                ProgressBarAnimation anim = new ProgressBarAnimation
+                        (hpBarJogador, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
+                anim.setDuration(500);
+                hpBarJogador.startAnimation(anim);
+
+                hpTextJogador.setText("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
+
+                etapa = 2;
                 break;
             case 2:
+                mensagem.setText("Sua vez. O que deseja fazer?");
+                habilitarButtons();
+                prox.setVisibility(View.INVISIBLE);
+                etapa = 4;
+                break;
+            case 3:
                 //TODO: Sortear qual ataque usar
                 mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + " \nusa" +
                         "\n" + pokemonTreinador.getAtaque1().getNomeAtaque());
-                rodada = 3;
+                etapa = 3;
                 break;
-            case 3:
+            case 4:
+
+            case 5:
                 mensagem.setText("Sua vez. O que deseja fazer?");
                 habilitarButtons();
                 prox.setVisibility(View.INVISIBLE);
