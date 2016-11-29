@@ -29,6 +29,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     private PokemonTreinador pokemonTreinadorInimigo;
     private ProgressBar hpBarInimigo;
     private TextView hpTextInimigo;
+    private ImageView pokemonInimigo;
 
     private PokemonTreinador pokemonTreinador;
     private ProgressBar hpBarJogador;
@@ -79,7 +80,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         }
 
         //Dados para a View do pokemon inimigo
-        ImageView pokemonInimigo = (ImageView) findViewById(R.id.pokemonFrenteBatalhaSelvagem);
+        pokemonInimigo = (ImageView) findViewById(R.id.pokemonFrenteBatalhaSelvagem);
         pokemonInimigo.setImageResource(pokemonTreinadorInimigo.getPokemon().getIconeFrente());
 
         TextView nomePokemonInimigo = (TextView) findViewById(R.id.nomeInimigoTextViewBatalhaSelvagem);
@@ -128,7 +129,10 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
             } else if(itemTreinador.getItem().getTipo().equals(TipoItem.CAPTURA)) {
 
-
+                pokemonInimigo.setVisibility(View.INVISIBLE);
+                etapa = 3;
+                prox.setVisibility(View.VISIBLE);
+                mensagem.setText("Tentando\ncapturar o pokemon...");
 
             }
 
@@ -136,9 +140,9 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public void onBackPressed() {
-//    }
+    @Override
+    public void onBackPressed() {
+    }
 
     public void proximaEtapa(View v) {
         switch (etapa) {
@@ -170,10 +174,23 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 prox.setVisibility(View.INVISIBLE);
                 break;
             case 3:
+                if(batalhaSelvagemService.capturarPokemon(treinador, itemTreinador, pokemonTreinadorInimigo, getApplicationContext())) {
+
+                    mensagem.setText("Você conseguiu capturar o pokemon.");
+                    prox.setVisibility(View.VISIBLE);
+                    etapa = 4;
+
+                } else {
+
+                    mensagem.setText("Você não conseguiu capturar o pokemon.");
+                    prox.setVisibility(View.VISIBLE);
+                    pokemonInimigo.setVisibility(View.VISIBLE);
+                    etapa = 1;
+
+                }
                 break;
             case 4:
-                break;
-            case 5:
+                this.irMenuPrincipal();
                 break;
             case 8:
                 mensagem.setText("Seu\n" + pokemonTreinador.getPokemon().getNome() + "\nmorreu.");
@@ -220,26 +237,6 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         }
     }
 
-//    public void curarPokemon() {
-//
-//        pokemonTreinador.setHpAtual(pokemonTreinador.getHpAtual() + itemTreinador.getItem().getEfeitoCura());
-//
-//        if(pokemonTreinador.getHpAtual() > pokemonTreinador.getHpTotal()) {
-//            pokemonTreinador.setHpAtual(pokemonTreinador.getHpTotal());
-//        }
-//
-//        Double porcentagemFinal = (pokemonTreinador.getHpAtual()/pokemonTreinador.getHpTotal()) * 100;
-//        Integer porcentagemAtual = hpBarJogador.getProgress();
-//        ProgressBarAnimation anim = new ProgressBarAnimation
-//                (hpBarJogador, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
-//        anim.setDuration(1000);
-//        hpBarJogador.startAnimation(anim);
-//
-//        hpTextJogador.setText
-//                ("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
-//
-//    }
-
     public void fugir(View v) {
         if(batalhaSelvagemService.gerarNumeroAleatorio(10) < 7) {
             Toast.makeText(this, "Você fugiu!", Toast.LENGTH_SHORT).show();
@@ -247,16 +244,21 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         } else {
             TextView mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
             mensagem.setText("Não foi possível fugir.");
+
+            this.desabilitarButtons();
+            prox.setVisibility(View.VISIBLE);
+            etapa = 1;
         }
     }
 
     public void irMenuPrincipal() {
 
+        PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
+        pokemonTreinadorDAO.atualizarHpAtual(pokemonTreinador);
+
         Intent menuPrincipal = new Intent(BatalhaSelvagemActivity.this, MenuPrincipalActivity.class);
         menuPrincipal.putExtra("treinador", treinador);
         startActivity(menuPrincipal);
-
-        //TODO: Salvar HP do pokemon do treinador
 
     }
 

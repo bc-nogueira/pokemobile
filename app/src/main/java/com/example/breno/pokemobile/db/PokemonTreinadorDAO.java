@@ -115,6 +115,14 @@ public class PokemonTreinadorDAO {
                 new String[]{pokemonTreinador.getIdPokemonTreinador().toString()});
     }
 
+    public void atualizarTreinador(PokemonTreinador pokemonTreinador) {
+        ContentValues valores = new ContentValues();
+        valores.put("idTreinador", pokemonTreinador.getTreinador().getIdTreinador());
+
+        bd.update("pokemonTreinador", valores, "idPokemonTreinador = ?",
+                new String[]{pokemonTreinador.getIdPokemonTreinador().toString()});
+    }
+
     public boolean verificarSeTodosEstaoMortos(Treinador treinador) {
         Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null and hp_atual > 0",
                 new String[]{treinador.getIdTreinador().toString()});

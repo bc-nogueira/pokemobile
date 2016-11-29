@@ -15,7 +15,7 @@ public class ItemTreinadorService {
 
         itemTreinador.setQuantidade(itemTreinador.getQuantidade() - 1);
         ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(ctx);
-        if(itemTreinador.getQuantidade() > 1) {
+        if(itemTreinador.getQuantidade() >= 1) {
             //Atualizar
             itemTreinadorDAO.atualizarQuantidade(itemTreinador);
         } else {
