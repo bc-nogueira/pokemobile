@@ -1,10 +1,12 @@
 package com.example.breno.pokemobile.Service;
 
+import android.content.Context;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.breno.pokemobile.ProgressBarAnimation;
 import com.example.breno.pokemobile.modelo.Ataque;
+import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 
 import java.util.Random;
@@ -14,6 +16,7 @@ import java.util.Random;
  */
 
 public class BatalhaSelvagemService {
+    private ItemTreinadorService itemTreinadorService = new ItemTreinadorService();
 
     public PokemonTreinador realizarAtaque(PokemonTreinador pokemonAtacante, PokemonTreinador pokemonAtacado, Ataque ataque,
                                            TextView mensagem, String selvagem, ProgressBar hpBarAtacado, TextView hpTextAtacado) {
@@ -35,7 +38,7 @@ public class BatalhaSelvagemService {
             pokemonAtacado.setHpAtual(0.);
         }
 
-        this.atualizarHP(pokemonAtacado, dano, hpBarAtacado, hpTextAtacado);
+        this.diminuirHP(pokemonAtacado, hpBarAtacado, hpTextAtacado);
 
         return pokemonAtacado;
     }
@@ -60,23 +63,52 @@ public class BatalhaSelvagemService {
         return ataque;
     }
 
-    public void atualizarHP(PokemonTreinador pokemonAtacado, Integer dano, ProgressBar hpBarAtacado, TextView hpTextAtacado) {
-        Double porcentagemFinal = (pokemonAtacado.getHpAtual()/pokemonAtacado.getHpTotal()) * 100;
-        Integer porcentagemAtual = hpBarAtacado.getProgress();
+    public PokemonTreinador curarPokemon(PokemonTreinador pokemon, ItemTreinador item,
+                                         ProgressBar hpBar, TextView hpText, Context ctx) {
+
+        pokemon.setHpAtual(pokemon.getHpAtual() + item.getItem().getEfeitoCura());
+
+        this.aumentarHP(pokemon, hpBar, hpText);
+
+        //Diminui o item ou remove
+        itemTreinadorService.diminuirItem(item, ctx);
+
+        return pokemon;
+
+    }
+
+    public void aumentarHP(PokemonTreinador pokemon, ProgressBar hpBar, TextView hpText) {
+        if(pokemon.getHpAtual() > pokemon.getHpTotal()) {
+            pokemon.setHpAtual(pokemon.getHpTotal());
+        }
+
+        Double porcentagemFinal = (pokemon.getHpAtual()/pokemon.getHpTotal()) * 100;
+        Integer porcentagemAtual = hpBar.getProgress();
+        ProgressBarAnimation anim = new ProgressBarAnimation
+                (hpBar, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
+        anim.setDuration(1000);
+        hpBar.startAnimation(anim);
+
+        hpText.setText("HP: " + pokemon.getHpAtual().intValue() + " / " + pokemon.getHpTotal().intValue());
+    }
+
+    public void diminuirHP(PokemonTreinador pokemon, ProgressBar hpBar, TextView hpText) {
+        Double porcentagemFinal = (pokemon.getHpAtual()/pokemon.getHpTotal()) * 100;
+        Integer porcentagemAtual = hpBar.getProgress();
 
         ProgressBarAnimation anim;
-        if((pokemonAtacado.getHpAtual()) > 0) {
+        if((pokemon.getHpAtual()) > 0) {
             anim = new ProgressBarAnimation
-                    (hpBarAtacado, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
+                    (hpBar, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
         } else {
             anim = new ProgressBarAnimation
-                    (hpBarAtacado, porcentagemAtual.floatValue(), new Float(0));
+                    (hpBar, porcentagemAtual.floatValue(), new Float(0));
         }
 
         anim.setDuration(500);
-        hpBarAtacado.startAnimation(anim);
+        hpBar.startAnimation(anim);
 
-        hpTextAtacado.setText("HP: " + pokemonAtacado.getHpAtual().intValue() + " / " + pokemonAtacado.getHpTotal().intValue());
+        hpText.setText("HP: " + pokemon.getHpAtual().intValue() + " / " + pokemon.getHpTotal().intValue());
     }
 
     public PokemonTreinador adicionarExperiencia(PokemonTreinador pokemon, Integer level) {

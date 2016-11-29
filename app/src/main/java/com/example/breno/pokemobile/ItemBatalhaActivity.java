@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.breno.pokemobile.adapter.ItemMochilaAdapter;
 import com.example.breno.pokemobile.db.ItemTreinadorDAO;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
+import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.TipoItem;
 import com.example.breno.pokemobile.modelo.Treinador;
 
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 
 public class ItemBatalhaActivity extends AppCompatActivity {
     private Treinador treinador;
+    private PokemonTreinador pokemonTreinador;
+    private PokemonTreinador pokemonInimigo;
     private boolean isSelvagem;
 
     @Override
@@ -26,6 +29,8 @@ public class ItemBatalhaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_batalha);
 
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
+        pokemonTreinador = (PokemonTreinador) getIntent().getSerializableExtra("pokemonTreinador");
+        pokemonInimigo = (PokemonTreinador) getIntent().getSerializableExtra("pokemonInimigo");
         isSelvagem = (boolean) getIntent().getSerializableExtra("isSelvagem");
 
         if (treinador != null) {
@@ -43,18 +48,31 @@ public class ItemBatalhaActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    ItemTreinador itemTreinador = itensTreinador.get(position);
+                    if(itensTreinador.get(position).getItem().getTipo().equals(TipoItem.CAPTURA) &&
+                            !isSelvagem) {
 
-                    Intent batalha;
-                    if(isSelvagem) {
-                        batalha = new Intent(ItemBatalhaActivity.this, BatalhaSelvagemActivity.class);
+                        Toast.makeText(view.getContext(),
+                                "Não é possível capturar o pokemon de outro treinador.", Toast.LENGTH_SHORT).show();
+
                     } else {
-                        batalha = new Intent(ItemBatalhaActivity.this, PokemonsActivity.class);
-                    }
 
-                    batalha.putExtra("treinador", treinador);
-                    batalha.putExtra("itemTreinador", itemTreinador);
-                    startActivity(batalha);
+                        ItemTreinador itemTreinador = itensTreinador.get(position);
+
+                        Intent batalha;
+                        if (isSelvagem) {
+                            batalha = new Intent(ItemBatalhaActivity.this, BatalhaSelvagemActivity.class);
+                        } else {
+                            //TODO: mudar para BatalhaTreinadorActivity
+                            batalha = new Intent(ItemBatalhaActivity.this, PokemonsActivity.class);
+                        }
+
+                        batalha.putExtra("treinador", treinador);
+                        batalha.putExtra("itemTreinador", itemTreinador);
+                        batalha.putExtra("pokemonTreinador", pokemonTreinador);
+                        batalha.putExtra("pokemonInimigo", pokemonInimigo);
+                        startActivity(batalha);
+
+                    }
 
                 }
             });
