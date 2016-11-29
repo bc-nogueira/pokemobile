@@ -5,5 +5,5 @@ package com.example.breno.pokemobile.modelo;
  */
 
 public enum Elemento {
-    AGUA, ELETRICO, FOGO, GRAMA, NORMAL;
+    AGUA, ELETRICO, FOGO, GRAMA, NORMAL, VENENOSO;
 }
