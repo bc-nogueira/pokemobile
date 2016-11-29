@@ -5,9 +5,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.breno.pokemobile.ProgressBarAnimation;
+import com.example.breno.pokemobile.db.PokemonDAO;
+import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Ataque;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
+import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.Random;
 
@@ -29,7 +32,7 @@ public class BatalhaSelvagemService {
         mensagem.setText(pokemonAtacante.getPokemon().getNome() + "\n"+ selvagem + "usa\n" + ataque.getNomeAtaque() + ".");
 
         //Calcula dano
-        Integer dano = this.gerarNumeroAleatorio(9) * ataque.getDanoBase() + 1;
+        Integer dano = this.gerarNumeroAleatorio(10) * ataque.getDanoBase();
 
         //Atualiza HP do pokemon
         if((pokemonAtacado.getHpAtual() - dano) > 0) {
@@ -43,17 +46,11 @@ public class BatalhaSelvagemService {
         return pokemonAtacado;
     }
 
-    public int gerarNumeroAleatorio(int intervalo) {
-        Random gerador = new Random();
-        return gerador.nextInt(intervalo);
-    }
-
     public Ataque selecionarAtaque(PokemonTreinador pokemon) {
         Ataque ataque;
         if (pokemon.getAtaque2() == null) {
             ataque = pokemon.getAtaque1();
         } else {
-            //TODO: Sortear entre ataque1 ou ataque2
             if(this.gerarNumeroAleatorio(2) == 1) {
                 ataque = pokemon.getAtaque1();
             } else {
@@ -74,6 +71,45 @@ public class BatalhaSelvagemService {
         itemTreinadorService.diminuirItem(item, ctx);
 
         return pokemon;
+
+    }
+
+    public boolean capturarPokemon(Treinador treinador, ItemTreinador item, PokemonTreinador pokemon, Context ctx) {
+
+        Double bonusCapturaHP = calculaBonusCapturaHP(pokemon.getHpAtual() / pokemon.getHpTotal());
+
+        Double bonusTotal = bonusCapturaHP + item.getItem().getEfeitoCaptura();
+
+        Integer numSorteado = this.gerarNumeroAleatorio(10);
+
+        itemTreinadorService.diminuirItem(item, ctx);
+
+        if(numSorteado < (bonusTotal*10)) {
+            pokemon.setTreinador(treinador);
+            pokemon.setExperiencia(0.);
+
+            PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(ctx);
+            pokemonTreinadorDAO.inserir(pokemon);
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
+
+    private Double calculaBonusCapturaHP(Double porcentagem) {
+
+        if(porcentagem < 0.25) {
+            return 0.5;
+        } else if(porcentagem >= 0.25 && porcentagem < 0.75 ) {
+            return 0.25;
+        } else {
+            return 0.;
+        }
 
     }
 
@@ -116,6 +152,11 @@ public class BatalhaSelvagemService {
         pokemon.setExperiencia(pokemon.getExperiencia() + 10 * level);
 
         return pokemon;
+    }
+
+    public int gerarNumeroAleatorio(int intervalo) {
+        Random gerador = new Random();
+        return gerador.nextInt(intervalo) + 1;
     }
 
 }

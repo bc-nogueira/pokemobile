@@ -253,7 +253,7 @@ public class BDCore extends SQLiteOpenHelper {
         }
 
         item = new Item("Pokeball", "Pokebola para básica para captura de Pokemons.",
-                TipoItem.CAPTURA, 25, 0., null, R.drawable.pokeball);
+                TipoItem.CAPTURA, 25, 0.25, null, R.drawable.pokeball);
         valores = preencheValoresItem(item);
         try {
             bd.insertOrThrow("item", null, valores);
@@ -261,7 +261,7 @@ public class BDCore extends SQLiteOpenHelper {
         }
 
         item = new Item("Ultraball", "Proporciona uma chance maior na captura de Pokemons.",
-                TipoItem.CAPTURA, 100, 0.25, null, R.drawable.ultralball);
+                TipoItem.CAPTURA, 100, 0.5, null, R.drawable.ultralball);
         valores = preencheValoresItem(item);
         try {
             bd.insertOrThrow("item", null, valores);
