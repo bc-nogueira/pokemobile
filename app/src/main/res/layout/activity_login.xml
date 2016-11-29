@@ -16,9 +16,9 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/emailLoginEdit"
-        android:layout_alignBaseline="@+id/emailLogin"
-        android:layout_alignBottom="@+id/emailLogin"
+        android:id="@+id/usuarioLoginEdit"
+        android:layout_alignBaseline="@+id/usuarioLogin"
+        android:layout_alignBottom="@+id/usuarioLogin"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:width="250dp" />
@@ -37,7 +37,7 @@
         android:text="Senha: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/emailLogin"
+        android:layout_below="@+id/usuarioLogin"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="33dp"
@@ -59,10 +59,10 @@
         android:width="250dp" />
 
     <TextView
-        android:text="Email:"
+        android:text="Usuario:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/emailLogin"
+        android:id="@+id/usuarioLogin"
         android:textStyle="normal|bold"
         android:textSize="18sp"
         android:layout_marginTop="300dp"

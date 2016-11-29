@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.breno.pokemobile.modelo.Jogador;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Breno on 02/11/2016.
@@ -25,7 +24,7 @@ public class JogadorDAO {
 
     public long inserir(Jogador jogador) throws SQLException {
         ContentValues valores = new ContentValues();
-        valores.put("email", jogador.getEmail());
+        valores.put("usuario", jogador.getUsuario());
         valores.put("senha", jogador.getSenha());
 
         return bd.insertOrThrow("jogador", null, valores);
@@ -33,7 +32,7 @@ public class JogadorDAO {
 
     public void atualizar(Jogador jogador) {
         ContentValues valores = new ContentValues();
-        valores.put("email", jogador.getEmail());
+        valores.put("usuario", jogador.getUsuario());
 
         bd.update("jogador", valores, "_id = ?", new String[]{"" + jogador.getIdJogador()});
     }
@@ -53,7 +52,7 @@ public class JogadorDAO {
             do {
                 Jogador j = new Jogador();
                 j.setIdJogador(cursor.getLong(0));
-                j.setEmail(cursor.getString(1));
+                j.setUsuario(cursor.getString(1));
 
                 jogadores.add(j);
 
@@ -71,7 +70,7 @@ public class JogadorDAO {
             cursor.moveToFirst();
 
             j.setIdJogador(cursor.getLong(0));
-            j.setEmail(cursor.getString(1));
+            j.setUsuario(cursor.getString(1));
             j.setSenha(cursor.getString(2));
 
             return j;
@@ -81,15 +80,15 @@ public class JogadorDAO {
 
     }
 
-    public Jogador buscarPorEmail(String email) {
-        Cursor cursor = bd.rawQuery("SELECT * FROM jogador WHERE email = ?", new String[]{email});
+    public Jogador buscarPorUsuario(String usuario) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM jogador WHERE usuario = ?", new String[]{usuario});
 
         Jogador j = new Jogador();
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
 
             j.setIdJogador(cursor.getLong(0));
-            j.setEmail(cursor.getString(1));
+            j.setUsuario(cursor.getString(1));
             j.setSenha(cursor.getString(2));
 
             return j;

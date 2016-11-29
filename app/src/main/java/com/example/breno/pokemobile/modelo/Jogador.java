@@ -8,13 +8,13 @@ import java.io.Serializable;
 
 public class Jogador implements Serializable {
     private Long idJogador;
-    private String email;
+    private String usuario;
     private String senha;
 
     public Jogador() {}
 
-    public Jogador(String email, String senha) {
-        this.email = email;
+    public Jogador(String usuario, String senha) {
+        this.usuario = usuario;
         this.senha = senha;
     }
 
@@ -26,12 +26,12 @@ public class Jogador implements Serializable {
         this.idJogador = idJogador;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {

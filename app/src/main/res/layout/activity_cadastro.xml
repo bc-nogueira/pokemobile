@@ -51,7 +51,7 @@
         android:width="75dp" />
 
     <TextView
-        android:text="Email:"
+        android:text="Usuario:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="370dp"
@@ -59,7 +59,7 @@
         android:textStyle="normal|bold"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/emailCriar"
+        android:id="@+id/usuarioCriar"
         android:width="75dp" />
 
     <TextView
@@ -91,10 +91,10 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/emailCriarEdit"
+        android:id="@+id/usuarioCriarEdit"
         android:width="250dp"
-        android:layout_alignBaseline="@+id/emailCriar"
-        android:layout_alignBottom="@+id/emailCriar"
+        android:layout_alignBaseline="@+id/usuarioCriar"
+        android:layout_alignBottom="@+id/usuarioCriar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

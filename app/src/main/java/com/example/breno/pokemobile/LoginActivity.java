@@ -23,12 +23,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View v) {
-        EditText email = (EditText) findViewById(R.id.emailLoginEdit);
+        EditText usuario = (EditText) findViewById(R.id.usuarioLoginEdit);
         EditText senha = (EditText) findViewById(R.id.senhaLoginEdit);
 
-        if(isCamposPreenchidos(email.getText().toString(), senha.getText().toString())) {
+        if(isCamposPreenchidos(usuario.getText().toString(), senha.getText().toString())) {
             JogadorDAO jogadorDAO = new JogadorDAO(this);
-            Jogador jogadorAtual = jogadorDAO.buscarPorEmail(email.getText().toString());
+            Jogador jogadorAtual = jogadorDAO.buscarPorUsuario(usuario.getText().toString());
 
             if(jogadorAtual != null) {
 
@@ -60,8 +60,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private boolean isCamposPreenchidos(String email, String senha) {
-        if(email.equals("") || senha.equals("")) {
+    private boolean isCamposPreenchidos(String usuario, String senha) {
+        if(usuario.equals("") || senha.equals("")) {
             return false;
         } else {
             return true;

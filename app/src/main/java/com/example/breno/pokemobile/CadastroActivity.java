@@ -46,16 +46,16 @@ public class CadastroActivity extends AppCompatActivity {
 
     public void cadastrar(View v) {
         EditText nome = (EditText) findViewById(R.id.nomeCriarEdit);
-        EditText email = (EditText) findViewById(R.id.emailCriarEdit);
+        EditText usuario = (EditText) findViewById(R.id.usuarioCriarEdit);
         EditText senha = (EditText) findViewById(R.id.senhaCriarEdit);
 
-        if(nome.getText().toString().equals("") || email.getText().toString().equals("") || senha.getText().toString().equals("")) {
+        if(nome.getText().toString().equals("") || usuario.getText().toString().equals("") || senha.getText().toString().equals("")) {
 
             Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT).show();
 
         } else {
 
-            jogador = new Jogador(email.getText().toString(), senha.getText().toString());
+            jogador = new Jogador(usuario.getText().toString(), senha.getText().toString());
             treinador = new Treinador(nome.getText().toString(), 200, imagemAtual, null);
 
             JogadorDAO jogadorDAO = new JogadorDAO(this);

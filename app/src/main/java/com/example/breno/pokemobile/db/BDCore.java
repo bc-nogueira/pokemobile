@@ -29,7 +29,7 @@ public class BDCore extends SQLiteOpenHelper {
     //Atributos da tabela Jogador
     private static final String TABELA_JOGADOR = "jogador";
     private static final String ID_JOGADOR = "_id";
-    private static final String EMAIL = "email";
+    private static final String USUARIO = "usuario";
     private static final String SENHA = "senha";
 
     //Atributos da tabela Treinador
@@ -110,7 +110,7 @@ public class BDCore extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase bd) {
         String sqlJogador = "CREATE TABLE " + TABELA_JOGADOR + "("
                 + ID_JOGADOR + " integer primary key autoincrement,"
-                + EMAIL + " text not null unique,"
+                + USUARIO + " text not null unique,"
                 + SENHA + " text not null"
                 + ")";
 
