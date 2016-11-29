@@ -152,7 +152,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="100dp"
-                android:text="Ataque1"/>
+                android:text="Ataque1"
+                android:onClick="usarAtaque1"/>
 
             <Button
                 android:id="@+id/ataque2ButtonBatalhaSelvagem"
@@ -162,7 +163,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
-                android:text="Ataque2"/>
+                android:text="Ataque2"
+                android:onClick="usarAtaque2"/>
 
             <Button
                 android:id="@+id/itemButtonBatalhaSelvagem"
@@ -172,7 +174,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="100dp"
-                android:text="Item"/>
+                android:text="Item"
+                android:onClick="itemBatalha"/>
 
             <Button
                 android:id="@+id/fugirButtonBatalhaSelvagem"
