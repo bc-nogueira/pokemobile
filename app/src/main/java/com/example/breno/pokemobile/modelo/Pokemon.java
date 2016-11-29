@@ -73,6 +73,8 @@ public class Pokemon implements Serializable {
                 return "Grama";
             case NORMAL:
                 return "Normal";
+            case VENENOSO:
+                return "Venenoso";
             default:
                 return "";
         }
@@ -98,6 +100,9 @@ public class Pokemon implements Serializable {
                 break;
             case "NORMAL":
                 this.tipo = Elemento.NORMAL;
+                break;
+            case "VENENOSO":
+                this.tipo = Elemento.VENENOSO;
                 break;
         }
     }
