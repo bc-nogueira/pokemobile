@@ -49,6 +49,15 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/ground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ground"
+            android:layout_alignParentTop="true"
+            android:paddingTop="170dp"
+            android:layout_alignParentRight="true"/>
+
+        <ImageView
             android:id="@+id/pokemonFrenteBatalhaSelvagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
