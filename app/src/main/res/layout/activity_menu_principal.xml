@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/activity_bg"/>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,8 +20,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.breno.pokemobile.MenuPrincipalActivity"
-    android:layout_centerHorizontal="true"
-    android:background="@drawable/poke_entrada">
+    android:layout_centerHorizontal="true">
 
     <ImageView
         android:id="@+id/configImageViewMenuPrincipal"
@@ -144,3 +153,4 @@
         android:onClick="mudarTreinador"/>
 
 </RelativeLayout>
+</FrameLayout>

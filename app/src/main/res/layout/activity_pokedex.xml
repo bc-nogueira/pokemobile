@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_pokedex"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.breno.pokemobile.PokedexActivity"
-    android:background="@drawable/poke_entrada">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <ListView
-        android:id="@+id/pokemonsListViewPokedex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:dividerHeight="5dp"/>
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/activity_bg"/>
 
-</RelativeLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_pokedex"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.breno.pokemobile.PokedexActivity">
+
+        <ListView
+            android:id="@+id/pokemonsListViewPokedex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:dividerHeight="5dp"/>
+
+    </RelativeLayout>
+</FrameLayout>

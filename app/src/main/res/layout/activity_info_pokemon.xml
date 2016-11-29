@@ -37,6 +37,9 @@
         android:layout_below="@+id/nomePokemonTextViewInfoPokemon"
         android:layout_centerHorizontal="true"
         android:src="@drawable/pikachu"/>
+        <!--android:scaleType="centerInside"-->
+        <!--android:adjustViewBounds="true" nao funcionaram-->
+
 
     <TextView
         android:id="@+id/status"
