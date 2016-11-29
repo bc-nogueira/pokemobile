@@ -380,7 +380,21 @@ public class BDCore extends SQLiteOpenHelper {
         } catch (SQLException ex) {
         }
 
+        pokemonAtaque = new PokemonAtaque("002", 1, 1);
+        valores = preencheValoresPokemonAtaque(pokemonAtaque);
+        try {
+            bd.insertOrThrow("pokemonAtaque", null, valores);
+        } catch (SQLException ex) {
+        }
+
         pokemonAtaque = new PokemonAtaque("004", 1, 1);
+        valores = preencheValoresPokemonAtaque(pokemonAtaque);
+        try {
+            bd.insertOrThrow("pokemonAtaque", null, valores);
+        } catch (SQLException ex) {
+        }
+
+        pokemonAtaque = new PokemonAtaque("005", 1, 1);
         valores = preencheValoresPokemonAtaque(pokemonAtaque);
         try {
             bd.insertOrThrow("pokemonAtaque", null, valores);
@@ -394,12 +408,34 @@ public class BDCore extends SQLiteOpenHelper {
         } catch (SQLException ex) {
         }
 
+        pokemonAtaque = new PokemonAtaque("008", 1, 1);
+        valores = preencheValoresPokemonAtaque(pokemonAtaque);
+        try {
+            bd.insertOrThrow("pokemonAtaque", null, valores);
+        } catch (SQLException ex) {
+        }
+
+        pokemonAtaque = new PokemonAtaque("016", 1, 1);
+        valores = preencheValoresPokemonAtaque(pokemonAtaque);
+        try {
+            bd.insertOrThrow("pokemonAtaque", null, valores);
+        } catch (SQLException ex) {
+        }
+
         pokemonAtaque = new PokemonAtaque("025", 1, 1);
         valores = preencheValoresPokemonAtaque(pokemonAtaque);
         try {
             bd.insertOrThrow("pokemonAtaque", null, valores);
         } catch (SQLException ex) {
         }
+
+        pokemonAtaque = new PokemonAtaque("041", 1, 1);
+        valores = preencheValoresPokemonAtaque(pokemonAtaque);
+        try {
+            bd.insertOrThrow("pokemonAtaque", null, valores);
+        } catch (SQLException ex) {
+        }
+
     }
 
     public  ContentValues preencheValoresPokemonAtaque(PokemonAtaque pokemonAtaque) {
