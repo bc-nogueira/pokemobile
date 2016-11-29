@@ -5,7 +5,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.breno.pokemobile.ProgressBarAnimation;
-import com.example.breno.pokemobile.db.PokemonDAO;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Ataque;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
@@ -22,14 +21,23 @@ public class BatalhaSelvagemService {
     private ItemTreinadorService itemTreinadorService = new ItemTreinadorService();
 
     public PokemonTreinador realizarAtaque(PokemonTreinador pokemonAtacante, PokemonTreinador pokemonAtacado, Ataque ataque,
-                                           TextView mensagem, String selvagem, ProgressBar hpBarAtacado, TextView hpTextAtacado) {
+                                           TextView mensagem, boolean selvagem, ProgressBar hpBarAtacado, TextView hpTextAtacado) {
 
         //Seleciona qual ataque usar
         if(ataque == null) {
             ataque = this.selecionarAtaque(pokemonAtacante);
         }
 
-        mensagem.setText(pokemonAtacante.getPokemon().getNome() + "\n"+ selvagem + "usa\n" + ataque.getNomeAtaque() + ".");
+        if(selvagem) {
+            mensagem.setText(pokemonAtacante.getPokemon().getNome() + "\nselvagem usa\n" + ataque.getNomeAtaque() + ".");
+        } else {
+            if(pokemonAtacante.getApelido() != null) {
+                mensagem.setText(pokemonAtacante.getApelido() + "\nusa\n" + ataque.getNomeAtaque() + ".");
+            } else {
+                mensagem.setText(pokemonAtacante.getPokemon().getNome() + "\nusa\n" + ataque.getNomeAtaque() + ".");
+            }
+        }
+
 
         //Calcula dano
         Integer dano = this.gerarNumeroAleatorio(10) * ataque.getDanoBase();

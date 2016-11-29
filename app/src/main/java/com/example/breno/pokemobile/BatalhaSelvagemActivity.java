@@ -160,7 +160,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 break;
             case 1:
                 pokemonTreinador = batalhaSelvagemService.realizarAtaque(pokemonTreinadorInimigo, pokemonTreinador, null,
-                        mensagem, "selvagem ", hpBarJogador, hpTextJogador);
+                        mensagem, true, hpBarJogador, hpTextJogador);
 
                 if(pokemonTreinador.getHpAtual() == 0) {
                     etapa = 8;
@@ -193,7 +193,11 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 this.irMenuPrincipal();
                 break;
             case 8:
-                mensagem.setText("Seu\n" + pokemonTreinador.getApelido() + "\nmorreu.");
+                if(pokemonTreinador.getApelido() != null) {
+                    mensagem.setText("Seu\n" + pokemonTreinador.getApelido() + "\nmorreu.");
+                } else {
+                    mensagem.setText("Seu\n" + pokemonTreinador.getPokemon().getNome() + "\nmorreu.");
+                }
                 etapa = 10;
                 break;
             case 9:
@@ -211,7 +215,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     public void usarAtaque1(View v) {
         pokemonTreinadorInimigo = batalhaSelvagemService.realizarAtaque(pokemonTreinador, pokemonTreinadorInimigo,
-                pokemonTreinador.getAtaque1(), mensagem, "", hpBarInimigo, hpTextInimigo);
+                pokemonTreinador.getAtaque1(), mensagem, false, hpBarInimigo, hpTextInimigo);
 
         prox.setVisibility(View.VISIBLE);
         this.desabilitarButtons();
@@ -225,7 +229,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     public void usarAtaque2(View v) {
         pokemonTreinadorInimigo = batalhaSelvagemService.realizarAtaque(pokemonTreinador, pokemonTreinadorInimigo,
-                pokemonTreinador.getAtaque2(), mensagem, "", hpBarInimigo, hpTextInimigo);
+                pokemonTreinador.getAtaque2(), mensagem, false, hpBarInimigo, hpTextInimigo);
 
         prox.setVisibility(View.VISIBLE);
         this.desabilitarButtons();
