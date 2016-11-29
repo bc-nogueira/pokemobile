@@ -20,12 +20,14 @@ public class Pokemon implements Serializable {
     private Integer iconeTipo;
     private Integer iconeFrente;
     private Integer iconeCostas;
+    private Integer levelParaEvoluir;
+    private String evoluiDe;
 
     public Pokemon() {}
 
     public Pokemon(String numero, String nome, Elemento tipo, Integer estagioEvolucao, Integer hpMinimo,
                    Integer hpMaximo, String altura, String peso, String descricao, Integer icone, Integer iconeTipo,
-                   Integer iconeFrente, Integer iconeCostas) {
+                   Integer iconeFrente, Integer iconeCostas, Integer levelParaEvoluir, String evoluiDe) {
         this.numero = numero;
         this.nome = nome;
         this.tipo = tipo;
@@ -39,6 +41,8 @@ public class Pokemon implements Serializable {
         this.iconeTipo = iconeTipo;
         this.iconeFrente = iconeFrente;
         this.iconeCostas = iconeCostas;
+        this.levelParaEvoluir = levelParaEvoluir;
+        this.evoluiDe = evoluiDe;
     }
 
     public String getNumero() {
@@ -192,6 +196,22 @@ public class Pokemon implements Serializable {
 
     public void setIconeCostas(Integer iconeCostas) {
         this.iconeCostas = iconeCostas;
+    }
+
+    public Integer getLevelParaEvoluir() {
+        return levelParaEvoluir;
+    }
+
+    public void setLevelParaEvoluir(Integer levelParaEvoluir) {
+        this.levelParaEvoluir = levelParaEvoluir;
+    }
+
+    public String getEvoluiDe() {
+        return evoluiDe;
+    }
+
+    public void setEvoluiDe(String evoluiDe) {
+        this.evoluiDe = evoluiDe;
     }
 
 }

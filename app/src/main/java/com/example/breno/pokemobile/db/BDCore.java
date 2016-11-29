@@ -73,6 +73,8 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String ICONE_TIPO = "icone_tipo";
     private static final String ICONE_FRENTE = "icone_frente";
     private static final String ICONE_COSTAS = "icone_costas";
+    private static final String LEVEL_EVOLUIR = "level_evoluir";
+    private static final String NUM_EVOLUI_DE = "num_evolui_de";
 
     //Atributos da tabela PokemonTreinador
     private static final String TABELA_POKEMON_TREINADOR = "pokemonTreinador";
@@ -162,7 +164,9 @@ public class BDCore extends SQLiteOpenHelper {
                 + ICONE_POKEMON + " integer not null,"
                 + ICONE_TIPO + " integer not null,"
                 + ICONE_FRENTE + " integer not null,"
-                + ICONE_COSTAS + " integer not null"
+                + ICONE_COSTAS + " integer not null,"
+                + LEVEL_EVOLUIR + " integer not null,"
+                + NUM_EVOLUI_DE + " text"
                 + ")";
 
         bd.execSQL(sqlPokemon);
@@ -288,9 +292,11 @@ public class BDCore extends SQLiteOpenHelper {
 
     public void insere_pokemon(SQLiteDatabase bd, String numero, String nome, Elemento tipo, Integer estagioEvolucao, Integer hpMinimo,
                                 Integer hpMaximo, String altura, String peso, String descricao, Integer icone, Integer iconeTipo,
-                                Integer iconeFrente, Integer iconeCostas) {
+                                Integer iconeFrente, Integer iconeCostas, Integer levelParaEvoluir, String evoluiDe) {
+
         Pokemon pokemon = new Pokemon(numero, nome, tipo, estagioEvolucao, hpMinimo, hpMaximo,
-                                      altura, peso, descricao, icone, iconeTipo, iconeFrente, iconeCostas);
+                                        altura, peso, descricao, icone, iconeTipo, iconeFrente, iconeCostas,
+                                        levelParaEvoluir, evoluiDe);
         ContentValues valores = preencheValoresPokemon(pokemon);
         try {
             bd.insertOrThrow("pokemon", null, valores);
@@ -302,35 +308,35 @@ public class BDCore extends SQLiteOpenHelper {
     public void populaPokemon(SQLiteDatabase bd) {
         insere_pokemon(bd, "001", "Bulbasaur", Elemento.GRAMA, 1, 20, 25, "0,7m", "6,9kg",
                 "For some time after its birth, it grows by gaining nourishment from the seed on its back.",
-                R.drawable.bulbasaur, R.drawable.grama, R.drawable.bulbasaur_frente, R.drawable.bulbasaur_costas);
+                R.drawable.bulbasaur, R.drawable.grama, R.drawable.bulbasaur_frente, R.drawable.bulbasaur_costas, 1, null);
         insere_pokemon(bd, "002", "Ivysaur", Elemento.GRAMA, 2, 25, 35, "1,0 m", "13kg",
                 "When the bud on its back starts swelling, a sweet aroma wafts to indicate the flowers coming bloom.",
-                R.drawable.ivysaur, R.drawable.grama, R.drawable.ivysaur_frente, R.drawable.ivysaur_costas);
+                R.drawable.ivysaur, R.drawable.grama, R.drawable.ivysaur_frente, R.drawable.ivysaur_costas, 5, "001");
        insere_pokemon(bd, "004", "Charmander", Elemento.FOGO, 1, 15, 20, "0,6m", "8,5kg",
                 "The fire on the tip of its tail is a measure of its life. If healthy, its tail burns intensely.",
-                R.drawable.charmander, R.drawable.fogo, R.drawable.charmander_frente, R.drawable.charmander_costas);
-        insere_pokemon(bd, "005", "Charmeleon", Elemento.FOGO, 1, 20, 35, "1,1m", "19,0kg",
+                R.drawable.charmander, R.drawable.fogo, R.drawable.charmander_frente, R.drawable.charmander_costas, 1, null);
+        insere_pokemon(bd, "005", "Charmeleon", Elemento.FOGO, 2, 20, 35, "1,1m", "19,0kg",
                 "In the rocky mountains where Charmeleon live, their fiery tails shine at night like stars.",
-                R.drawable.charmeleon, R.drawable.fogo, R.drawable.charmeleon_frente, R.drawable.charmeleon_costas);
+                R.drawable.charmeleon, R.drawable.fogo, R.drawable.charmeleon_frente, R.drawable.charmeleon_costas, 5, "004");
 
         insere_pokemon(bd, "007", "Squirtle", Elemento.AGUA, 1, 20, 25, "0,5m", "9,0kg",
                 "It shelters itself in its shell then strikes back with spouts of water at every opportunity.",
-                R.drawable.squirtle, R.drawable.agua, R.drawable.squirtle_frente, R.drawable.squirtle_costas);
-        insere_pokemon(bd, "008", "Wartortle", Elemento.AGUA, 1, 25, 35, "1,0m", "22,5kg",
+                R.drawable.squirtle, R.drawable.agua, R.drawable.squirtle_frente, R.drawable.squirtle_costas, 1, null);
+        insere_pokemon(bd, "008", "Wartortle", Elemento.AGUA, 2, 25, 35, "1,0m", "22,5kg",
                 "It is said to live 10,000 years. Its furry tail is popular as a symbol of longevity.",
-                R.drawable.wartortle, R.drawable.agua, R.drawable.wartortle_frente, R.drawable.wartortle_costas);
+                R.drawable.wartortle, R.drawable.agua, R.drawable.wartortle_frente, R.drawable.wartortle_costas, 5, "007");
 
         insere_pokemon(bd, "016", "Pidgey", Elemento.NORMAL, 1, 15, 20, "0,3m", "1,8kg",
                 "It is docile and prefers to avoid conflict. If disturbed, however, it can ferociously strike back.",
-                R.drawable.pidgey, R.drawable.neutro, R.drawable.pidgey_frente, R.drawable.pidgey_costas);
+                R.drawable.pidgey, R.drawable.neutro, R.drawable.pidgey_frente, R.drawable.pidgey_costas, 1, null);
 
         insere_pokemon(bd, "025", "Pikachu", Elemento.ELETRICO, 1, 10, 15, "0,4m", "6,0kg",
                 "It occasionally uses an electric shock to recharge a fellow Pikachu that is in a weakened state.",
-                R.drawable.pikachu, R.drawable.eletrico, R.drawable.pikachu_frente_battle, R.drawable.pikachu_costas_battle);
+                R.drawable.pikachu, R.drawable.eletrico, R.drawable.pikachu_frente_battle, R.drawable.pikachu_costas_battle, 1, null);
 
         insere_pokemon(bd, "041", "Zubat", Elemento.VENENOSO, 1, 10, 15, "0,8m", "7,5kg",
                 "It does not need eyes, because it emits ultrasonic waves to check its surroundings while it flies.",
-                R.drawable.zubat, R.drawable.venenoso, R.drawable.zubat_frente, R.drawable.zubat_costas);
+                R.drawable.zubat, R.drawable.venenoso, R.drawable.zubat_frente, R.drawable.zubat_costas, 1, null);
 
     }
 
@@ -349,6 +355,8 @@ public class BDCore extends SQLiteOpenHelper {
         valores.put("icone_tipo", pokemon.getIconeTipo());
         valores.put("icone_frente", pokemon.getIconeFrente());
         valores.put("icone_costas", pokemon.getIconeCostas());
+        valores.put("level_evoluir", pokemon.getLevelParaEvoluir());
+        valores.put("num_evolui_de", pokemon.getEvoluiDe());
 
         return valores;
     }
