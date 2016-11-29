@@ -104,6 +104,11 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String ID_ATAQUE_FK = "idAtaque";
     private static final String LVL_APRENDIDO = "lvl_aprendido";
 
+    //Tabela que guarda experiencia necessaria para cada level
+    private static final String TABELA_EXPERIENCIA_LEVEL = "expLevel";
+    private static final String LEVEL = "level";
+    private static final String EXP = "exp";
+
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
     }
@@ -204,6 +209,13 @@ public class BDCore extends SQLiteOpenHelper {
                 + ")";
         bd.execSQL(sqlPokemonAtaque);
         populaPokemonAtaque(bd);
+
+        String sqlExpLevel = "CREATE TABLE " + TABELA_EXPERIENCIA_LEVEL + "("
+                + LEVEL + " integer not null,"
+                + EXP + " integer not null"
+                + ")";
+        bd.execSQL(sqlExpLevel);
+        populaExpLevel(bd);
 
     }
 
@@ -453,6 +465,19 @@ public class BDCore extends SQLiteOpenHelper {
         valores.put("lvl_aprendido", pokemonAtaque.getLvlAprendido());
 
         return valores;
+    }
+
+    public void populaExpLevel(SQLiteDatabase bd) {
+
+        ContentValues valores;
+        for(int i = 1; i <= 20; i++) {
+            valores = new ContentValues();
+            valores.put("level", i);
+            valores.put("exp", i*100);
+
+            bd.insertOrThrow("expLevel", null, valores);
+        }
+
     }
 
 }

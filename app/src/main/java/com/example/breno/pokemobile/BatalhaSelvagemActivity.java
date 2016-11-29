@@ -192,8 +192,6 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             case 4:
                 this.irMenuPrincipal();
                 break;
-            case 5:
-                break;
             case 8:
                 mensagem.setText("Seu\n" + pokemonTreinador.getPokemon().getNome() + "\nmorreu.");
                 etapa = 10;
