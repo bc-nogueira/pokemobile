@@ -25,6 +25,7 @@ import java.util.Random;
 
 public class PokemonTreinadorService {
     private UtilidadesService utilidadesService = new UtilidadesService();
+    private TreinadorService treinadorService = new TreinadorService();
 
     public boolean verificaSeTodosEstaoMortos(Treinador treinador, Context ctx) {
 
@@ -143,6 +144,22 @@ public class PokemonTreinadorService {
 
         }
 
+    }
+
+    public PokemonTreinador guardarPokemon(Treinador treinador, PokemonTreinador pokemon, Context ctx) {
+
+        if(treinadorService.quantosPokemonsPossui(treinador, ctx) <= 6) {
+
+            PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(ctx);
+            ArrayList<PokemonTreinador> pokemons = pokemonTreinadorDAO.buscarPorIdTreinador(treinador, ctx);
+
+            pokemon.setPosFila(pokemons.get(pokemons.size() - 1).getPosFila() + 1);
+
+        } else {
+            pokemon.setPosFila(null);
+        }
+
+        return pokemon;
     }
 
     public Double calcularPorcentagemHP(PokemonTreinador pokemon) {

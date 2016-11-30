@@ -39,7 +39,7 @@ public class PokemonsActivity extends AppCompatActivity {
         itemTreinador = (ItemTreinador) getIntent().getSerializableExtra("itemTreinador");
 
         PokemonTreinadorDAO ptDAO = new PokemonTreinadorDAO(this);
-        final ArrayList<PokemonTreinador> pts = ptDAO.buscarPorIdTreinador(treinador, this);
+        final ArrayList<PokemonTreinador> pts = ptDAO.buscarPorIdTreinadorNaFila(treinador, this);
 
         final ListView listPokemons = (ListView) findViewById(R.id.pokemonsListViewPokemons);
 

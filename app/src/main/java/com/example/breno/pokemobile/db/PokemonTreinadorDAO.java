@@ -73,6 +73,39 @@ public class PokemonTreinadorDAO {
         return pokemonsTreinador;
     }
 
+    public ArrayList<PokemonTreinador> buscarPorIdTreinadorNaFila(Treinador treinador, Context ctx) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila is not null",
+                new String[]{treinador.getIdTreinador().toString()});
+
+        PokemonDAO pokemonDAO = new PokemonDAO(ctx);
+        AtaqueDAO ataqueDAO = new AtaqueDAO(ctx);
+
+        ArrayList<PokemonTreinador> pokemonsTreinador = new ArrayList<>();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            do {
+                PokemonTreinador pt = new PokemonTreinador();
+                pt.setIdPokemonTreinador(cursor.getInt(0));
+                pt.setPokemon(pokemonDAO.buscarPorNumero(cursor.getString(1)));
+                pt.setTreinador(treinador);
+                pt.setApelido(cursor.getString(3));
+                pt.setHpAtual(cursor.getInt(4));
+                pt.setHpTotal(cursor.getInt(5));
+                pt.setLevel(cursor.getInt(6));
+                pt.setExperiencia(cursor.getInt(7));
+                pt.setPosFila(cursor.getInt(8));
+                pt.setAtaque1(ataqueDAO.buscarPorId(cursor.getInt(9)));
+                pt.setAtaque2(ataqueDAO.buscarPorId(cursor.getInt(10)));
+
+                pokemonsTreinador.add(pt);
+
+            } while(cursor.moveToNext());
+        }
+
+        return pokemonsTreinador;
+    }
+
     public PokemonTreinador buscarPrimeiroNaFilaPorId(Treinador treinador, Context ctx) {
         Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null",
                 new String[]{treinador.getIdTreinador().toString()});

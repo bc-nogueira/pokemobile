@@ -54,7 +54,7 @@ public class CriaTreinadorActivity extends AppCompatActivity {
 
         } else {
 
-            treinador = new Treinador(nome.getText().toString(), 200, imagemAtual, jogador.getIdJogador());
+            treinador = new Treinador(nome.getText().toString(), 300, imagemAtual, jogador.getIdJogador());
 
             TreinadorDAO treinadorDAO = new TreinadorDAO(this);
             try {
@@ -64,11 +64,6 @@ public class CriaTreinadorActivity extends AppCompatActivity {
                 treinador.setIdTreinador(idTreinador);
 
                 Toast.makeText(this, "Treinador criado com sucesso!", Toast.LENGTH_SHORT).show();
-
-                //Encaminhar para o menu principal
-//                Intent intent = new Intent(CriaTreinadorActivity.this, MenuPrincipalActivity.class);
-//                intent.putExtra("treinador", treinador);
-//                startActivity(intent);
 
                 Intent selecionaPokemon = new Intent(CriaTreinadorActivity.this, SelecionaPokemonActivity.class);
                 selecionaPokemon.putExtra("treinador", treinador);

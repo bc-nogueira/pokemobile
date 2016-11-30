@@ -98,6 +98,9 @@ public class BatalhaSelvagemService {
             pokemon.setTreinador(treinador);
             pokemon.setExperiencia(0);
 
+            //Verificar aonde colocar o pokemon
+            pokemon = pokemonTreinadorService.guardarPokemon(treinador, pokemon, ctx);
+
             PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(ctx);
             pokemonTreinadorDAO.inserir(pokemon);
 
