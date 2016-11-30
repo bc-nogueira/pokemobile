@@ -74,7 +74,7 @@ public class PokemonsActivity extends AppCompatActivity {
                         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
                         pokemonTreinadorDAO.atualizarHpAtual(pts.get(position));
 
-                        ProgressBar hpBar = (ProgressBar) findViewById(R.id.hpProgressBarPokemons);
+                        ProgressBar hpBar = (ProgressBar) view.findViewById(R.id.hpProgressBarPokemons);
                         Double porcentagemFinal = pokemonTreinadorService.calcularPorcentagemHP(pts.get(position));
                         Integer porcentagemAtual = hpBar.getProgress();
                         ProgressBarAnimation anim = new ProgressBarAnimation
@@ -82,23 +82,26 @@ public class PokemonsActivity extends AppCompatActivity {
                         anim.setDuration(1000);
                         hpBar.startAnimation(anim);
 
-                        TextView hpText = (TextView) findViewById(R.id.hpTextViewPokemons);
+                        TextView hpText = (TextView) view.findViewById(R.id.hpTextViewPokemons);
                         hpText.setText
                                 ("HP: " + pts.get(position).getHpAtual().intValue() + " / " + pts.get(position).getHpTotal().intValue());
 
                         //Diminui o item ou remove
                         itemTreinador.setQuantidade(itemTreinador.getQuantidade() - 1);
                         ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(getApplicationContext());
-                        if(itemTreinador.getQuantidade() > 1) {
+                        if(itemTreinador.getQuantidade() >= 1) {
                             //Atualizar
                             itemTreinadorDAO.atualizarQuantidade(itemTreinador);
                         } else {
                             //Remove
                             itemTreinadorDAO.deletar(itemTreinador.getIdItemTreinador());
-
                         }
 
                     }
+
+                    Intent voltarMochila = new Intent(PokemonsActivity.this, MochilaActivity.class);
+                    voltarMochila.putExtra("treinador", treinador);
+                    startActivity(voltarMochila);
 
                 }
             });
