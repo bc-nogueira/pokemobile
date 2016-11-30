@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.breno.pokemobile.Service.PokemonTreinadorService;
 import com.example.breno.pokemobile.adapter.PokemonsAdapter;
 import com.example.breno.pokemobile.db.ItemTreinadorDAO;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 public class PokemonsActivity extends AppCompatActivity {
     private Treinador treinador;
     private ItemTreinador itemTreinador;
+
+    private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public class PokemonsActivity extends AppCompatActivity {
                         pokemonTreinadorDAO.atualizarHpAtual(pts.get(position));
 
                         ProgressBar hpBar = (ProgressBar) findViewById(R.id.hpProgressBarPokemons);
-                        Double porcentagemFinal = (pts.get(position).getHpAtual()/pts.get(position).getHpTotal()) * 100;
+                        Double porcentagemFinal = pokemonTreinadorService.calcularPorcentagemHP(pts.get(position));
                         Integer porcentagemAtual = hpBar.getProgress();
                         ProgressBarAnimation anim = new ProgressBarAnimation
                                 (hpBar, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());

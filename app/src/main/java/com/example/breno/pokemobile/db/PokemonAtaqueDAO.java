@@ -35,7 +35,7 @@ public class PokemonAtaqueDAO {
     }
 
     public PokemonAtaque buscarAtaquesPorPokemonLevel(PokemonTreinador pokemonTreinador) {
-        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonAtaque WHERE idPokemon = ? and lvl_aprendido = ?",
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonAtaque WHERE idPokemon = ? and lvl_aprendido <= ?",
                 new String[]{pokemonTreinador.getPokemon().getNumero(), pokemonTreinador.getLevel().toString()});
 
 //        ArrayList<PokemonAtaque> ataques = new ArrayList<>();

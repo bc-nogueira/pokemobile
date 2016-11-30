@@ -82,8 +82,8 @@ public class SelecionaPokemonActivity extends AppCompatActivity {
 
         Random gerador = new Random();
         Integer hp = pokemon.getHpMinimo() + gerador.nextInt(pokemon.getHpMaximo() - pokemon.getHpMinimo() + 1);
-        pt.setHpTotal(new Double(hp));
-        pt.setHpAtual(new Double(hp));
+        pt.setHpTotal(hp);
+        pt.setHpAtual(hp);
 
         pt.setLevel(1);
         pt.setExperiencia(0.);

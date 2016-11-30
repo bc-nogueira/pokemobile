@@ -11,8 +11,8 @@ public class PokemonTreinador implements Serializable {
     private Pokemon pokemon;
     private Treinador treinador;
     private String apelido;
-    private Double hpTotal;
-    private Double hpAtual;
+    private Integer hpTotal;
+    private Integer hpAtual;
     private Integer level;
     private Double experiencia;
     private Integer posFila;
@@ -51,19 +51,19 @@ public class PokemonTreinador implements Serializable {
         this.apelido = apelido;
     }
 
-    public Double getHpTotal() {
+    public Integer getHpTotal() {
         return hpTotal;
     }
 
-    public void setHpTotal(Double hpTotal) {
+    public void setHpTotal(Integer hpTotal) {
         this.hpTotal = hpTotal;
     }
 
-    public Double getHpAtual() {
+    public Integer getHpAtual() {
         return hpAtual;
     }
 
-    public void setHpAtual(Double hpAtual) {
+    public void setHpAtual(Integer hpAtual) {
         this.hpAtual = hpAtual;
     }
 

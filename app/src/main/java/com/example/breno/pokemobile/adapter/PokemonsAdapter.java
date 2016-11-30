@@ -58,7 +58,7 @@ public class PokemonsAdapter extends BaseAdapter {
         nome.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinador));
 
         ProgressBar hpBar = (ProgressBar) layout.findViewById(R.id.hpProgressBarPokemons);
-        Double porcentagemHP = (pokemonTreinador.getHpAtual()/pokemonTreinador.getHpTotal()) * 100;
+        Double porcentagemHP = pokemonTreinadorService.calcularPorcentagemHP(pokemonTreinador);
         hpBar.setProgress(porcentagemHP.intValue());
 
         TextView hpText = (TextView) layout.findViewById(R.id.hpTextViewPokemons);

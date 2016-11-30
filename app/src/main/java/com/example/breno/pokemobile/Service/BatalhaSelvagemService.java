@@ -20,6 +20,7 @@ import java.util.Random;
 public class BatalhaSelvagemService {
     private ItemTreinadorService itemTreinadorService = new ItemTreinadorService();
     private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
+    private UtilidadesService utilidadesService = new UtilidadesService();
 
     public PokemonTreinador realizarAtaque(PokemonTreinador pokemonAtacante, PokemonTreinador pokemonAtacado, Ataque ataque,
                                            TextView mensagem, boolean selvagem, ProgressBar hpBarAtacado, TextView hpTextAtacado) {
@@ -41,13 +42,13 @@ public class BatalhaSelvagemService {
 
 
         //Calcula dano
-        Integer dano = this.gerarNumeroAleatorio(10) * ataque.getDanoBase();
+        Integer dano = utilidadesService.gerarNumeroAleatorio(10) * ataque.getDanoBase();
 
         //Atualiza HP do pokemon
         if((pokemonAtacado.getHpAtual() - dano) > 0) {
             pokemonAtacado.setHpAtual(pokemonAtacado.getHpAtual() - dano);
         } else {
-            pokemonAtacado.setHpAtual(0.);
+            pokemonAtacado.setHpAtual(0);
         }
 
         this.diminuirHP(pokemonAtacado, hpBarAtacado, hpTextAtacado);
@@ -60,7 +61,7 @@ public class BatalhaSelvagemService {
         if (pokemon.getAtaque2() == null) {
             ataque = pokemon.getAtaque1();
         } else {
-            if(this.gerarNumeroAleatorio(2) == 1) {
+            if(utilidadesService.gerarNumeroAleatorio(2) == 1) {
                 ataque = pokemon.getAtaque1();
             } else {
                 ataque = pokemon.getAtaque2();
@@ -85,11 +86,11 @@ public class BatalhaSelvagemService {
 
     public boolean capturarPokemon(Treinador treinador, ItemTreinador item, PokemonTreinador pokemon, Context ctx) {
 
-        Double bonusCapturaHP = calculaBonusCapturaHP(pokemon.getHpAtual() / pokemon.getHpTotal());
+        Double bonusCapturaHP = calculaBonusCapturaHP(pokemon.getHpAtual().doubleValue() / pokemon.getHpTotal().doubleValue());
 
         Double bonusTotal = bonusCapturaHP + item.getItem().getEfeitoCaptura();
 
-        Integer numSorteado = this.gerarNumeroAleatorio(10);
+        Integer numSorteado = utilidadesService.gerarNumeroAleatorio(10);
 
         itemTreinadorService.diminuirItem(item, ctx);
 
@@ -127,7 +128,7 @@ public class BatalhaSelvagemService {
             pokemon.setHpAtual(pokemon.getHpTotal());
         }
 
-        Double porcentagemFinal = (pokemon.getHpAtual()/pokemon.getHpTotal()) * 100;
+        Double porcentagemFinal = pokemonTreinadorService.calcularPorcentagemHP(pokemon);
         Integer porcentagemAtual = hpBar.getProgress();
         ProgressBarAnimation anim = new ProgressBarAnimation
                 (hpBar, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
@@ -138,7 +139,7 @@ public class BatalhaSelvagemService {
     }
 
     public void diminuirHP(PokemonTreinador pokemon, ProgressBar hpBar, TextView hpText) {
-        Double porcentagemFinal = (pokemon.getHpAtual()/pokemon.getHpTotal()) * 100;
+        Double porcentagemFinal = pokemonTreinadorService.calcularPorcentagemHP(pokemon);
         Integer porcentagemAtual = hpBar.getProgress();
 
         ProgressBarAnimation anim;
@@ -163,11 +164,6 @@ public class BatalhaSelvagemService {
         pokemon.setExperiencia(pokemon.getExperiencia() + 10 * level);
 
         return pokemon;
-    }
-
-    public int gerarNumeroAleatorio(int intervalo) {
-        Random gerador = new Random();
-        return gerador.nextInt(intervalo) + 1;
     }
 
 }
