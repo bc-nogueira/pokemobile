@@ -30,11 +30,22 @@
         android:textSize="28sp"
         android:textStyle="bold"/>
 
+    <TextView
+        android:id="@+id/expTextViewInfoPokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nomePokemonTextViewInfoPokemon"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="EXP: 0 / 100"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
     <ImageView
         android:id="@+id/iconePokemonImageViewInfoPokemon"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:layout_below="@+id/nomePokemonTextViewInfoPokemon"
+        android:layout_below="@+id/expTextViewInfoPokemon"
         android:layout_centerHorizontal="true"
         android:src="@drawable/pikachu"/>
         <!--android:scaleType="centerInside"-->
@@ -57,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/status"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
         android:text="HP:  10"
         android:textSize="24sp"
@@ -69,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/hpPokemonTextViewInfoPokemon"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
         android:text="AGI: 10"
         android:textSize="24sp"
@@ -81,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/status"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="50dp"
         android:text="ATQ: 10"
         android:textSize="24sp"
@@ -93,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/atqPokemonTextViewInfoPokemon"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="50dp"
         android:text="DEF: 10"
         android:textSize="24sp"
@@ -105,7 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/agiPokemonTextViewInfoPokemon"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="ATAQUES"
         android:textSize="24sp"
         android:textStyle="bold"/>
@@ -116,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ataques"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Tackle"
         android:textSize="24sp"
         android:textStyle="bold"/>
@@ -136,7 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/nomeAtaque1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Tackle"
         android:textSize="24sp"
         android:textStyle="bold"/>

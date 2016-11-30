@@ -6,12 +6,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.breno.pokemobile.Service.ExpLevelService;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 public class InfoPokemonActivity extends AppCompatActivity {
     private Treinador treinador;
     private PokemonTreinador pokemonTreinador;
+
+    private ExpLevelService expLevelService = new ExpLevelService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,10 @@ public class InfoPokemonActivity extends AppCompatActivity {
 
         TextView lvlPokemon = (TextView) findViewById(R.id.levelPokemonTextViewInfoPokemon);
         lvlPokemon.setText("Lvl. " + pokemonTreinador.getLevel());
+
+        TextView expPokemon = (TextView) findViewById(R.id.expTextViewInfoPokemon);
+        expPokemon.setText("Exp: " + pokemonTreinador.getExperiencia() + " / "
+                + expLevelService.buscarExpRequeridaLvl(pokemonTreinador, getApplicationContext()).toString());
 
         ImageView iconePokemon = (ImageView) findViewById(R.id.iconePokemonImageViewInfoPokemon);
         iconePokemon.setImageResource(pokemonTreinador.getPokemon().getIcone());

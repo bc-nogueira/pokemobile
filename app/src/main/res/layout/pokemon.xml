@@ -23,6 +23,17 @@
         android:textSize="26sp"
         android:textStyle="bold"/>
 
+    <TextView
+        android:id="@+id/lvlTextViewPokemons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/nomeTextViewPokemons"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Lv.1"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
     <ProgressBar
         android:id="@+id/hpProgressBarPokemons"
         android:layout_width="175dp"
