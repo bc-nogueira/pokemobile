@@ -40,6 +40,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     private TextView mensagem;
     private ImageView prox;
+    private ImageView pokebola;
 
     private Integer etapa;
 
@@ -55,6 +56,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
         mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
         prox = (ImageView) findViewById(R.id.proxMensagemBatalhaSelvagem);
+        pokebola = (ImageView) findViewById(R.id.pokebolaImageViewBatalhaSelvagem);
 
         if((ItemTreinador) getIntent().getSerializableExtra("itemTreinador") != null) {
 
@@ -139,6 +141,8 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             } else if(itemTreinador.getItem().getTipo().equals(TipoItem.CAPTURA)) {
 
                 pokemonInimigo.setVisibility(View.INVISIBLE);
+                pokebola.setImageResource(itemTreinador.getItem().getIcone());
+                pokebola.setVisibility(View.VISIBLE);
                 etapa = 3;
                 prox.setVisibility(View.VISIBLE);
                 mensagem.setText("Tentando\ncapturar o pokemon...");
@@ -193,6 +197,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
                     mensagem.setText("Você não conseguiu capturar o pokemon.");
                     prox.setVisibility(View.VISIBLE);
+                    pokebola.setVisibility(View.INVISIBLE);
                     pokemonInimigo.setVisibility(View.VISIBLE);
                     etapa = 1;
 

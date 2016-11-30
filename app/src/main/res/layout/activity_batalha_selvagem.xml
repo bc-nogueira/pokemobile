@@ -73,7 +73,18 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="100dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp" />
+
+        <ImageView
+            android:id="@+id/pokebolaImageViewBatalhaSelvagem"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:visibility="invisible"
+            android:src="@drawable/pokeball"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="170dp"
+            android:layout_marginRight="75dp"/>
 
         <ImageView
             android:id="@+id/pokemonCostasBatalhaSelvagem"
