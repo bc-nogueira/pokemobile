@@ -29,7 +29,7 @@ public class PokemonTreinadorDAO {
         valores.put("apelido", pt.getApelido());
         valores.put("hp_atual", pt.getHpAtual());
         valores.put("hp_total", pt.getHpTotal());
-        valores.put("nivel", pt.getLevel());
+        valores.put("level", pt.getLevel());
         valores.put("experiencia", pt.getExperiencia());
         valores.put("pos_fila", pt.getPosFila());
         valores.put("idAtaque1", pt.getAtaque1().getIdAtaque());
@@ -73,7 +73,7 @@ public class PokemonTreinadorDAO {
         return pokemonsTreinador;
     }
 
-        public PokemonTreinador buscarPrimeiroNaFilaPorId(Treinador treinador, Context ctx) {
+    public PokemonTreinador buscarPrimeiroNaFilaPorId(Treinador treinador, Context ctx) {
         Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null",
                 new String[]{treinador.getIdTreinador().toString()});
 
@@ -110,6 +110,16 @@ public class PokemonTreinadorDAO {
     public void atualizarHpAtual(PokemonTreinador pokemonTreinador) {
         ContentValues valores = new ContentValues();
         valores.put("hp_atual", pokemonTreinador.getHpAtual());
+
+        bd.update("pokemonTreinador", valores, "idPokemonTreinador = ?",
+                new String[]{pokemonTreinador.getIdPokemonTreinador().toString()});
+    }
+
+    public void atualizarHpAtualExpLvl(PokemonTreinador pokemonTreinador) {
+        ContentValues valores = new ContentValues();
+        valores.put("hp_atual", pokemonTreinador.getHpAtual());
+        valores.put("level", pokemonTreinador.getLevel());
+        valores.put("experiencia", pokemonTreinador.getExperiencia());
 
         bd.update("pokemonTreinador", valores, "idPokemonTreinador = ?",
                 new String[]{pokemonTreinador.getIdPokemonTreinador().toString()});

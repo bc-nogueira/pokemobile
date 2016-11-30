@@ -3,10 +3,12 @@ package com.example.breno.pokemobile.Service;
 import android.content.Context;
 
 import com.example.breno.pokemobile.db.AtaqueDAO;
+import com.example.breno.pokemobile.db.ExpLevelDAO;
 import com.example.breno.pokemobile.db.PokemonAtaqueDAO;
 import com.example.breno.pokemobile.db.PokemonDAO;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Ataque;
+import com.example.breno.pokemobile.modelo.ExpLevel;
 import com.example.breno.pokemobile.modelo.Pokemon;
 import com.example.breno.pokemobile.modelo.PokemonAtaque;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
@@ -69,6 +71,27 @@ public class PokemonTreinadorService {
         pokemonTreinador.setAtaque1(ataque);
 
         return pokemonTreinador;
+    }
+
+    public boolean verificaSeEvoluiu(PokemonTreinador pokemon, Context ctx) {
+
+        ExpLevelDAO epDAO = new ExpLevelDAO(ctx);
+
+        ExpLevel ep = epDAO.buscarPorLevel(pokemon.getLevel());
+
+        if(pokemon.getExperiencia() >= ep.getExperiencia()) {
+
+            pokemon.setLevel(pokemon.getLevel() + 1);
+            pokemon.setExperiencia(pokemon.getExperiencia() - ep.getExperiencia());
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
     }
 
 }

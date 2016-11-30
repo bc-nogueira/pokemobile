@@ -84,7 +84,7 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String APELIDO = "apelido";
     private static final String HP_ATUAL = "hp_atual";
     private static final String HP_TOTAL = "hp_total";
-    private static final String NIVEL = "nivel";
+    private static final String LEVEL = "level";
     private static final String EXPERIENCIA = "experiencia";
     private static final String POS_FILA = "pos_fila";
     private static final String ID_ATAQUE1_FK = "idAtaque1";
@@ -106,7 +106,7 @@ public class BDCore extends SQLiteOpenHelper {
 
     //Tabela que guarda experiencia necessaria para cada level
     private static final String TABELA_EXPERIENCIA_LEVEL = "expLevel";
-    private static final String LEVEL = "level";
+    private static final String LEVEL_TAB_EXP_LVL = "level";
     private static final String EXP = "exp";
 
     public BDCore(Context ctx) {
@@ -184,7 +184,7 @@ public class BDCore extends SQLiteOpenHelper {
                 + APELIDO + " text,"
                 + HP_ATUAL + " real not null,"
                 + HP_TOTAL + " real not null,"
-                + NIVEL + " integer not null,"
+                + LEVEL + " integer not null,"
                 + EXPERIENCIA + " real not null,"
                 + POS_FILA + " integer,"
                 + ID_ATAQUE1_FK + " integer,"
@@ -211,7 +211,7 @@ public class BDCore extends SQLiteOpenHelper {
         populaPokemonAtaque(bd);
 
         String sqlExpLevel = "CREATE TABLE " + TABELA_EXPERIENCIA_LEVEL + "("
-                + LEVEL + " integer not null,"
+                + LEVEL_TAB_EXP_LVL + " integer not null,"
                 + EXP + " integer not null"
                 + ")";
         bd.execSQL(sqlExpLevel);

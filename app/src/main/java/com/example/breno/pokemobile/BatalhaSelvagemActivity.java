@@ -34,6 +34,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     private PokemonTreinador pokemonTreinador;
     private ProgressBar hpBarJogador;
     private TextView hpTextJogador;
+    private TextView lvlPokemon;
 
     private TextView mensagem;
     private ImageView prox;
@@ -86,6 +87,9 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         TextView nomePokemonInimigo = (TextView) findViewById(R.id.nomeInimigoTextViewBatalhaSelvagem);
         nomePokemonInimigo.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinadorInimigo));
 
+        TextView lvlPokemonInimigo = (TextView) findViewById(R.id.lvlInimigoTextViewBatalhaSelvagem);
+        lvlPokemonInimigo.setText("Lv." + pokemonTreinadorInimigo.getLevel().toString());
+
         hpBarInimigo = (ProgressBar) findViewById(R.id.hpInimigoProgressBarBatalhaSelvagem);
         Double porcentagemHPInimigo = (pokemonTreinadorInimigo.getHpAtual()/pokemonTreinadorInimigo.getHpTotal()) * 100;
         hpBarInimigo.setProgress(porcentagemHPInimigo.intValue());
@@ -99,6 +103,9 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
         TextView nomePokemon = (TextView) findViewById(R.id.nomeTextViewBatalhaSelvagem);
         nomePokemon.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinador));
+
+        lvlPokemon = (TextView) findViewById(R.id.lvlTextViewBatalhaSelvagem);
+        lvlPokemon.setText("Lv." + pokemonTreinador.getLevel().toString());
 
         hpBarJogador = (ProgressBar) findViewById(R.id.hpProgressBarBatalhaSelvagem);
         Double porcentagemHP = (pokemonTreinador.getHpAtual()/pokemonTreinador.getHpTotal()) * 100;
@@ -163,7 +170,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                         mensagem, true, hpBarJogador, hpTextJogador);
 
                 if(pokemonTreinador.getHpAtual() == 0) {
-                    etapa = 8;
+                    etapa = 5;
                 } else {
                     etapa = 2;
                 }
@@ -192,20 +199,33 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             case 4:
                 this.irMenuPrincipal();
                 break;
-            case 8:
-                if(pokemonTreinador.getApelido() != null) {
-                    mensagem.setText("Seu\n" + pokemonTreinador.getApelido() + "\nmorreu.");
+            case 5:
+                mensagem.setText("Seu\n" + pokemonTreinadorService.apelidoOuNome(pokemonTreinador) + "\nmorreu.");
+
+                etapa = 9;
+                break;
+            case 6:
+                mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\nselvagem\nmorreu.");
+//                pokemonTreinador = batalhaSelvagemService.adicionarExperiencia(pokemonTreinador, pokemonTreinadorInimigo.getLevel());
+//                etapa = 10;
+                break;
+            case 7:
+                pokemonTreinador = batalhaSelvagemService.
+                        adicionarExperiencia(pokemonTreinador, pokemonTreinadorInimigo.getLevel(), mensagem);
+
+                if(pokemonTreinadorService.verificaSeEvoluiu(pokemonTreinador, getApplicationContext())) {
+                    etapa = 8;
                 } else {
-                    mensagem.setText("Seu\n" + pokemonTreinador.getPokemon().getNome() + "\nmorreu.");
+                    etapa = 9;
                 }
-                etapa = 10;
+                break;
+            case 8:
+                mensagem.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinador) +
+                        "\nevoluiu para o\nlevel " + pokemonTreinador.getLevel() + "!");
+                lvlPokemon.setText("Lv." + pokemonTreinador.getLevel());
+                etapa = 9;
                 break;
             case 9:
-                mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\nselvagem\nmorreu.");
-                pokemonTreinador = batalhaSelvagemService.adicionarExperiencia(pokemonTreinador, pokemonTreinadorInimigo.getLevel());
-                etapa = 10;
-                break;
-            case 10:
                 this.irMenuPrincipal();
                 break;
         }
@@ -221,7 +241,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         this.desabilitarButtons();
 
         if(pokemonTreinadorInimigo.getHpAtual() == 0) {
-            etapa = 9;
+            etapa = 7;
         } else {
             etapa = 1;
         }
@@ -235,7 +255,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         this.desabilitarButtons();
 
         if(pokemonTreinadorInimigo.getHpAtual() == 0) {
-            etapa = 9;
+            etapa = 6;
         } else {
             etapa = 1;
         }
@@ -258,7 +278,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     public void irMenuPrincipal() {
 
         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
-        pokemonTreinadorDAO.atualizarHpAtual(pokemonTreinador);
+        pokemonTreinadorDAO.atualizarHpAtualExpLvl(pokemonTreinador);
 
         Intent menuPrincipal = new Intent(BatalhaSelvagemActivity.this, MenuPrincipalActivity.class);
         menuPrincipal.putExtra("treinador", treinador);

@@ -19,6 +19,7 @@ import java.util.Random;
 
 public class BatalhaSelvagemService {
     private ItemTreinadorService itemTreinadorService = new ItemTreinadorService();
+    private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
 
     public PokemonTreinador realizarAtaque(PokemonTreinador pokemonAtacante, PokemonTreinador pokemonAtacado, Ataque ataque,
                                            TextView mensagem, boolean selvagem, ProgressBar hpBarAtacado, TextView hpTextAtacado) {
@@ -155,7 +156,9 @@ public class BatalhaSelvagemService {
         hpText.setText("HP: " + pokemon.getHpAtual().intValue() + " / " + pokemon.getHpTotal().intValue());
     }
 
-    public PokemonTreinador adicionarExperiencia(PokemonTreinador pokemon, Integer level) {
+    public PokemonTreinador adicionarExperiencia(PokemonTreinador pokemon, Integer level, TextView mensagem) {
+
+        mensagem.setText(pokemonTreinadorService.apelidoOuNome(pokemon) + "\nganhou " + (10 * level) + "\nde experiência.");
 
         pokemon.setExperiencia(pokemon.getExperiencia() + 10 * level);
 
