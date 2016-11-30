@@ -60,7 +60,7 @@ public class PokemonTreinadorDAO {
                 pt.setHpAtual(cursor.getInt(4));
                 pt.setHpTotal(cursor.getInt(5));
                 pt.setLevel(cursor.getInt(6));
-                pt.setExperiencia(cursor.getDouble(7));
+                pt.setExperiencia(cursor.getInt(7));
                 pt.setPosFila(cursor.getInt(8));
                 pt.setAtaque1(ataqueDAO.buscarPorId(cursor.getInt(9)));
                 pt.setAtaque2(ataqueDAO.buscarPorId(cursor.getInt(10)));
@@ -92,7 +92,7 @@ public class PokemonTreinadorDAO {
                 pt.setHpAtual(cursor.getInt(4));
                 pt.setHpTotal(cursor.getInt(5));
                 pt.setLevel(cursor.getInt(6));
-                pt.setExperiencia(cursor.getDouble(7));
+                pt.setExperiencia(cursor.getInt(7));
                 pt.setPosFila(cursor.getInt(8));
                 pt.setAtaque1(ataqueDAO.buscarPorId(cursor.getInt(9)));
                 pt.setAtaque2(ataqueDAO.buscarPorId(cursor.getInt(10)));

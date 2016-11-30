@@ -14,7 +14,7 @@ public class PokemonTreinador implements Serializable {
     private Integer hpTotal;
     private Integer hpAtual;
     private Integer level;
-    private Double experiencia;
+    private Integer experiencia;
     private Integer posFila;
     private Ataque ataque1;
     private Ataque ataque2;
@@ -75,11 +75,11 @@ public class PokemonTreinador implements Serializable {
         this.level = level;
     }
 
-    public Double getExperiencia() {
+    public Integer getExperiencia() {
         return experiencia;
     }
 
-    public void setExperiencia(Double experiencia) {
+    public void setExperiencia(Integer experiencia) {
         this.experiencia = experiencia;
     }
 

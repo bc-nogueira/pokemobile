@@ -185,7 +185,7 @@ public class BDCore extends SQLiteOpenHelper {
                 + HP_ATUAL + " real not null,"
                 + HP_TOTAL + " real not null,"
                 + LEVEL + " integer not null,"
-                + EXPERIENCIA + " real not null,"
+                + EXPERIENCIA + " integer not null,"
                 + POS_FILA + " integer,"
                 + ID_ATAQUE1_FK + " integer,"
                 + ID_ATAQUE2_FK + " integer"

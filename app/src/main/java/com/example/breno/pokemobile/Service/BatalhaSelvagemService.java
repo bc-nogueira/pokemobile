@@ -96,7 +96,7 @@ public class BatalhaSelvagemService {
 
         if(numSorteado < (bonusTotal*10)) {
             pokemon.setTreinador(treinador);
-            pokemon.setExperiencia(0.);
+            pokemon.setExperiencia(0);
 
             PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(ctx);
             pokemonTreinadorDAO.inserir(pokemon);

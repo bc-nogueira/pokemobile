@@ -86,7 +86,7 @@ public class SelecionaPokemonActivity extends AppCompatActivity {
         pt.setHpAtual(hp);
 
         pt.setLevel(1);
-        pt.setExperiencia(0.);
+        pt.setExperiencia(0);
 
         pt.setPosFila(1);
 
