@@ -11,20 +11,21 @@ import android.widget.Toast;
 import com.example.breno.pokemobile.Service.PokemonTreinadorService;
 import com.example.breno.pokemobile.db.JogadorDAO;
 import com.example.breno.pokemobile.modelo.Jogador;
+import com.example.breno.pokemobile.modelo.MenuPrincipalBg;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
     private Treinador treinador;
     private Jogador jogador;
     private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
-    private MediaPlayer mpbg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
-        this.mpbg =  MediaPlayer.create(getApplicationContext(), R.raw.titlescreen);
-        this.mpbg.start();
+        if(!MenuPrincipalBg.isSoundPlaying()) {
+            MenuPrincipalBg.playLoop(getApplicationContext(), R.raw.titlescreen);
+        }
         if(treinador != null) {
             TextView nomeJogador = (TextView) findViewById(R.id.nomeTextViewMenuPrincipal);
             nomeJogador.setText(treinador.getNome());
@@ -38,6 +39,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     public void logout(View v) {
         treinador = null;
         Intent main = new Intent(MenuPrincipalActivity.this, MainActivity.class);
+        MenuPrincipalBg.stop();
         startActivity(main);
     }
 
@@ -50,9 +52,9 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         } else {
             Intent batalhaTreinador = new Intent(MenuPrincipalActivity.this, BatalhaTreinadorActivity.class);
             batalhaTreinador.putExtra("treinador", treinador);
+            MenuPrincipalBg.pause();
             startActivity(batalhaTreinador);
         }
-
     }
 
     public void batalhaSelvagem(View v) {
@@ -64,9 +66,9 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         } else {
             Intent selvagem = new Intent(MenuPrincipalActivity.this, BatalhaSelvagemActivity.class);
             selvagem.putExtra("treinador", treinador);
+            MenuPrincipalBg.pause();
             startActivity(selvagem);
         }
-
     }
 
     public void abrirPokedex(View v) {
@@ -125,11 +127,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     @Override
     public void onPause(){
         super.onPause();
-        this.mpbg.pause();
     }
     @Override
     public void onResume(){
         super.onPause();
-        this.mpbg.start();
+        MenuPrincipalBg.play();
     }
 }
