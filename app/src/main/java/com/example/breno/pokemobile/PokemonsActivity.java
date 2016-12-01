@@ -68,6 +68,11 @@ public class PokemonsActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), "O HP do pokemon está cheio.", Toast.LENGTH_SHORT).show();
 
+                    } else if(itemTreinador.getItem().getTipo().equals(TipoItem.CURA) &&
+                            pts.get(position).getHpAtual() == 0) {
+
+                        Toast.makeText(getApplicationContext(), "Não é possível curar um pokemon morto.", Toast.LENGTH_SHORT).show();
+
                     } else if ((itemTreinador.getItem().getTipo().equals(TipoItem.REVIVE)) ||
                             (itemTreinador.getItem().getTipo().equals(TipoItem.CURA))) {
 
