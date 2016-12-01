@@ -395,10 +395,7 @@ public class BDCore extends SQLiteOpenHelper {
     private void populaPokemonAtaque(SQLiteDatabase bd) {
         PokemonAtaque pokemonAtaque = new PokemonAtaque("001", 1, 1);
         ContentValues valores = preencheValoresPokemonAtaque(pokemonAtaque);
-        try {
-            bd.insertOrThrow("pokemonAtaque", null, valores);
-        } catch (SQLException ex) {
-        }
+        inserirValores(bd, valores);
 
         pokemonAtaque = new PokemonAtaque("002", 1, 1);
         valores = preencheValoresPokemonAtaque(pokemonAtaque);
@@ -451,10 +448,7 @@ public class BDCore extends SQLiteOpenHelper {
 
         pokemonAtaque = new PokemonAtaque("041", 1, 1);
         valores = preencheValoresPokemonAtaque(pokemonAtaque);
-        try {
-            bd.insertOrThrow("pokemonAtaque", null, valores);
-        } catch (SQLException ex) {
-        }
+        inserirValores(bd, valores);
 
     }
 
@@ -478,6 +472,13 @@ public class BDCore extends SQLiteOpenHelper {
             bd.insertOrThrow("expLevel", null, valores);
         }
 
+    }
+
+    private void inserirValores(SQLiteDatabase bd, ContentValues cv) {
+        try {
+            bd.insertOrThrow("pokemonAtaque", null, cv);
+        } catch (SQLException ex) {
+        }
     }
 
 }

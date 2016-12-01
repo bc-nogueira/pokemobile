@@ -9,148 +9,173 @@
         android:scaleType="centerCrop"
         android:src="@drawable/activity_bg"/>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_menu_inicial"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.breno.pokemobile.MenuPrincipalActivity"
-    android:layout_centerHorizontal="true">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_menu_inicial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.breno.pokemobile.MenuPrincipalActivity"
+        android:layout_centerHorizontal="true">
 
-    <ImageView
-        android:id="@+id/configImageViewMenuPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/config_25"/>
+        <ImageView
+            android:id="@+id/configImageViewMenuPrincipal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/config_25"/>
 
-    <TextView
-        android:id="@+id/nomeTextViewMenuPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:textSize="22sp"
-        android:textStyle="normal|bold"
-        android:textColor="#fff"/>
+        <TextView
+            android:id="@+id/nomeTextViewMenuPrincipal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textSize="22sp"
+            android:textStyle="normal|bold"
+            android:textColor="#fff"/>
 
-    <ImageView
-        android:id="@+id/sairImageViewMenuPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/sair2_25"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:onClick="logout" />
+        <ImageView
+            android:id="@+id/sairImageViewMenuPrincipal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/sair2_25"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:onClick="logout" />
 
-    <Button
-        android:id="@+id/vsTreinadorButtonMenuPrincipal"
-        android:text="vs. Treinador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:width="100dp"
-        android:height="60dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="50dp" />
+        <Button
+            android:id="@+id/vsTreinadorButtonMenuPrincipal"
+            android:text="vs. Treinador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginLeft="50dp" />
 
-    <Button
-        android:id="@+id/vsSelvagemButtonMenuPrincipal"
-        android:text="vs. Selvagem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="100dp"
-        android:onClick="batalhaSelvagem"/>
+        <Button
+            android:id="@+id/vsSelvagemButtonMenuPrincipal"
+            android:text="vs. Selvagem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="75dp"
+            android:onClick="batalhaSelvagem"/>
 
-    <Button
-        android:id="@+id/pokedexButtonMenuPrincipal"
-        android:text="Pokedex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:width="100dp"
-        android:height="60dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="50dp"
-        android:onClick="abrirPokedex" />
+        <Button
+            android:id="@+id/pokedexButtonMenuPrincipal"
+            android:text="Pokedex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginLeft="50dp"
+            android:onClick="abrirPokedex" />
 
-    <Button
-        android:id="@+id/pokemonsButtonMenuPrincipal"
-        android:text="Pokemons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="200dp"
-        android:onClick="abrirPokemons"/>
+        <Button
+            android:id="@+id/pokemonsButtonMenuPrincipal"
+            android:text="Pokemons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="150dp"
+            android:onClick="abrirPokemons"/>
 
-    <Button
-        android:id="@+id/mochilaButtonMenuPrincipal"
-        android:text="Mochila"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="300dp"
-        android:onClick="abrirMochila"/>
+        <Button
+            android:id="@+id/mochilaButtonMenuPrincipal"
+            android:text="Mochila"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="225dp"
+            android:onClick="abrirMochila"/>
 
-    <Button
-        android:id="@+id/lojaButtonMenuPrincipal"
-        android:text="Loja"
-        android:width="100dp"
-        android:height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="300dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="abrirLoja"/>
+        <Button
+            android:id="@+id/lojaButtonMenuPrincipal"
+            android:text="Loja"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="225dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="abrirLoja"/>
 
-    <Button
-        android:id="@+id/infoButtonMenuPrincipal"
-        android:text="Info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="50dp"
-        android:onClick="abrirInfo" />
+        <Button
+            android:id="@+id/infoButtonMenuPrincipal"
+            android:text="Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="50dp"
+            android:onClick="abrirInfo" />
 
-    <Button
-        android:id="@+id/mudarButtonMenuPrincipal"
-        android:text="Mudar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="400dp"
-        android:onClick="mudarTreinador"/>
+        <Button
+            android:id="@+id/armazemButtonMenuPrincipal"
+            android:text="Armazém"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="300dp"
+            android:layout_marginRight="50dp"
+            android:onClick="abrirArmazem" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/mudarButtonMenuPrincipal"
+            android:text="Mudar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="375dp"
+            android:onClick="mudarTreinador"/>
+
+        <Button
+            android:id="@+id/contaButtonMenuPrincipal"
+            android:text="Conta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="375dp" />
+
+    </RelativeLayout>
 </FrameLayout>

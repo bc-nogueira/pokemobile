@@ -56,8 +56,13 @@
         <activity
             android:name=".BatalhaSelvagemActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ItemBatalhaActivity" />
-        <activity android:name=".InfoPokemonActivity"></activity>
+        <activity
+            android:name=".ItemBatalhaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InfoPokemonActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ArmazemActivity"></activity>
     </application>
 
 </manifest>

@@ -94,4 +94,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         startActivity(selecionar);
     }
 
+    public void abrirArmazem(View v) {
+        Intent armazem = new Intent(MenuPrincipalActivity.this, ArmazemActivity.class);
+        armazem.putExtra("treinador", treinador);
+        startActivity(armazem);
+    }
+
 }
