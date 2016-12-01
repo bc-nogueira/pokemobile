@@ -115,7 +115,7 @@ public class PokemonTreinadorDAO {
     }
 
     public PokemonTreinador buscarPrimeiroNaFilaPorId(Treinador treinador, Context ctx) {
-        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila not null",
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila = 1",
                 new String[]{treinador.getIdTreinador().toString()});
 
         PokemonDAO pokemonDAO = new PokemonDAO(ctx);

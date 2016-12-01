@@ -53,82 +53,80 @@ public class PokemonsActivity extends AppCompatActivity {
         final PokemonsAdapter pokemonsAdapter = new PokemonsAdapter(this, pts);
         listPokemons.setAdapter(pokemonsAdapter);
 
-        if(posOrigem != null) {
-            if (itemTreinador != null) {
+        if (itemTreinador != null) {
 
-                listPokemons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            listPokemons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        if ((itemTreinador.getItem().getTipo().equals(TipoItem.REVIVE)) && (pts.get(position).getHpAtual() > 0)) {
+                    if ((itemTreinador.getItem().getTipo().equals(TipoItem.REVIVE)) && (pts.get(position).getHpAtual() > 0)) {
 
-                            Toast.makeText(getApplicationContext(), "Esse pokemon não está morto.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Esse pokemon não está morto.", Toast.LENGTH_SHORT).show();
 
-                        } else if ((itemTreinador.getItem().getTipo().equals(TipoItem.CURA)) &&
-                                (pts.get(position).getHpAtual().equals(pts.get(position).getHpTotal()))) {
+                    } else if ((itemTreinador.getItem().getTipo().equals(TipoItem.CURA)) &&
+                            (pts.get(position).getHpAtual().equals(pts.get(position).getHpTotal()))) {
 
-                            Toast.makeText(getApplicationContext(), "O HP do pokemon está cheio.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "O HP do pokemon está cheio.", Toast.LENGTH_SHORT).show();
 
-                        } else if ((itemTreinador.getItem().getTipo().equals(TipoItem.REVIVE)) ||
-                                (itemTreinador.getItem().getTipo().equals(TipoItem.CURA))) {
+                    } else if ((itemTreinador.getItem().getTipo().equals(TipoItem.REVIVE)) ||
+                            (itemTreinador.getItem().getTipo().equals(TipoItem.CURA))) {
 
-                            pts.get(position).setHpAtual(pts.get(position).getHpAtual() + itemTreinador.getItem().getEfeitoCura());
+                        pts.get(position).setHpAtual(pts.get(position).getHpAtual() + itemTreinador.getItem().getEfeitoCura());
 
-                            if (pts.get(position).getHpAtual() > pts.get(position).getHpTotal()) {
-                                pts.get(position).setHpAtual(pts.get(position).getHpTotal());
-                            }
-
-                            //Recupera o HP do pokemon
-                            PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
-                            pokemonTreinadorDAO.atualizarHpAtual(pts.get(position));
-
-                            ProgressBar hpBar = (ProgressBar) view.findViewById(R.id.hpProgressBarPokemons);
-                            Double porcentagemFinal = pokemonTreinadorService.calcularPorcentagemHP(pts.get(position));
-                            Integer porcentagemAtual = hpBar.getProgress();
-                            ProgressBarAnimation anim = new ProgressBarAnimation
-                                    (hpBar, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
-                            anim.setDuration(1000);
-                            hpBar.startAnimation(anim);
-
-                            TextView hpText = (TextView) view.findViewById(R.id.hpTextViewPokemons);
-                            hpText.setText
-                                    ("HP: " + pts.get(position).getHpAtual().intValue() + " / " + pts.get(position).getHpTotal().intValue());
-
-                            //Diminui o item ou remove
-                            itemTreinador.setQuantidade(itemTreinador.getQuantidade() - 1);
-                            ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(getApplicationContext());
-                            if (itemTreinador.getQuantidade() >= 1) {
-                                //Atualizar
-                                itemTreinadorDAO.atualizarQuantidade(itemTreinador);
-                            } else {
-                                //Remove
-                                itemTreinadorDAO.deletar(itemTreinador.getIdItemTreinador());
-                            }
-
+                        if (pts.get(position).getHpAtual() > pts.get(position).getHpTotal()) {
+                            pts.get(position).setHpAtual(pts.get(position).getHpTotal());
                         }
 
-                        Intent voltarMochila = new Intent(PokemonsActivity.this, MochilaActivity.class);
-                        voltarMochila.putExtra("treinador", treinador);
-                        startActivity(voltarMochila);
+                        //Recupera o HP do pokemon
+                        PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
+                        pokemonTreinadorDAO.atualizarHpAtual(pts.get(position));
+
+                        ProgressBar hpBar = (ProgressBar) view.findViewById(R.id.hpProgressBarPokemons);
+                        Double porcentagemFinal = pokemonTreinadorService.calcularPorcentagemHP(pts.get(position));
+                        Integer porcentagemAtual = hpBar.getProgress();
+                        ProgressBarAnimation anim = new ProgressBarAnimation
+                                (hpBar, porcentagemAtual.floatValue(), porcentagemFinal.floatValue());
+                        anim.setDuration(1000);
+                        hpBar.startAnimation(anim);
+
+                        TextView hpText = (TextView) view.findViewById(R.id.hpTextViewPokemons);
+                        hpText.setText
+                                ("HP: " + pts.get(position).getHpAtual().intValue() + " / " + pts.get(position).getHpTotal().intValue());
+
+                        //Diminui o item ou remove
+                        itemTreinador.setQuantidade(itemTreinador.getQuantidade() - 1);
+                        ItemTreinadorDAO itemTreinadorDAO = new ItemTreinadorDAO(getApplicationContext());
+                        if (itemTreinador.getQuantidade() >= 1) {
+                            //Atualizar
+                            itemTreinadorDAO.atualizarQuantidade(itemTreinador);
+                        } else {
+                            //Remove
+                            itemTreinadorDAO.deletar(itemTreinador.getIdItemTreinador());
+                        }
 
                     }
-                });
 
-            } else {
-                listPokemons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent voltarMochila = new Intent(PokemonsActivity.this, MochilaActivity.class);
+                    voltarMochila.putExtra("treinador", treinador);
+                    startActivity(voltarMochila);
 
-                        Intent info = new Intent(PokemonsActivity.this, InfoPokemonActivity.class);
-                        info.putExtra("treinador", treinador);
-                        info.putExtra("pokemonTreinador", pts.get(position));
-                        startActivity(info);
+                }
+            });
+
+        } else {
+            listPokemons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Intent info = new Intent(PokemonsActivity.this, InfoPokemonActivity.class);
+                    info.putExtra("treinador", treinador);
+                    info.putExtra("pokemonTreinador", pts.get(position));
+                    startActivity(info);
 
 
-                    }
-                });
+                }
+            });
 
-            }
         }
 
         //Colocar aqui: ver se precisa testar o item
@@ -183,7 +181,9 @@ public class PokemonsActivity extends AppCompatActivity {
             mochila.putExtra("treinador", treinador);
             startActivity(mochila);
         } else {
-            super.onBackPressed();
+            Intent menuPrincipal = new Intent(PokemonsActivity.this, MenuPrincipalActivity.class);
+            menuPrincipal.putExtra("treinador", treinador);
+            startActivity(menuPrincipal);
         }
     }
 }
