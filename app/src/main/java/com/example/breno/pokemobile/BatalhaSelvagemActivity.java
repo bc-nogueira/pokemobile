@@ -1,6 +1,7 @@
 package com.example.breno.pokemobile;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,10 +47,13 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     private Ataque ataqueJogador;
     private Ataque ataqueInimigo;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.mp =  MediaPlayer.create(getApplicationContext(), R.raw.battle1);
+        this.mp.setLooping(true);
         setContentView(R.layout.activity_batalha_selvagem);
 
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
@@ -81,7 +85,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             this.desabilitarButtons();
 
             mensagem.setText("Um " + pokemonTreinadorInimigo.getPokemon().getNome() + "\nselvagem apareceu.");
-
+            mp.start();
         }
 
         //Dados para a View do pokemon do treinador
@@ -150,7 +154,6 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             }
 
         }
-
     }
 
     @Override
@@ -284,14 +287,13 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     }
 
     public void irMenuPrincipal() {
-
+        this.mp.stop();
         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
         pokemonTreinadorDAO.atualizarHpAtualHpTotalExpLvl(pokemonTreinador);
 
         Intent menuPrincipal = new Intent(BatalhaSelvagemActivity.this, MenuPrincipalActivity.class);
         menuPrincipal.putExtra("treinador", treinador);
         startActivity(menuPrincipal);
-
     }
 
     public void itemBatalha(View v) {
@@ -330,6 +332,4 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         Button fugir = (Button) findViewById(R.id.fugirButtonBatalhaSelvagem);
         fugir.setEnabled(false);
     }
-
-
 }
