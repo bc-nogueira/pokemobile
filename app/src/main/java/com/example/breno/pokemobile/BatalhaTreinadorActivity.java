@@ -258,9 +258,6 @@ public class BatalhaTreinadorActivity extends AppCompatActivity {
 
                 etapa = 9;
                 break;
-            case 6:
-                mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\nmorreu.");
-                break;
             case 7:
                 pokemonTreinador = batalhaSelvagemService.
                         adicionarExperiencia(pokemonTreinador, pokemonTreinadorInimigo.getLevel(), mensagem);
@@ -318,7 +315,7 @@ public class BatalhaTreinadorActivity extends AppCompatActivity {
         this.desabilitarButtons();
 
         if(pokemonTreinadorInimigo.getHpAtual() == 0) {
-            etapa = 6;
+            etapa = 7;
         } else {
             etapa = 1;
         }
