@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_editar_conta"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.breno.pokemobile.EditarContaActivity">
+
+    <ImageView
+        android:id="@+id/pikachuEntradaEditarConta"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/pikachu_entrada"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"/>
+
+    <TextView
+        android:id="@+id/senhaAntigaTextViewEditarConta"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pikachuEntradaEditarConta"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:text="Senha antiga:"/>
+
+    <EditText
+        android:id="@+id/senhaAntigaEditTextEditarConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_alignBaseline="@+id/senhaAntigaTextViewEditarConta"
+        android:layout_toRightOf="@+id/senhaAntigaTextViewEditarConta"
+        android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:id="@+id/senhaNovaTextViewEditarConta"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="Senha nova:"
+        android:layout_below="@+id/senhaAntigaTextViewEditarConta"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"/>
+
+    <EditText
+        android:id="@+id/senhaNovaEditTextEditarConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_alignBaseline="@+id/senhaNovaTextViewEditarConta"
+        android:layout_toRightOf="@+id/senhaNovaTextViewEditarConta"
+        android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:id="@+id/confirmarTextViewEditarConta"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="Confirmar:"
+        android:layout_below="@+id/senhaNovaTextViewEditarConta"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"/>
+
+    <EditText
+        android:id="@+id/confirmarEditTextEditarConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_alignBaseline="@+id/confirmarTextViewEditarConta"
+        android:layout_toRightOf="@+id/confirmarTextViewEditarConta"
+        android:layout_marginLeft="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirmarTextViewEditarConta"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:text="Alterar"
+        android:onClick="alterar"/>
+
+
+</RelativeLayout>

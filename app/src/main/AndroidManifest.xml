@@ -68,6 +68,7 @@
         <activity
             android:name=".BatalhaTreinadorActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".EditarContaActivity"></activity>
     </application>
 
 </manifest>

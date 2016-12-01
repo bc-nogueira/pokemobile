@@ -116,6 +116,12 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         startActivity(armazem);
     }
 
+    public void editarConta(View v) {
+        Intent editarConta = new Intent(MenuPrincipalActivity.this, EditarContaActivity.class);
+        editarConta.putExtra("treinador", treinador);
+        startActivity(editarConta);
+    }
+
     @Override
     public void onPause(){
         super.onPause();

@@ -37,6 +37,13 @@ public class JogadorDAO {
         bd.update("jogador", valores, "_id = ?", new String[]{"" + jogador.getIdJogador()});
     }
 
+    public void atualizarSenha(Jogador jogador) {
+        ContentValues valores = new ContentValues();
+        valores.put("senha", jogador.getSenha());
+
+        bd.update("jogador", valores, "_id = ?", new String[]{"" + jogador.getIdJogador()});
+    }
+
     public void deletar(Jogador jogador) {
         bd.delete("jogador", "_id = " + jogador.getIdJogador(), null);
     }
