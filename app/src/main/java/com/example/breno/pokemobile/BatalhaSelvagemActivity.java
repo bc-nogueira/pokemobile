@@ -16,6 +16,7 @@ import com.example.breno.pokemobile.Service.PokemonTreinadorService;
 import com.example.breno.pokemobile.Service.UtilidadesService;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Ataque;
+import com.example.breno.pokemobile.modelo.BatalhaBg;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.TipoItem;
@@ -47,16 +48,16 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     private Ataque ataqueJogador;
     private Ataque ataqueInimigo;
-    private MediaPlayer mpBg;
     private MediaPlayer mpTackle;
     private MediaPlayer mpLevelUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.mpBg = MediaPlayer.create(getApplicationContext(), R.raw.battle1);
+        if (!BatalhaBg.isSoundPlaying()){
+            BatalhaBg.playLoop(getApplicationContext(), R.raw.battle1);
+        }
         this.mpTackle =  MediaPlayer.create(getApplicationContext(), R.raw.tackle);
         this.mpLevelUp =  MediaPlayer.create(getApplicationContext(), R.raw.levelup);
-        this.mpBg.setLooping(true);
         setContentView(R.layout.activity_batalha_selvagem);
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
@@ -87,7 +88,6 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             this.desabilitarButtons();
 
             mensagem.setText("Um " + pokemonTreinadorInimigo.getPokemon().getNome() + "\nselvagem apareceu.");
-            mpBg.start();
         }
 
         //Dados para a View do pokemon do treinador
@@ -292,7 +292,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     }
 
     public void irMenuPrincipal() {
-        this.mpBg.stop();
+        BatalhaBg.stop();
         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
         pokemonTreinadorDAO.atualizarHpAtualHpTotalExpLvl(pokemonTreinador);
 

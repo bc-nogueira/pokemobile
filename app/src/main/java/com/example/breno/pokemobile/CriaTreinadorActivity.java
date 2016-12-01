@@ -54,7 +54,7 @@ public class CriaTreinadorActivity extends AppCompatActivity {
 
         } else {
 
-            treinador = new Treinador(nome.getText().toString(), 300, imagemAtual, jogador.getIdJogador());
+            treinador = new Treinador(nome.getText().toString(), 1000, imagemAtual, jogador.getIdJogador());
 
             TreinadorDAO treinadorDAO = new TreinadorDAO(this);
             try {

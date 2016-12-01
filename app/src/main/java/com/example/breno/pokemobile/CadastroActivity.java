@@ -56,7 +56,7 @@ public class CadastroActivity extends AppCompatActivity {
         } else {
 
             jogador = new Jogador(usuario.getText().toString(), senha.getText().toString());
-            treinador = new Treinador(nome.getText().toString(), 300, imagemAtual, null);
+            treinador = new Treinador(nome.getText().toString(), 1000, imagemAtual, null);
 
             JogadorDAO jogadorDAO = new JogadorDAO(this);
 
