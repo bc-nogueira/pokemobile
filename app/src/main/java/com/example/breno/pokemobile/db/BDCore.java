@@ -239,52 +239,26 @@ public class BDCore extends SQLiteOpenHelper {
         onCreate(bd);
     }
 
-    private void populaItem(SQLiteDatabase bd) {
-        Item item = new Item("Potion", "Recupera 20 de HP.", TipoItem.CURA, 50, null, 20, R.drawable.pocao_pequena);
+    private void insereItem(SQLiteDatabase bd,String nome, String descricao,TipoItem tipoItem,
+                            Integer preco, Double efeitoCaptura, Integer efeitoCura, Integer icone ){
+        Item item = new Item(nome, descricao, tipoItem, preco, efeitoCaptura, efeitoCura, icone);
         ContentValues valores = preencheValoresItem(item);
-        try {
-            bd.insertOrThrow("item", null, valores);
-        } catch (SQLException ex) {
-        }
+        insereValores(bd,"item",valores);
+    }
 
-        item = new Item("Super Potion", "Recupera 50 de HP.", TipoItem.CURA, 100, null, 50, R.drawable.pocao_grande);
-        valores = preencheValoresItem(item);
-        try {
-            bd.insertOrThrow("item", null, valores);
-        } catch (SQLException ex) {
-        }
-
-        item = new Item("Revive", "Revive o Pokemon e recupera um pouco de HP.", TipoItem.REVIVE, 100, null, 10, R.drawable.revive);
-        valores = preencheValoresItem(item);
-        try {
-            bd.insertOrThrow("item", null, valores);
-        } catch (SQLException ex) {
-        }
-
-        item = new Item("Super Revive", "Revive o Pokemon e recupera HP.", TipoItem.REVIVE, 200, null, 25, R.drawable.super_revive);
-        valores = preencheValoresItem(item);
-        try {
-            bd.insertOrThrow("item", null, valores);
-        } catch (SQLException ex) {
-        }
-
-        item = new Item("Pokeball", "Pokebola para básica para captura de Pokemons.",
+    private void populaItem(SQLiteDatabase bd) {
+        insereItem(bd,"Potion", "Recupera 20 de HP.", TipoItem.CURA, 50, null, 20,
+                    R.drawable.pocao_pequena);
+        insereItem(bd, "Super Potion", "Recupera 50 de HP.", TipoItem.CURA, 100, null, 50,
+                    R.drawable.pocao_grande);
+        insereItem(bd, "Revive", "Revive o Pokemon e recupera um pouco de HP.", TipoItem.REVIVE,
+                    100, null, 10, R.drawable.revive);
+        insereItem(bd, "Super Revive", "Revive o Pokemon e recupera HP.", TipoItem.REVIVE, 200,
+                    null, 25, R.drawable.super_revive);
+        insereItem(bd, "Pokeball", "Pokebola para básica para captura de Pokemons.",
                 TipoItem.CAPTURA, 25, 0.25, null, R.drawable.pokeball);
-        valores = preencheValoresItem(item);
-        try {
-            bd.insertOrThrow("item", null, valores);
-        } catch (SQLException ex) {
-        }
-
-        item = new Item("Ultraball", "Proporciona uma chance maior na captura de Pokemons.",
+        insereItem(bd, "Ultraball", "Proporciona uma chance maior na captura de Pokemons.",
                 TipoItem.CAPTURA, 100, 0.5, null, R.drawable.ultralball);
-        valores = preencheValoresItem(item);
-        try {
-            bd.insertOrThrow("item", null, valores);
-        } catch (SQLException ex) {
-        }
-
-
     }
 
     public  ContentValues preencheValoresItem(Item item) {
