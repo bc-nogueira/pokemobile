@@ -41,6 +41,20 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         startActivity(main);
     }
 
+    public void batalhaTreinador(View v) {
+
+        if(pokemonTreinadorService.verificaSeTodosEstaoMortos(treinador, this)) {
+
+            Toast.makeText(this, "Todos os seus pokemons estão mortos.", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Intent batalhaTreinador = new Intent(MenuPrincipalActivity.this, BatalhaTreinadorActivity.class);
+            batalhaTreinador.putExtra("treinador", treinador);
+            startActivity(batalhaTreinador);
+        }
+
+    }
+
     public void batalhaSelvagem(View v) {
 
         if(pokemonTreinadorService.verificaSeTodosEstaoMortos(treinador, this)) {

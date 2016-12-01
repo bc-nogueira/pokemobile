@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,12 +16,13 @@ import com.example.breno.pokemobile.Service.BatalhaSelvagemService;
 import com.example.breno.pokemobile.Service.PokemonTreinadorService;
 import com.example.breno.pokemobile.Service.UtilidadesService;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
+import com.example.breno.pokemobile.db.TreinadorDAO;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.TipoItem;
 import com.example.breno.pokemobile.modelo.Treinador;
 
-public class BatalhaSelvagemActivity extends AppCompatActivity {
+public class BatalhaTreinadorActivity extends AppCompatActivity {
     private Treinador treinador;
     private ItemTreinador itemTreinador;
 
@@ -28,15 +30,23 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     private BatalhaSelvagemService batalhaSelvagemService = new BatalhaSelvagemService();
     private UtilidadesService utilidadesService = new UtilidadesService();
 
+    private PokemonTreinador pokemonTreinador;
+    private ImageView pokemon;
+    private TextView nomePokemon;
+    private ProgressBar hpBarJogador;
+    private TextView hpTextJogador;
+    private TextView lvlPokemon;
+    private Button ataque1;
+    private Button ataque2;
+    private LinearLayout border1;
+
     private PokemonTreinador pokemonTreinadorInimigo;
     private ProgressBar hpBarInimigo;
     private TextView hpTextInimigo;
     private ImageView pokemonInimigo;
-
-    private PokemonTreinador pokemonTreinador;
-    private ProgressBar hpBarJogador;
-    private TextView hpTextJogador;
-    private TextView lvlPokemon;
+    private TextView nomePokemonInimigo;
+    private TextView lvlPokemonInimigo;
+    private LinearLayout border2;
 
     private TextView mensagem;
     private ImageView prox;
@@ -53,12 +63,32 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         this.mpBg = MediaPlayer.create(getApplicationContext(), R.raw.battle1);
         this.mpBg.setLooping(true);
         this.mpTackle =  MediaPlayer.create(getApplicationContext(), R.raw.tackle);
-        setContentView(R.layout.activity_batalha_selvagem);
+        setContentView(R.layout.activity_batalha_treinador);
+
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
-        mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
-        prox = (ImageView) findViewById(R.id.proxMensagemBatalhaSelvagem);
-        pokebola = (ImageView) findViewById(R.id.pokebolaImageViewBatalhaSelvagem);
+        mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaTreinador);
+        prox = (ImageView) findViewById(R.id.proxMensagemBatalhaTreinador);
+        pokebola = (ImageView) findViewById(R.id.pokebolaImageViewBatalhaTreinador);
+
+        //Dados para a View do pokemon do treinador
+        pokemon = (ImageView) findViewById(R.id.pokemonCostasBatalhaTreinador);
+        nomePokemon = (TextView) findViewById(R.id.nomeTextViewBatalhaTreinador);
+        lvlPokemon = (TextView) findViewById(R.id.lvlTextViewBatalhaTreinador);
+        hpBarJogador = (ProgressBar) findViewById(R.id.hpProgressBarBatalhaTreinador);
+        hpTextJogador = (TextView) findViewById(R.id.hpTextViewBatalhaTreinador);
+        ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaTreinador);
+        ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaTreinador);
+        border1 = (LinearLayout) findViewById(R.id.border1);
+
+        //Dados para a View do pokemon inimigo
+        pokemonInimigo = (ImageView) findViewById(R.id.pokemonFrenteBatalhaTreinador);
+        nomePokemonInimigo = (TextView) findViewById(R.id.nomeInimigoTextViewBatalhaTreinador);
+        lvlPokemonInimigo = (TextView) findViewById(R.id.lvlInimigoTextViewBatalhaTreinador);
+        hpBarInimigo = (ProgressBar) findViewById(R.id.hpInimigoProgressBarBatalhaTreinador);
+        hpTextInimigo = (TextView) findViewById(R.id.hpInimigoTextViewBatalhaTreinador);
+        border2 = (LinearLayout) findViewById(R.id.border2);
+
 
         if((ItemTreinador) getIntent().getSerializableExtra("itemTreinador") != null) {
 
@@ -78,35 +108,40 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             //Prepara o pokemon do inimigo
             pokemonTreinadorInimigo = pokemonTreinadorService.criaPokemonBatalhaSelvagem(this, pokemonTreinador);
 
-            etapa = 0;
+            etapa = -1;
 
             this.desabilitarButtons();
 
-            mensagem.setText("Um " + pokemonTreinadorInimigo.getPokemon().getNome() + "\nselvagem apareceu.");
+            pokemon.setVisibility(View.INVISIBLE);
+            nomePokemon.setVisibility(View.INVISIBLE);
+            lvlPokemon.setVisibility(View.INVISIBLE);
+            hpBarJogador.setVisibility(View.INVISIBLE);
+            hpTextJogador.setVisibility(View.INVISIBLE);
+            pokemonInimigo.setVisibility(View.INVISIBLE);
+            nomePokemonInimigo.setVisibility(View.INVISIBLE);
+            lvlPokemonInimigo.setVisibility(View.INVISIBLE);
+            hpBarInimigo.setVisibility(View.INVISIBLE);
+            hpTextInimigo.setVisibility(View.INVISIBLE);
+            border1.setVisibility(View.INVISIBLE);
+            border2.setVisibility(View.INVISIBLE);
+
+            ImageView iconeTreinador = (ImageView) findViewById(R.id.iconeTreinadorImageViewBatalhaTreinador);
+            iconeTreinador.setVisibility(View.VISIBLE);
+
+            mensagem.setText("Um treinador apareceu.");
             mpBg.start();
+            //TODO: Colocar para gerar um treinador aleatoriamente, tanto nome, quanto icone, dos dois sexos.
+
         }
 
         //Dados para a View do pokemon do treinador
-        ImageView pokemon = (ImageView) findViewById(R.id.pokemonCostasBatalhaSelvagem);
         pokemon.setImageResource(pokemonTreinador.getPokemon().getIconeCostas());
-
-        TextView nomePokemon = (TextView) findViewById(R.id.nomeTextViewBatalhaSelvagem);
         nomePokemon.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinador));
-
-        lvlPokemon = (TextView) findViewById(R.id.lvlTextViewBatalhaSelvagem);
         lvlPokemon.setText("Lv." + pokemonTreinador.getLevel().toString());
-
-        hpBarJogador = (ProgressBar) findViewById(R.id.hpProgressBarBatalhaSelvagem);
         Double porcentagemHP = pokemonTreinadorService.calcularPorcentagemHP(pokemonTreinador);
         hpBarJogador.setProgress(porcentagemHP.intValue());
-
-        hpTextJogador = (TextView) findViewById(R.id.hpTextViewBatalhaSelvagem);
         hpTextJogador.setText("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
-
-        Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaSelvagem);
         ataque1.setText(pokemonTreinador.getAtaque1().getNomeAtaque());
-
-        Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaSelvagem);
         if(pokemonTreinador.getAtaque2() != null) {
             ataque2.setText(pokemonTreinador.getAtaque2().getNomeAtaque());
         } else {
@@ -114,21 +149,14 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         }
 
         //Dados para a View do pokemon inimigo
-        pokemonInimigo = (ImageView) findViewById(R.id.pokemonFrenteBatalhaSelvagem);
         pokemonInimigo.setImageResource(pokemonTreinadorInimigo.getPokemon().getIconeFrente());
-
-        TextView nomePokemonInimigo = (TextView) findViewById(R.id.nomeInimigoTextViewBatalhaSelvagem);
         nomePokemonInimigo.setText(pokemonTreinadorService.apelidoOuNome(pokemonTreinadorInimigo));
-
-        TextView lvlPokemonInimigo = (TextView) findViewById(R.id.lvlInimigoTextViewBatalhaSelvagem);
         lvlPokemonInimigo.setText("Lv." + pokemonTreinadorInimigo.getLevel().toString());
-
-        hpBarInimigo = (ProgressBar) findViewById(R.id.hpInimigoProgressBarBatalhaSelvagem);
         Double porcentagemHPInimigo = pokemonTreinadorService.calcularPorcentagemHP(pokemonTreinadorInimigo);
         hpBarInimigo.setProgress(porcentagemHPInimigo.intValue());
-
-        hpTextInimigo = (TextView) findViewById(R.id.hpInimigoTextViewBatalhaSelvagem);
         hpTextInimigo.setText("HP: " + pokemonTreinadorInimigo.getHpAtual().intValue() + " / " + pokemonTreinadorInimigo.getHpTotal().intValue());
+
+
 
         if(itemTreinador != null) {
 
@@ -152,17 +180,35 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             }
 
         }
-    }
 
-    @Override
-    public void onBackPressed() {
     }
 
     public void proximaEtapa(View v) {
         switch (etapa) {
+            case -1:
+                pokemon.setVisibility(View.VISIBLE);
+                nomePokemon.setVisibility(View.VISIBLE);
+                lvlPokemon.setVisibility(View.VISIBLE);
+                hpBarJogador.setVisibility(View.VISIBLE);
+                hpTextJogador.setVisibility(View.VISIBLE);
+                pokemonInimigo.setVisibility(View.VISIBLE);
+                nomePokemonInimigo.setVisibility(View.VISIBLE);
+                lvlPokemonInimigo.setVisibility(View.VISIBLE);
+                hpBarInimigo.setVisibility(View.VISIBLE);
+                hpTextInimigo.setVisibility(View.VISIBLE);
+                border1.setVisibility(View.VISIBLE);
+                border2.setVisibility(View.VISIBLE);
+                ImageView iconeTreinador = (ImageView) findViewById(R.id.iconeTreinadorImageViewBatalhaTreinador);
+                iconeTreinador.setVisibility(View.INVISIBLE);
+
+                mensagem.setText("Treinador usa\n" + pokemonTreinadorInimigo.getPokemon().getNome() + ".");
+
+                etapa = 0;
+
+                break;
             case 0:
                 if(utilidadesService.gerarNumeroAleatorio(10) > 7) {
-                    mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\nselvagem toma\na iniciativa.");
+                    mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\ntoma\na iniciativa.");
                     etapa = 1;
 
                 } else {
@@ -213,7 +259,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 etapa = 9;
                 break;
             case 6:
-                mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\nselvagem\nmorreu.");
+                mensagem.setText(pokemonTreinadorInimigo.getPokemon().getNome() + "\nmorreu.");
                 break;
             case 7:
                 pokemonTreinador = batalhaSelvagemService.
@@ -222,7 +268,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 if(pokemonTreinadorService.verificaSeEvoluiu(pokemonTreinador, getApplicationContext())) {
                     etapa = 8;
                 } else {
-                    etapa = 9;
+                    etapa = 10;
                 }
                 break;
             case 8:
@@ -232,13 +278,20 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 //Setar o hp
                 hpTextJogador.setText
                         ("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
-                etapa = 9;
+                etapa = 10;
                 break;
             case 9:
                 this.irMenuPrincipal();
                 break;
+            case 10:
+                Integer dinheiro = 100 + utilidadesService.gerarNumeroAleatorio(5)*10;
+                mensagem.setText("Você ganhou\n" + dinheiro + "G.");
+                treinador.setDinheiro(treinador.getDinheiro() + dinheiro);
+                TreinadorDAO treinadorDAO = new TreinadorDAO(getApplicationContext());
+                treinadorDAO.atualizarDinheiro(treinador);
+                etapa = 9;
+                break;
         }
-
 
     }
 
@@ -277,7 +330,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             Toast.makeText(this, "Você fugiu!", Toast.LENGTH_SHORT).show();
             irMenuPrincipal();
         } else {
-            TextView mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
+            TextView mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaTreinador);
             mensagem.setText("Não foi possível fugir.");
 
             this.desabilitarButtons();
@@ -291,45 +344,45 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
         pokemonTreinadorDAO.atualizarHpAtualHpTotalExpLvl(pokemonTreinador);
 
-        Intent menuPrincipal = new Intent(BatalhaSelvagemActivity.this, MenuPrincipalActivity.class);
+        Intent menuPrincipal = new Intent(BatalhaTreinadorActivity.this, MenuPrincipalActivity.class);
         menuPrincipal.putExtra("treinador", treinador);
         startActivity(menuPrincipal);
     }
 
     public void itemBatalha(View v) {
-        Intent itemBatalha = new Intent(BatalhaSelvagemActivity.this, ItemBatalhaActivity.class);
+        Intent itemBatalha = new Intent(BatalhaTreinadorActivity.this, ItemBatalhaActivity.class);
         itemBatalha.putExtra("treinador", treinador);
         itemBatalha.putExtra("pokemonTreinador", pokemonTreinador);
         itemBatalha.putExtra("pokemonInimigo", pokemonTreinadorInimigo);
-        itemBatalha.putExtra("isSelvagem", true);
+        itemBatalha.putExtra("isSelvagem", false);
         startActivity(itemBatalha);
     }
 
     public void habilitarButtons() {
-        Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaSelvagem);
+        Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaTreinador);
         ataque1.setEnabled(true);
 
-        Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaSelvagem);
+        Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaTreinador);
         ataque2.setEnabled(true);
 
-        Button item = (Button) findViewById(R.id.itemButtonBatalhaSelvagem);
+        Button item = (Button) findViewById(R.id.itemButtonBatalhaTreinador);
         item.setEnabled(true);
 
-        Button fugir = (Button) findViewById(R.id.fugirButtonBatalhaSelvagem);
+        Button fugir = (Button) findViewById(R.id.fugirButtonBatalhaTreinador);
         fugir.setEnabled(true);
     }
 
     public void desabilitarButtons() {
-        Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaSelvagem);
+        Button ataque1 = (Button) findViewById(R.id.ataque1ButtonBatalhaTreinador);
         ataque1.setEnabled(false);
 
-        Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaSelvagem);
+        Button ataque2 = (Button) findViewById(R.id.ataque2ButtonBatalhaTreinador);
         ataque2.setEnabled(false);
 
-        Button item = (Button) findViewById(R.id.itemButtonBatalhaSelvagem);
+        Button item = (Button) findViewById(R.id.itemButtonBatalhaTreinador);
         item.setEnabled(false);
 
-        Button fugir = (Button) findViewById(R.id.fugirButtonBatalhaSelvagem);
+        Button fugir = (Button) findViewById(R.id.fugirButtonBatalhaTreinador);
         fugir.setEnabled(false);
     }
 }

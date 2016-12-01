@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_batalha_treinador"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.breno.pokemobile.BatalhaTreinadorActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="80">
+
+        <LinearLayout
+            android:id="@+id/border1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="110dp"
+            android:layout_marginLeft="40dp"
+            android:padding="10dp"
+            android:background="@drawable/my_border">
+
+            <TextView
+                android:id="@+id/nomeInimigoTextViewBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pikachu"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/lvlInimigoTextViewBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lv.1"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <ProgressBar
+                android:id="@+id/hpInimigoProgressBarBatalhaTreinador"
+                android:layout_width="120dp"
+                android:layout_height="15dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progress="100"/>
+
+            <TextView
+                android:id="@+id/hpInimigoTextViewBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HP: 22/22"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ground"
+            android:layout_alignParentTop="true"
+            android:paddingTop="170dp"
+            android:layout_alignParentRight="true"/>
+
+        <ImageView
+            android:id="@+id/pokemonFrenteBatalhaTreinador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pikachu_frente_battle"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="30dp" />
+
+        <ImageView
+            android:id="@+id/iconeTreinadorImageViewBatalhaTreinador"
+            android:layout_width="200dp"
+            android:layout_height="225dp"
+            android:src="@drawable/treinador1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/pokebolaImageViewBatalhaTreinador"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:visibility="invisible"
+            android:src="@drawable/pokeball"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="170dp"
+            android:layout_marginRight="75dp"/>
+
+        <ImageView
+            android:id="@+id/pokemonCostasBatalhaTreinador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pikachu_costas_battle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"/>
+
+        <LinearLayout
+            android:id="@+id/border2"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/pokemonCostasBatalhaTreinador"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="40dp"
+            android:padding="10dp"
+            android:background="@drawable/my_border">
+
+            <TextView
+                android:id="@+id/nomeTextViewBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pikachu"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/lvlTextViewBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lv.1"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+
+            <ProgressBar
+                android:id="@+id/hpProgressBarBatalhaTreinador"
+                android:layout_width="120dp"
+                android:layout_height="15dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progress="100"/>
+
+            <TextView
+                android:id="@+id/hpTextViewBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HP: 22/22"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="20"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/mensagemTextViewBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="O que você vai fazer?"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/proxMensagemBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="30dp"
+                android:src="@android:drawable/ic_media_ff"
+                android:onClick="proximaEtapa"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true">
+
+            <Button
+                android:id="@+id/ataque1ButtonBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="100dp"
+                android:text="Ataque1"
+                android:onClick="usarAtaque1"/>
+
+            <Button
+                android:id="@+id/ataque2ButtonBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:text="Ataque2"
+                android:onClick="usarAtaque2"/>
+
+            <Button
+                android:id="@+id/itemButtonBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="100dp"
+                android:text="Item"
+                android:onClick="itemBatalha"/>
+
+            <Button
+                android:id="@+id/fugirButtonBatalhaTreinador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="5dp"
+                android:text="Fugir"
+                android:onClick="fugir"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

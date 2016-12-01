@@ -65,6 +65,9 @@
         <activity
             android:name=".ArmazemActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".BatalhaTreinadorActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
