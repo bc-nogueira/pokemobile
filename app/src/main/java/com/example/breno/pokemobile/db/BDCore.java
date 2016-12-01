@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.breno.pokemobile.R;
 import com.example.breno.pokemobile.modelo.Ataque;
+import com.example.breno.pokemobile.modelo.Conquista;
 import com.example.breno.pokemobile.modelo.Item;
 import com.example.breno.pokemobile.modelo.Pokemon;
 import com.example.breno.pokemobile.modelo.PokemonAtaque;
@@ -37,6 +38,10 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String DINHEIRO = "dinheiro";
     private static final String ID_AVATAR = "id_avatar";
     private static final String ID_JOGADOR_FK = "id_jogador";
+    private static final String BATALHAS_TREINADOR = "batalhas_treinador";
+    private static final String BATALHAS_TREINADOR_VENCIDAS = "batalhas_treinador_vencidas";
+    private static final String BATALHAS_SELVAGEM = "batalhas_selvagem";
+    private static final String BATALHAS_SELVAGEM_VENCIDAS = "batalhas_selvagem_vencidas";
 
     //Atributos da tabela Item
     private static final String TABELA_ITEM = "item";
@@ -107,6 +112,19 @@ public class BDCore extends SQLiteOpenHelper {
     private static final String LEVEL_TAB_EXP_LVL = "level";
     private static final String EXP = "exp";
 
+    //Atributos da tabela Conquista
+    private static final String TABELA_CONQUISTA = "conquista";
+    private static final String ID_CONQUISTA = "idConquista";
+    private static final String DESC = "descricao";
+    private static final String MENSAGEM = "mensagem";
+    private static final String CAMPO = "campo";
+    private static final String OBJETIVO = "objetivo";
+
+    //Atributos da tabela Conquista
+    private static final String TABELA_CONQUISTA_TREINADOR = "conquistaTreinador";
+    private static final String ID_CONQUISTA_FK = "idConquista";
+    private static final String ID_TREINADOR_FK3 = "idTreinador";
+
     public BDCore(Context ctx) {
         super(ctx, NOME_BD, null, VERSAO_BD);
     }
@@ -126,7 +144,11 @@ public class BDCore extends SQLiteOpenHelper {
                 + NOME + " text not null,"
                 + DINHEIRO + " integer not null,"
                 + ID_AVATAR + " integer not null,"
-                + ID_JOGADOR_FK + " integer not null"
+                + ID_JOGADOR_FK + " integer not null,"
+                + BATALHAS_TREINADOR + " integer not null,"
+                + BATALHAS_TREINADOR_VENCIDAS + " integer not null,"
+                + BATALHAS_SELVAGEM + " integer not null,"
+                + BATALHAS_SELVAGEM_VENCIDAS + " integer not null"
                 + ")";
 
         bd.execSQL(sqlTreinador);
@@ -215,6 +237,22 @@ public class BDCore extends SQLiteOpenHelper {
         bd.execSQL(sqlExpLevel);
         populaExpLevel(bd);
 
+        String sqlConquista = "CREATE TABLE " + TABELA_CONQUISTA + "("
+                + ID_CONQUISTA + " integer primary key autoincrement,"
+                + DESC + " text not null,"
+                + MENSAGEM + " text not null,"
+                + CAMPO + " text not null,"
+                + OBJETIVO + " integer not null"
+                + ")";
+        bd.execSQL(sqlConquista);
+        populaConquista(bd);
+
+        String sqlConquistaTreinador = "CREATE TABLE " + TABELA_CONQUISTA_TREINADOR + "("
+                + ID_CONQUISTA_FK + " integer not null,"
+                + ID_TREINADOR_FK3 + " integer not null"
+                + ")";
+        bd.execSQL(sqlConquistaTreinador);
+
     }
 
     @Override
@@ -235,6 +273,13 @@ public class BDCore extends SQLiteOpenHelper {
         bd.execSQL(sqlDropAtaque);
         String sqlDropPokemonAtaque = "DROP TABLE " + TABELA_POKEMON_ATAQUE;
         bd.execSQL(sqlDropPokemonAtaque);
+        String sqlDropExpLvl = "DROP TABLE " + TABELA_EXPERIENCIA_LEVEL;
+        bd.execSQL(sqlDropExpLvl);
+        String sqlDropConquista = "DROP TABLE " + TABELA_CONQUISTA;
+        bd.execSQL(sqlDropConquista);
+        String sqlDropConquistaTreinador = "DROP TABLE " + TABELA_CONQUISTA_TREINADOR;
+        bd.execSQL(sqlDropConquistaTreinador);
+
 
         onCreate(bd);
     }
@@ -400,11 +445,54 @@ public class BDCore extends SQLiteOpenHelper {
         ContentValues valores = preencheValoresPokemonAtaque(pokemonAtaque);
         insereValores(bd, "pokemonAtaque", valores);
     }
+
     private void insereValores(SQLiteDatabase bd, String table, ContentValues cv) {
         try {
             bd.insertOrThrow(table, null, cv);
         } catch (SQLException ex) {
         }
+    }
+
+    private void populaConquista(SQLiteDatabase bd) {
+        Conquista conquista = new Conquista
+                ("Capture seu 1º pokemon.", "Parabéns! Você capturou seu primeiro pokemon.", "pokemons", 1);
+        ContentValues valores = new ContentValues();
+        valores.put("descricao", conquista.getDescricao());
+        valores.put("mensagem", conquista.getMensagem());
+        valores.put("campo", conquista.getCampo());
+        valores.put("objetivo", conquista.getObjetivo());
+
+        this.insereValores(bd, "conquista", valores);
+
+        conquista = new Conquista
+                ("Capture 10 pokemons.", "Parabéns! Você capturou 10 pokemons.", "pokemons", 10);
+        valores = new ContentValues();
+        valores.put("descricao", conquista.getDescricao());
+        valores.put("mensagem", conquista.getMensagem());
+        valores.put("campo", conquista.getCampo());
+        valores.put("objetivo", conquista.getObjetivo());
+
+        this.insereValores(bd, "conquista", valores);
+
+        conquista = new Conquista
+                ("Vença sua primeira batalha.", "Parabéns! Você venceu sua primeira batalha.", "batalhas", 1);
+        valores = new ContentValues();
+        valores.put("descricao", conquista.getDescricao());
+        valores.put("mensagem", conquista.getMensagem());
+        valores.put("campo", conquista.getCampo());
+        valores.put("objetivo", conquista.getObjetivo());
+
+        this.insereValores(bd, "conquista", valores);
+
+        conquista = new Conquista
+                ("Vença dez batalhas.", "Parabéns! Você venceu 10 batalhas.", "batalhas", 10);
+        valores = new ContentValues();
+        valores.put("descricao", conquista.getDescricao());
+        valores.put("mensagem", conquista.getMensagem());
+        valores.put("campo", conquista.getCampo());
+        valores.put("objetivo", conquista.getObjetivo());
+
+        this.insereValores(bd, "conquista", valores);
     }
 
 }

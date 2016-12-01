@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.breno.pokemobile.modelo.Jogador;
 import com.example.breno.pokemobile.modelo.Treinador;
 
 import java.util.ArrayList;
@@ -29,6 +28,10 @@ public class TreinadorDAO {
         valores.put("dinheiro", treinador.getDinheiro());
         valores.put("id_avatar", treinador.getIdAvatar());
         valores.put("id_jogador", treinador.getIdJogador());
+        valores.put("batalhas_treinador", treinador.getBatalhasTreinador());
+        valores.put("batalhas_treinador_vencidas", treinador.getBatalhasTreinadorVencidas());
+        valores.put("batalhas_selvagem", treinador.getBatalhasSelvagem());
+        valores.put("batalhas_selvagem_vencidas", treinador.getBatalhasSelvagemVencidas());
 
         return bd.insertOrThrow("treinador", null, valores);
     }
@@ -47,6 +50,10 @@ public class TreinadorDAO {
                 t.setDinheiro(cursor.getInt(2));
                 t.setIdAvatar(cursor.getInt(3));
                 t.setIdJogador(cursor.getLong(4));
+                t.setBatalhasTreinador(cursor.getInt(5));
+                t.setBatalhasTreinadorVencidas(cursor.getInt(6));
+                t.setBatalhasSelvagem(cursor.getInt(7));
+                t.setBatalhasSelvagemVencidas(cursor.getInt(8));
 
                 treinadores.add(t);
 
@@ -55,6 +62,29 @@ public class TreinadorDAO {
 
         return treinadores;
 
+    }
+
+    public Treinador buscarPorId(Long idTreinador) {
+        Cursor cursor = bd.rawQuery("SELECT * FROM treinador WHERE _id = ?", new String[]{idTreinador.toString()});
+
+        Treinador t = new Treinador();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            t.setIdTreinador(cursor.getLong(0));
+            t.setNome(cursor.getString(1));
+            t.setDinheiro(cursor.getInt(2));
+            t.setIdAvatar(cursor.getInt(3));
+            t.setIdJogador(cursor.getLong(4));
+            t.setBatalhasTreinador(cursor.getInt(5));
+            t.setBatalhasTreinadorVencidas(cursor.getInt(6));
+            t.setBatalhasSelvagem(cursor.getInt(7));
+            t.setBatalhasSelvagemVencidas(cursor.getInt(8));
+
+            return t;
+        } else {
+            return null;
+        }
     }
 
     public void excluir(Long idTreinador) {

@@ -12,11 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.breno.pokemobile.Service.BatalhaSelvagemService;
+import com.example.breno.pokemobile.Service.ConquistaService;
 import com.example.breno.pokemobile.Service.PokemonTreinadorService;
+import com.example.breno.pokemobile.Service.TreinadorService;
 import com.example.breno.pokemobile.Service.UtilidadesService;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.Ataque;
 import com.example.breno.pokemobile.modelo.BatalhaBg;
+import com.example.breno.pokemobile.modelo.ConquistaTreinador;
 import com.example.breno.pokemobile.modelo.ItemTreinador;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
 import com.example.breno.pokemobile.modelo.TipoItem;
@@ -25,10 +28,13 @@ import com.example.breno.pokemobile.modelo.Treinador;
 public class BatalhaSelvagemActivity extends AppCompatActivity {
     private Treinador treinador;
     private ItemTreinador itemTreinador;
+    private ConquistaTreinador ct;
 
     private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
     private BatalhaSelvagemService batalhaSelvagemService = new BatalhaSelvagemService();
     private UtilidadesService utilidadesService = new UtilidadesService();
+    private TreinadorService treinadorService = new TreinadorService();
+    private ConquistaService conquistaService = new ConquistaService();
 
     private PokemonTreinador pokemonTreinadorInimigo;
     private ProgressBar hpBarInimigo;
@@ -46,8 +52,6 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     private Integer etapa;
 
-    private Ataque ataqueJogador;
-    private Ataque ataqueInimigo;
     private MediaPlayer mpTackle;
     private MediaPlayer mpLevelUp;
     @Override
@@ -195,8 +199,18 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 if(batalhaSelvagemService.capturarPokemon(treinador, itemTreinador, pokemonTreinadorInimigo, getApplicationContext())) {
 
                     mensagem.setText("Você conseguiu capturar o pokemon.");
+
+                    ct = conquistaService.alcancouConquistaQuantPokemon(treinador, getApplicationContext());
+
+                    if(ct != null) {
+
+                        etapa = 10;
+
+                    } else {
+                        etapa = 4;
+                    }
+
                     prox.setVisibility(View.VISIBLE);
-                    etapa = 4;
 
                 } else {
 
@@ -241,6 +255,11 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 break;
             case 9:
                 this.irMenuPrincipal();
+                break;
+            case 10:
+                Toast.makeText(getApplicationContext(), "CONQUISTA: " + ct.getConquista().getMensagem(),
+                        Toast.LENGTH_SHORT).show();
+                etapa = 4;
                 break;
         }
 

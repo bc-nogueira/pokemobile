@@ -16,6 +16,10 @@ public class Treinador implements Serializable {
     private Integer idAvatar;
     private Long idJogador;
     private ArrayList<Item> itens;
+    private Integer batalhasTreinador;
+    private Integer batalhasTreinadorVencidas;
+    private Integer batalhasSelvagem;
+    private Integer batalhasSelvagemVencidas;
 
     public Treinador() {}
 
@@ -24,6 +28,10 @@ public class Treinador implements Serializable {
         this.dinheiro = dinheiro;
         this.idAvatar = idAvatar;
         this.idJogador = idJogador;
+        this.batalhasTreinador = 0;
+        this.batalhasTreinadorVencidas = 0;
+        this.batalhasSelvagem = 0;
+        this.batalhasSelvagemVencidas = 0;
     }
 
     public Long getIdTreinador() {
@@ -64,6 +72,38 @@ public class Treinador implements Serializable {
 
     public void setIdJogador(Long idJogador) {
         this.idJogador = idJogador;
+    }
+
+    public Integer getBatalhasTreinador() {
+        return batalhasTreinador;
+    }
+
+    public void setBatalhasTreinador(Integer batalhasTreinador) {
+        this.batalhasTreinador = batalhasTreinador;
+    }
+
+    public Integer getBatalhasTreinadorVencidas() {
+        return batalhasTreinadorVencidas;
+    }
+
+    public void setBatalhasTreinadorVencidas(Integer batalhasTreinadorVencidas) {
+        this.batalhasTreinadorVencidas = batalhasTreinadorVencidas;
+    }
+
+    public Integer getBatalhasSelvagem() {
+        return batalhasSelvagem;
+    }
+
+    public void setBatalhasSelvagem(Integer batalhasSelvagem) {
+        this.batalhasSelvagem = batalhasSelvagem;
+    }
+
+    public Integer getBatalhasSelvagemVencidas() {
+        return batalhasSelvagemVencidas;
+    }
+
+    public void setBatalhasSelvagemVencidas(Integer batalhasSelvagemVencidas) {
+        this.batalhasSelvagemVencidas = batalhasSelvagemVencidas;
     }
 
     public String toString() {
