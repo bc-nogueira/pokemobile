@@ -77,13 +77,15 @@
         android:layout_marginLeft="20dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/confirmarTextViewEditarConta"
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:text="Alterar"
-        android:onClick="alterar"/>
+        android:onClick="alterar"
+        android:textColor="#FFF"
+        android:background="@drawable/button"/>
 
 
 </RelativeLayout>

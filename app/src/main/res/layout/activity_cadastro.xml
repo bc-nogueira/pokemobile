@@ -112,11 +112,13 @@
 
     <Button
         android:text="Criar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:id="@+id/criar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="475dp"
-        android:onClick="cadastrar" />
+        android:onClick="cadastrar"
+        android:textColor="#FFF"
+        android:background="@drawable/button"/>
 
 </RelativeLayout>

@@ -72,11 +72,13 @@
 
     <Button
         android:text="Entrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/senhaLoginEdit"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:id="@+id/entrarLogin"
-        android:onClick="login" />
+        android:onClick="login"
+        android:textColor="#FFF"
+        android:background="@drawable/button"/>
 </RelativeLayout>

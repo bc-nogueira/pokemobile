@@ -78,7 +78,7 @@
             android:layout_marginTop="75dp"
             android:onClick="batalhaSelvagem"
             android:textColor="#FFF"
-            android:background="@drawable/button"/>/>
+            android:background="@drawable/button"/>
 
         <Button
             android:id="@+id/pokedexButtonMenuPrincipal"

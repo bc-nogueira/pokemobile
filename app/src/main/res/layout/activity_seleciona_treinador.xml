@@ -31,25 +31,29 @@
 
     <Button
         android:id="@+id/criarButtonSeleciona"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:text="Criar"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="60dp"
         android:layout_marginStart="60dp"
-        android:onClick="criarNovoTreinador" />
+        android:onClick="criarNovoTreinador"
+        android:textColor="#FFF"
+        android:background="@drawable/button"/>
 
     <Button
         android:id="@+id/sairButtonSeleciona"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:text="Sair"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="60dp"
-        android:onClick="sair" />
+        android:onClick="sair"
+        android:textColor="#FFF"
+        android:background="@drawable/button"/>
 
 </RelativeLayout>
 </FrameLayout>

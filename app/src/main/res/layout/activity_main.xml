@@ -43,24 +43,28 @@
 
         <Button
             android:text="Carregar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:id="@+id/carregar"
             android:layout_centerHorizontal="true"
             android:width="100dp"
             android:visibility="invisible"
             android:onClick="irLogin"
-            android:layout_marginTop="425dp" />
+            android:layout_marginTop="425dp"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>
 
         <Button
             android:text="Novo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:id="@+id/novo"
             android:visibility="invisible"
             android:onClick="irCadastro"
             android:width="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="375dp" />
+            android:layout_marginTop="325dp"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>
     </RelativeLayout>
 </FrameLayout>
