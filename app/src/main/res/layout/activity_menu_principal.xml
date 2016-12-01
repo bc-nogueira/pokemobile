@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
@@ -9,9 +11,7 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/activity_bg"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:id="@+id/activity_menu_inicial"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,67 +53,77 @@
         <Button
             android:id="@+id/vsTreinadorButtonMenuPrincipal"
             android:text="vs. Treinador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:width="100dp"
             android:height="60dp"
             android:layout_marginTop="75dp"
             android:layout_marginLeft="50dp"
-            android:onClick="batalhaTreinador"/>
+            android:onClick="batalhaTreinador"
+            android:background="@drawable/button"/>
 
         <Button
             android:id="@+id/vsSelvagemButtonMenuPrincipal"
             android:text="vs. Selvagem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:width="100dp"
             android:height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
             android:layout_marginTop="75dp"
-            android:onClick="batalhaSelvagem"/>
+            android:onClick="batalhaSelvagem"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>/>
 
         <Button
             android:id="@+id/pokedexButtonMenuPrincipal"
             android:text="Pokedex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:width="100dp"
             android:height="60dp"
             android:layout_marginTop="150dp"
             android:layout_marginLeft="50dp"
-            android:onClick="abrirPokedex" />
+            android:onClick="abrirPokedex"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>/>
 
         <Button
             android:id="@+id/pokemonsButtonMenuPrincipal"
             android:text="Pokemons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:width="100dp"
             android:height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
             android:layout_marginTop="150dp"
-            android:onClick="abrirPokemons"/>
+            android:onClick="abrirPokemons"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>/>
 
         <Button
             android:id="@+id/mochilaButtonMenuPrincipal"
             android:text="Mochila"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:width="100dp"
             android:height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="225dp"
-            android:onClick="abrirMochila"/>
+            android:onClick="abrirMochila"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>/>
 
         <Button
             android:id="@+id/lojaButtonMenuPrincipal"
@@ -124,61 +134,71 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
             android:layout_marginTop="225dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="abrirLoja"/>
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:onClick="abrirLoja"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>/>
 
         <Button
             android:id="@+id/infoButtonMenuPrincipal"
             android:text="Info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:width="100dp"
             android:height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="300dp"
             android:layout_marginLeft="50dp"
-            android:onClick="abrirInfo" />
+            android:onClick="abrirInfo"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>/>
 
         <Button
             android:id="@+id/armazemButtonMenuPrincipal"
             android:text="Armazém"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:width="100dp"
             android:height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="300dp"
             android:layout_marginRight="50dp"
-            android:onClick="abrirArmazem" />
+            android:onClick="abrirArmazem"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>/>
 
         <Button
             android:id="@+id/mudarButtonMenuPrincipal"
             android:text="Mudar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:width="100dp"
             android:height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="375dp"
-            android:onClick="mudarTreinador"/>
+            android:onClick="mudarTreinador"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>/>
 
         <Button
             android:id="@+id/contaButtonMenuPrincipal"
             android:text="Conta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:width="100dp"
             android:height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
             android:layout_marginTop="375dp"
-            android:onClick="editarConta"/>
+            android:onClick="editarConta"
+            android:textColor="#FFF"
+            android:background="@drawable/button"/>
 
     </RelativeLayout>
 </FrameLayout>
