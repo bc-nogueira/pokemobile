@@ -153,9 +153,9 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-    }
+//    @Override
+//    public void onBackPressed() {
+//    }
 
     public void proximaEtapa(View v) {
         switch (etapa) {

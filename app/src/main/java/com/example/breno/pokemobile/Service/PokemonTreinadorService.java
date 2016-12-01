@@ -166,4 +166,19 @@ public class PokemonTreinadorService {
         return (pokemon.getHpAtual().doubleValue()/pokemon.getHpTotal().doubleValue()) * 100;
     }
 
+    public void reordenarFila(Treinador treinador, Context ctx) {
+        PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(ctx);
+
+        ArrayList<PokemonTreinador> pokemons =
+                pokemonTreinadorDAO.buscarPorIdTreinadorNaFila(treinador, ctx);
+        int contador = 1;
+        for(PokemonTreinador pokemon : pokemons) {
+            if(contador != pokemon.getPosFila()) {
+                pokemon.setPosFila(contador);
+                pokemonTreinadorDAO.atualizarPosFila(pokemon);
+            }
+            contador++;
+        }
+    }
+
 }
