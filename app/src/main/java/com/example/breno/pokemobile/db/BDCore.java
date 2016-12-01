@@ -475,7 +475,7 @@ public class BDCore extends SQLiteOpenHelper {
         this.insereValores(bd, "conquista", valores);
 
         conquista = new Conquista
-                ("Vença sua primeira batalha.", "Parabéns! Você venceu sua primeira batalha.", "batalhas", 1);
+                ("Vença sua primeira batalha.", "Parabéns! Você venceu sua primeira batalha contra um treinador.", "batalhasTreinador", 1);
         valores = new ContentValues();
         valores.put("descricao", conquista.getDescricao());
         valores.put("mensagem", conquista.getMensagem());
@@ -485,7 +485,7 @@ public class BDCore extends SQLiteOpenHelper {
         this.insereValores(bd, "conquista", valores);
 
         conquista = new Conquista
-                ("Vença dez batalhas.", "Parabéns! Você venceu 10 batalhas.", "batalhas", 10);
+                ("Vença dez batalhas.", "Parabéns! Você venceu 10 batalhas contra treinadores.", "batalhasTreinador", 10);
         valores = new ContentValues();
         valores.put("descricao", conquista.getDescricao());
         valores.put("mensagem", conquista.getMensagem());

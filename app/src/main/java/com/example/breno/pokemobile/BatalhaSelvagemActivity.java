@@ -263,7 +263,6 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 break;
         }
 
-
     }
 
     public void usarAtaque1(View v) {
