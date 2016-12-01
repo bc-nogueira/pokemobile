@@ -62,8 +62,7 @@ public class ItemBatalhaActivity extends AppCompatActivity {
                         if (isSelvagem) {
                             batalha = new Intent(ItemBatalhaActivity.this, BatalhaSelvagemActivity.class);
                         } else {
-                            //TODO: mudar para BatalhaTreinadorActivity
-                            batalha = new Intent(ItemBatalhaActivity.this, PokemonsActivity.class);
+                            batalha = new Intent(ItemBatalhaActivity.this, BatalhaTreinadorActivity.class);
                         }
 
                         batalha.putExtra("treinador", treinador);
