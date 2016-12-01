@@ -49,13 +49,14 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     private Ataque ataqueInimigo;
     private MediaPlayer mpBg;
     private MediaPlayer mpTackle;
-
+    private MediaPlayer mpLevelUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mpBg = MediaPlayer.create(getApplicationContext(), R.raw.battle1);
-        this.mpBg.setLooping(true);
         this.mpTackle =  MediaPlayer.create(getApplicationContext(), R.raw.tackle);
+        this.mpLevelUp =  MediaPlayer.create(getApplicationContext(), R.raw.levelup);
+        this.mpBg.setLooping(true);
         setContentView(R.layout.activity_batalha_selvagem);
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
@@ -236,6 +237,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
                 hpTextJogador.setText
                         ("HP: " + pokemonTreinador.getHpAtual().intValue() + " / " + pokemonTreinador.getHpTotal().intValue());
                 etapa = 9;
+                mpLevelUp.start();
                 break;
             case 9:
                 this.irMenuPrincipal();
