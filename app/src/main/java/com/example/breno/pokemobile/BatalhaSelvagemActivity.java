@@ -47,15 +47,16 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
 
     private Ataque ataqueJogador;
     private Ataque ataqueInimigo;
-    private MediaPlayer mp;
+    private MediaPlayer mpBg;
+    private MediaPlayer mpTackle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.mp =  MediaPlayer.create(getApplicationContext(), R.raw.battle1);
-        this.mp.setLooping(true);
+        this.mpBg =  MediaPlayer.create(getApplicationContext(), R.raw.battle1);
+        this.mpBg.setLooping(true);
+        this.mpTackle =  MediaPlayer.create(getApplicationContext(), R.raw.tackle);
         setContentView(R.layout.activity_batalha_selvagem);
-
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
         mensagem = (TextView) findViewById(R.id.mensagemTextViewBatalhaSelvagem);
@@ -85,7 +86,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             this.desabilitarButtons();
 
             mensagem.setText("Um " + pokemonTreinadorInimigo.getPokemon().getNome() + "\nselvagem apareceu.");
-            mp.start();
+            mpBg.start();
         }
 
         //Dados para a View do pokemon do treinador
@@ -177,7 +178,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
             case 1:
                 pokemonTreinador = batalhaSelvagemService.realizarAtaque(pokemonTreinadorInimigo, pokemonTreinador, null,
                         mensagem, true, hpBarJogador, hpTextJogador);
-
+                this.mpTackle.start();
                 if(pokemonTreinador.getHpAtual() == 0) {
                     etapa = 5;
                 } else {
@@ -256,6 +257,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         } else {
             etapa = 1;
         }
+        this.mpTackle.start();
     }
 
     public void usarAtaque2(View v) {
@@ -270,6 +272,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
         } else {
             etapa = 1;
         }
+        this.mpTackle.start();
     }
 
     public void fugir(View v) {
@@ -287,7 +290,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     }
 
     public void irMenuPrincipal() {
-        this.mp.stop();
+        this.mpBg.stop();
         PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
         pokemonTreinadorDAO.atualizarHpAtualHpTotalExpLvl(pokemonTreinador);
 
