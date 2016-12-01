@@ -168,7 +168,7 @@ public class BatalhaTreinadorActivity extends AppCompatActivity {
                 prox.setVisibility(View.VISIBLE);
                 etapa = 1;
 
-            } else if(itemTreinador.getItem().getTipo().equals(TipoItem.CAPTURA)) {
+            } /*else if(itemTreinador.getItem().getTipo().equals(TipoItem.CAPTURA)) {
 
                 pokemonInimigo.setVisibility(View.INVISIBLE);
                 pokebola.setImageResource(itemTreinador.getItem().getIcone());
@@ -177,7 +177,7 @@ public class BatalhaTreinadorActivity extends AppCompatActivity {
                 prox.setVisibility(View.VISIBLE);
                 mensagem.setText("Tentando\ncapturar o pokemon...");
 
-            }
+            } */
 
         }
 
@@ -233,23 +233,23 @@ public class BatalhaTreinadorActivity extends AppCompatActivity {
                 habilitarButtons();
                 prox.setVisibility(View.INVISIBLE);
                 break;
-            case 3:
-                if(batalhaSelvagemService.capturarPokemon(treinador, itemTreinador, pokemonTreinadorInimigo, getApplicationContext())) {
-
-                    mensagem.setText("Você conseguiu capturar o pokemon.");
-                    prox.setVisibility(View.VISIBLE);
-                    etapa = 4;
-
-                } else {
-
-                    mensagem.setText("Você não conseguiu capturar o pokemon.");
-                    prox.setVisibility(View.VISIBLE);
-                    pokebola.setVisibility(View.INVISIBLE);
-                    pokemonInimigo.setVisibility(View.VISIBLE);
-                    etapa = 1;
-
-                }
-                break;
+//            case 3:
+//                if(batalhaSelvagemService.capturarPokemon(treinador, itemTreinador, pokemonTreinadorInimigo, getApplicationContext())) {
+//
+//                    mensagem.setText("Você conseguiu capturar o pokemon.");
+//                    prox.setVisibility(View.VISIBLE);
+//                    etapa = 4;
+//
+//                } else {
+//
+//                    mensagem.setText("Você não conseguiu capturar o pokemon.");
+//                    prox.setVisibility(View.VISIBLE);
+//                    pokebola.setVisibility(View.INVISIBLE);
+//                    pokemonInimigo.setVisibility(View.VISIBLE);
+//                    etapa = 1;
+//
+//                }
+//                break;
             case 4:
                 this.irMenuPrincipal();
                 break;
