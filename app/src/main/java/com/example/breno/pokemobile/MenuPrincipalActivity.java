@@ -1,6 +1,7 @@
 package com.example.breno.pokemobile;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,13 +17,14 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     private Treinador treinador;
     private Jogador jogador;
     private PokemonTreinadorService pokemonTreinadorService = new PokemonTreinadorService();
-
+    private MediaPlayer mpbg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
-
+        this.mpbg =  MediaPlayer.create(getApplicationContext(), R.raw.titlescreen);
+        this.mpbg.start();
         if(treinador != null) {
             TextView nomeJogador = (TextView) findViewById(R.id.nomeTextViewMenuPrincipal);
             nomeJogador.setText(treinador.getNome());
@@ -100,4 +102,14 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         startActivity(armazem);
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        this.mpbg.pause();
+    }
+    @Override
+    public void onResume(){
+        super.onPause();
+        this.mpbg.start();
+    }
 }

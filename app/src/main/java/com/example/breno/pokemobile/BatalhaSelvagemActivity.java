@@ -53,7 +53,7 @@ public class BatalhaSelvagemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.mpBg =  MediaPlayer.create(getApplicationContext(), R.raw.battle1);
+        this.mpBg = MediaPlayer.create(getApplicationContext(), R.raw.battle1);
         this.mpBg.setLooping(true);
         this.mpTackle =  MediaPlayer.create(getApplicationContext(), R.raw.tackle);
         setContentView(R.layout.activity_batalha_selvagem);
