@@ -78,7 +78,7 @@ public class PokemonTreinadorDAO {
     }
 
     public ArrayList<PokemonTreinador> buscarPorIdTreinadorNaFila(Treinador treinador, Context ctx) {
-        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila is not null",
+        Cursor cursor = bd.rawQuery("SELECT * FROM pokemonTreinador WHERE idTreinador = ? and pos_fila is not null order by pos_fila",
                 new String[]{treinador.getIdTreinador().toString()});
 
         PokemonDAO pokemonDAO = new PokemonDAO(ctx);
