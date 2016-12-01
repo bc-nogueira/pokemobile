@@ -61,7 +61,11 @@ public class PokemonTreinadorDAO {
                 pt.setHpTotal(cursor.getInt(5));
                 pt.setLevel(cursor.getInt(6));
                 pt.setExperiencia(cursor.getInt(7));
-                pt.setPosFila(cursor.getInt(8));
+                if(cursor.getInt(8) == 0) {
+                    pt.setPosFila(null);
+                } else {
+                    pt.setPosFila(cursor.getInt(8));
+                }
                 pt.setAtaque1(ataqueDAO.buscarPorId(cursor.getInt(9)));
                 pt.setAtaque2(ataqueDAO.buscarPorId(cursor.getInt(10)));
 
@@ -94,7 +98,11 @@ public class PokemonTreinadorDAO {
                 pt.setHpTotal(cursor.getInt(5));
                 pt.setLevel(cursor.getInt(6));
                 pt.setExperiencia(cursor.getInt(7));
-                pt.setPosFila(cursor.getInt(8));
+                if(cursor.getInt(8) == 0) {
+                    pt.setPosFila(null);
+                } else {
+                    pt.setPosFila(cursor.getInt(8));
+                }
                 pt.setAtaque1(ataqueDAO.buscarPorId(cursor.getInt(9)));
                 pt.setAtaque2(ataqueDAO.buscarPorId(cursor.getInt(10)));
 
@@ -143,6 +151,14 @@ public class PokemonTreinadorDAO {
     public void atualizarHpAtual(PokemonTreinador pokemonTreinador) {
         ContentValues valores = new ContentValues();
         valores.put("hp_atual", pokemonTreinador.getHpAtual());
+
+        bd.update("pokemonTreinador", valores, "idPokemonTreinador = ?",
+                new String[]{pokemonTreinador.getIdPokemonTreinador().toString()});
+    }
+
+    public void atualizarPosFila(PokemonTreinador pokemonTreinador) {
+        ContentValues valores = new ContentValues();
+        valores.put("pos_fila", pokemonTreinador.getPosFila());
 
         bd.update("pokemonTreinador", valores, "idPokemonTreinador = ?",
                 new String[]{pokemonTreinador.getIdPokemonTreinador().toString()});

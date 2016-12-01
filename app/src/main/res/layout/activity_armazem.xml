@@ -20,13 +20,27 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.example.breno.pokemobile.ArmazemActivity">
 
-        <ListView
-            android:id="@+id/pokemonsListViewArmazem"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tituloArmazemActivity"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:dividerHeight="5dp" />
+            android:textAlignment="center"
+            android:layout_marginTop="5dp"
+            android:text="Armazém"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#fff"/>
+
+        <GridView
+            android:id="@+id/armazemGridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="auto_fit"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:layout_below="@+id/tituloArmazemActivity"
+            android:layout_marginTop="10dp">
+        </GridView>
 
     </RelativeLayout>
 </FrameLayout>

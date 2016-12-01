@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 
+import com.example.breno.pokemobile.adapter.PokemonArmazemAdapter;
 import com.example.breno.pokemobile.adapter.PokemonsAdapter;
 import com.example.breno.pokemobile.db.PokemonTreinadorDAO;
 import com.example.breno.pokemobile.modelo.PokemonTreinador;
@@ -24,26 +26,35 @@ public class ArmazemActivity extends AppCompatActivity {
 
         treinador = (Treinador) getIntent().getSerializableExtra("treinador");
 
-        PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
+        final PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
         final ArrayList<PokemonTreinador> pokemons = pokemonTreinadorDAO.buscarPorIdTreinador(treinador, getApplicationContext());
 
-        final ListView listPokemons = (ListView) findViewById(R.id.pokemonsListViewArmazem);
+        final GridView gv = (GridView) findViewById(R.id.armazemGridView);
 
-        PokemonsAdapter pokemonsAdapter = new PokemonsAdapter(this, pokemons);
-        listPokemons.setAdapter(pokemonsAdapter);
+        final PokemonArmazemAdapter pokemonArmazemAdapter = new PokemonArmazemAdapter(this, pokemons);
+        gv.setAdapter(pokemonArmazemAdapter);
 
-        listPokemons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
+                if(pokemons.get(position).getPosFila() != null) {
+                    pokemons.get(position).setPosFila(null);
+                    PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
+                    pokemonTreinadorDAO.atualizarPosFila(pokemons.get(position));
+                    pokemonArmazemAdapter.notifyDataSetChanged();
+                } else {
+                    PokemonTreinadorDAO pokemonTreinadorDAO = new PokemonTreinadorDAO(getApplicationContext());
+                    ArrayList<PokemonTreinador> pokemonsNaFila =
+                            pokemonTreinadorDAO.buscarPorIdTreinadorNaFila(treinador,getApplicationContext());
+                    Integer posPraColocar = pokemonsNaFila.size();
+                    pokemons.get(position).setPosFila(posPraColocar);
+                    pokemonTreinadorDAO.atualizarPosFila(pokemons.get(position));
+                    pokemonArmazemAdapter.notifyDataSetChanged();
+                }
 
             }
         });
-
-
-
-
 
     }
 }
